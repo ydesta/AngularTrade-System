@@ -1,0 +1,96 @@
+<div fxLayout="row" class="p-5 mt-5" style="margin: auto; width: 80%">
+  <mat-card fxFlex="100" fxLayout="column" class="mt-5 mat-card-custom">
+      <mat-card-header class="custom-mat-card-header" fxLayout="row">
+          <div fxFlex="40">
+              <mat-card-title>{{'pageHeader.WoredaList'|translate }}</mat-card-title>
+          </div>
+      </mat-card-header>
+      <mat-card-content fxFlex="100">
+
+        <div class="responsive-table" style="margin: 15px">
+          <form #form="ngForm" [formGroup]="searchForm" novalidate (ngSubmit)="getWoredaList()">
+              <div fxLayout="row wrap" fxLayoutGap="2em">
+                <mat-form-field fxFlex>
+                    <mat-label>{{'labels.Region' | translate}}</mat-label>
+                    <mat-select formControlName="Region" (selectionChange)="filterRegion($event.value)" required>
+                      <mat-option *ngFor="let reg of regions" [value]="reg.Id">
+                        <span>{{reg.Description}}</span>
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="region.hasError('required')">
+                      {{'common.validation.Required' | translate}}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field fxFlex>
+                    <mat-label>{{'labels.Zone' | translate}}</mat-label>
+                    <mat-select formControlName="Zone"  required>
+                      <mat-option *ngFor="let z of zones" [value]="z.Id">
+                        <span>{{z.Description}}</span>
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="zone.hasError('required')">
+                      {{'common.validation.Required' | translate}}
+                    </mat-error>
+                  </mat-form-field>
+                
+                </div>
+                <mat-card-actions fxLayoutAlign="end end">
+                  <button mat-raised-button color="primary" (click)="getWoredaList()" type="button">
+                    {{'common.commands.Show' | translate}}
+                  </button>
+                </mat-card-actions>
+        </form>
+      </div>
+
+
+      <div class="mat-elevation-z8" style="margin: 15px;">
+          <mat-progress-bar *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+          <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="woredaId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header >{{'labels.Id'|translate}}</mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.WoredaId}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="descriptionEng">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.DescriptionEngList'|translate}}</mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.DescriptionEng}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="descriptionAmh">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{'labels.DescriptionAmhList'|translate}}</mat-header-cell>
+              <mat-cell *matCellDef="let row" > {{row.DescriptionAmh}}</mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef >
+                <button mat-button color="primary" matTooltip="Add New Record" (click)="openEditWoredaDialog(null)">
+                  <mat-icon class="mat-button-icon">add_location</mat-icon>
+                  {{'common.commands.Add' | translate}}
+                </button>
+             
+              </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef >
+              </mat-header-cell>
+              <mat-cell *matCellDef="let woreda" >
+                <span>
+                  <button mat-icon-button (click)="openEditWoredaDialog(woreda)" type="button">
+                    <mat-icon>edit_location</mat-icon>
+                  </button>
+                </span>
+                <span>
+                    <button mat-icon-button (click)="confirmDelete(woreda)" type="button">
+                      <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                </span>
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+      </div>
+  
+    </mat-card-content>
+</mat-card>
+</div>

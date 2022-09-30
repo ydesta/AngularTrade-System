@@ -1,0 +1,24 @@
+img {
+  max-width:100%;
+  height:auto;/**/
+  //height: 100%;
+  object-fit: contain;
+}
+.holder {
+  width:auto;
+  text-align:center;
+  padding:20px;
+}
+
+/*
+.holder{
+  width: auto;
+  display: inline-block;
+}
+
+.holder img {
+  width: 70%;
+  height: auto;
+  max-width: 100%;
+}
+*/

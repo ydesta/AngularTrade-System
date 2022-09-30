@@ -1,0 +1,17 @@
+.mat-toolbar {
+    margin: 0;
+    margin-bottom: 0;
+    width: auto;
+  }
+  .mat-dialog-content {
+    margin: 0 0;
+    padding:0 !important;
+  }
+
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 40px !important;
+  }
+
+  body{
+    overflow-y: hidden;
+}

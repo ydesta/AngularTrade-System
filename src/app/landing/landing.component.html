@@ -1,0 +1,33 @@
+<div>
+    <app-toolbar></app-toolbar>
+
+    <mat-drawer-container class="landing-page">
+        <div class="p-3 header-section" id="top">
+            <div class="theme-container">
+                <div fxLayout="row wrap" class="content">
+                    <div fxFlex="100" class="mb-5 py-3"></div>
+                    <div fxFlex="100" class="py-5">
+                        <img [src]="configService.assetsUrl+ '/image/CommLogo.png'" width="200px" height="200px" alt="ECEA Logo" />
+                        <h1>{{'pageHeader.TagLine' | translate }}</h1>
+
+                        <!-- <div class="py-5">
+                            <a (click)="redirectUser()" mat-raised-button color="primary" class="mx-2">
+                {{'Buttons.Login' | translate}}
+              </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-our-services></app-our-services>
+        
+        <mat-toolbar color="primary" class="landing-footer mt-5" style="background-image: url('/assets/image/header-bg.png')">
+            <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between center" class="w-100" style="font-size:
+        small;">
+                <span>{{'Labels.CopyRight'|translate}}</span>
+                <span></span>
+                <span>{{'Labels.PoweredBy' | translate }}</span>
+            </div>
+        </mat-toolbar>
+    </mat-drawer-container>
+</div>

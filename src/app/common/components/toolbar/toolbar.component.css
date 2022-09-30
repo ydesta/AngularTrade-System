@@ -1,0 +1,48 @@
+mat-spinner {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+@media screen and (max-width: 500px) {
+  .app-toolbar {
+    height: 80px !important;
+  }
+  .logo {
+    margin-top: 20px;
+  }
+  .logo span h1, .logo span h3 {
+    font-size: 12px !important;
+  }
+}
+
+.landing-toolbar {
+  position: fixed;
+  top: 0;
+  height: 72px !important;
+  z-index: 5;
+}
+
+.landing-toolbar button {
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+.landing-toolbar .logo {
+  min-width: 160px !important;
+}
+
+@media screen and (max-width: 500px) {
+  .landing-toolbar {
+    height: 80px !important;
+  }
+  .logo {
+    margin-top: 20px;
+  }
+  .logo span h1, .logo span h3 {
+    font-size: 12px !important;
+  }
+  .landing-container {
+    margin-top: 80px;
+  }
+}
+/*# sourceMappingURL=toolbar.component.css.map */

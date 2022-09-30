@@ -1,0 +1,247 @@
+<app-breadcrumb [title]="'mainMenu.PrerequisitesAssignment' | translate"></app-breadcrumb>
+
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="loadingIndicator"
+></mat-progress-bar>
+<div class="page-content">
+  <mat-card>
+    <mat-card-content>
+      <form
+        [formGroup]="servicePrerequisiteForm"
+        fxLayout="column"
+        autocomplete="off" (ngSubmit)="saveEditedServicePrerequiste()"
+      >
+        <div fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="2em">
+          <mat-form-field fxFlex>
+            <mat-label>{{ "prerequisite.serviceType" | translate }}</mat-label>
+            <mat-select
+              formControlName="ServiceType"
+              (selectionChange)="refillGrids()"
+              [compareWith]="compareIds"
+            >
+              <mat-option
+                *ngFor="let services of servicetype"
+                [value]="services.Id"
+              >
+                {{ services.Description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <mat-label>{{ "prerequisite.MemberCategory" | translate }}</mat-label>
+            <mat-select
+              formControlName="ExchangeActorType"
+              (selectionChange)="refillGrids()"
+              [compareWith]="compareIds"
+            >
+              <mat-option
+                *ngFor="let status of exchangeActorTypes"
+                [value]="status.Id"
+              >
+                {{ status.Description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="20em" class="mb-4">
+          <!-- <section > -->
+
+          <mat-checkbox [disabled]="!canManageSetting" formControlName="IsRequired" value="0">{{
+            "prerequisite.isRequired" | translate
+          }}</mat-checkbox>
+          <mat-checkbox [disabled]="!canManageSetting" formControlName="IsDocument" value="0">{{
+            "prerequisite.isDocument" | translate
+          }}</mat-checkbox>
+          <mat-checkbox [disabled]="!canManageSetting"
+            formControlName="IsActive"
+            value="1"
+            style="margin-left: 20px;"
+            >{{ "prerequisite.isActive" | translate }}</mat-checkbox
+          >
+        </div>
+
+        <mat-card-actions fxLayoutAlign="end end">
+          <button [disabled]="!canManageSetting"
+            [disabled]="false"
+            mat-raised-button
+            type="submit"
+            color="primary"
+            *ngIf="showSaveButton"
+          >
+            {{ "prerequisite.save" | translate }}
+          </button>
+          <button [disabled]="!canManageSetting" mat-raised-button (click)="cancelEditOperation()" type="button" *ngIf="showCancellButton">
+            {{ "prerequisite.cancel" | translate }}
+          </button>
+        </mat-card-actions>
+      </form>
+      <mat-divider></mat-divider>
+   
+      <div class="mat-elevation-z8">
+        
+        <mat-table
+          [dataSource]="dataSource"
+          class="mat-elevation-z2 mt-3"
+          fxFlexAlign="center"
+        >
+          <ng-container matColumnDef="Description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{
+              "prerequisite.amharicDescription" | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" fxFlex="40%">
+              {{ row.DescriptionAmh }}</mat-cell
+            >
+          </ng-container>
+          <ng-container matColumnDef="EnglishDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{
+              "prerequisite.englishDescription" | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" fxFlex="40%">
+              {{ row.DescriptionEng }}</mat-cell
+            >
+          </ng-container>
+
+          <ng-container matColumnDef="IsActive">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="10%">{{
+              "prerequisite.isActive" | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" fxFlex="10%">
+              <mat-checkbox [checked]="row.IsActive" disabled="true">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef fxFlex="10%">
+              <button [disabled]="!canManageSetting" mat-button color="primary" (click)="addPrerequisite()">
+                <mat-icon class="mat-button-icon">add</mat-icon
+                >{{ "common.commands.Add" | translate }}
+              </button>
+            </mat-header-cell>
+            <mat-header-cell fxFlex="10%" *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let Prerequisite" fxFlex="10%">
+              <button [disabled]="!canManageSetting"
+                mat-icon-button
+                (click)="addServicePrerequisite(Prerequisite)"
+                type="button"
+                [disabled]="disableServiceSaveButton"
+              >
+                <mat-icon>arrow_downward</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+        </mat-table>
+        <mat-paginator
+          [showFirstLastButtons]="true"
+          [length]="totalCount"
+          [pageSize]="paginationService.pageCount"
+          [pageSizeOptions]="paginationService.selectItemsPerPage"
+          (page)="switchPage($event)"
+        >
+        </mat-paginator>
+      </div>
+      <div class="mat-elevation-z8">
+          
+        <mat-table
+          [dataSource]="dataSourceForServicePrerequisite"
+          class="mat-elevation-z2 mt-3"
+          fxFlexAlign="center"
+        >
+     
+          <ng-container matColumnDef="Description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{
+              "prerequisite.amharicDescription" | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" fxFlex="40%">
+              {{ row.DescriptionAmh }}</mat-cell
+            >
+          </ng-container>
+          <ng-container matColumnDef="EnglishDescription">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40%">{{
+              "prerequisite.englishDescription" | translate
+            }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" fxFlex="40%">
+              {{ row.DescriptionEng }}</mat-cell
+            >
+          </ng-container>
+          <ng-container matColumnDef="IsRequired">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="8%">{{'prerequisite.isRequired' | translate}}</mat-header-cell>
+            
+            <mat-cell
+              *matCellDef="let ServicePrerequisite; let row"
+              fxFlex="8%"
+            >
+             <mat-checkbox [checked]="row.IsRequired" [disabled]="true"></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="IsActive">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="8%">{{'prerequisite.isActive' | translate}}</mat-header-cell>
+            
+            <mat-cell
+              *matCellDef="let ServicePrerequisite; let row"
+              fxFlex="8%"
+            >
+             <mat-checkbox [checked]="row.IsActive" [disabled]="true"></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="IsDocument">
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="8%">{{'prerequisite.isDocument' | translate}}</mat-header-cell>
+            
+            <mat-cell
+              *matCellDef="let ServicePrerequisite; let row"
+              fxFlex="8%"
+            >
+             <mat-checkbox [checked]="row.IsDocument" [disabled]="true"></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell fxFlex="10%" *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let ServicePrerequisite" fxFlex="10%">
+
+              <button [disabled]="!canManageSetting"
+                mat-icon-button
+                type="button"
+                (click)="editServicePrerequisite(ServicePrerequisite)"
+                [matTooltip]="translate.instant('common.commands.Edit')"
+              >
+                <mat-icon color="warn">edit</mat-icon>
+              </button>
+
+              <button [disabled]="!canManageSetting"
+                mat-icon-button
+                (click)="removeServicePrerequisite(ServicePrerequisite)"
+                type="button"
+                [matTooltip]="translate.instant('common.commands.Delete')"
+                
+              >
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row
+            *matHeaderRowDef="servicePrerequistedisplayedColumns"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: servicePrerequistedisplayedColumns"
+          >
+          </mat-row>
+        </mat-table>
+        <mat-paginator
+          [showFirstLastButtons]="true"
+          [length]="totalServiceAssignedCount"
+          [pageSize]="paginationService.pageCount"
+          [pageSizeOptions]="paginationService.selectItemsPerPage"
+          (page)="switchPageForServicePrerequisite($event)"
+        >
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

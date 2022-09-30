@@ -1,0 +1,62 @@
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+}
+
+.example-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}
+
+mat-cell {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
+
+mat-header-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=commodity.component.css.map */

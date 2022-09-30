@@ -1,0 +1,95 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+            <span>{{'Faqs.header'|translate}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+    <form [formGroup]="editFaqForm" fxLayout="column" class="mt-3">
+        <mat-form-field >
+            <mat-label>{{'Label.Question'|translate}}</mat-label>
+            <input matInput type="text" formControlName="Question">
+            <mat-error *ngIf="Question.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Question.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!Question.hasError('required') && Question.hasError('minlength')
+                                                        && !Question.hasError('pattern')&&
+                                                        Question.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!Question.hasError('required') && !Question.hasError('minlength')
+                && Question.hasError('pattern')">
+                {{'common.validation.UseLatinOnlyWithQuestionMark' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.QuestionAmh'|translate}}</mat-label>
+            <input matInput type="text" formControlName="QuestionAmh">
+            <mat-error *ngIf="QuestionAmh.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="QuestionAmh.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!QuestionAmh.hasError('required') && !QuestionAmh.hasError('minlength')
+                                                        && !QuestionAmh.hasError('pattern')&&
+                                                        QuestionAmh.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!QuestionAmh.hasError('required') && !QuestionAmh.hasError('minlength')
+                && QuestionAmh.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnlyWithQuestionMark' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.Answer'|translate}}</mat-label>
+            <textarea matInput type="text" formControlName="Answer"></textarea>
+            <mat-error *ngIf="!Answer.hasError('required') && !Answer.hasError('minlength')
+                && Answer.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Answer.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Answer.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'20'}  }}
+            </mat-error>
+            <mat-error *ngIf="!Answer.hasError('required') && !Answer.hasError('minlength')
+                                                        && !Answer.hasError('pattern')&&
+                                                        Answer.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'255'} }}
+            </mat-error>
+
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.AnswerAmh'|translate}}</mat-label>
+            <textarea matInput type="text" formControlName="AnswerAmh"></textarea>
+            <mat-error *ngIf="AnswerAmh.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="AnswerAmh.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'20'}  }}
+            </mat-error>
+            <mat-error *ngIf="!AnswerAmh.hasError('required') && !AnswerAmh.hasError('minlength')
+                                                        && !AnswerAmh.hasError('pattern')&&
+                                                        AnswerAmh.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'255'} }}
+            </mat-error>
+            <mat-error *ngIf="!AnswerAmh.hasError('required') && !AnswerAmh.hasError('minlength')
+                && AnswerAmh.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnly' | translate}}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div fxLayoutAlign="end" fxLayoutGap="3px" class="p-3" mat-dialog-actions style="margin-left: 70px">
+    <button mat-stroked-button class="mat-primary mr-16"
+            (click)="dialogRef.close(true)">  {{'common.commands.Close' |translate}}</button>
+ <button mat-raised-button class="mat-primary mr-16" [disabled]="editFaqForm.invalid"
+            (click)="saveFaq()">  {{'common.commands.Save' |translate}}</button>
+</div>
+

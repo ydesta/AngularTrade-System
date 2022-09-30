@@ -1,0 +1,57 @@
+<div fxFlex="100" class="mt-2 pt-3">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    class="title-section p-3 mb-2">
+
+    <h1 class="title">{{ 'pageHeader.MajorSystem' | translate }}</h1>
+    <p class="secondary-text-color mt-2">
+      {{ "pageHeader.OurServicesSubText" | translate }}
+    </p>
+  </div>
+  <div fxLayout="row wrap" class="mt-4">
+    <div fxFlex="100">
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="center "
+        fxLayoutGap="15px"
+        class="p-2"
+      >
+        <mat-card
+          *ngFor="let customerService of services"
+          fxLayout="column"
+          fxFlex.gt-md="25"
+          fxFlex.md="33.3"
+          fxFlex.sm="50"
+          class="mb-4 mat-elevation-z3 custom-card"
+        >
+          <h1 class="mt-2 text-center" fxLayoutAlign="center">
+            <mat-icon
+              fxLayout="column"
+              class="mat-icon-xlg  text-center"
+              color="primary">{{ customerService.Icon }}</mat-icon
+            >
+          </h1>
+                          <!-- color="primary" -->
+                          <!-- green-font -->
+
+          <h3 class="mt-2 text-center">{{ customerService.Title }}</h3>
+
+          <p class="text-center secondary-text-color mt-3">
+            {{ customerService.Desc }}
+          </p>
+          <br>
+          <button
+            class="mt-2"
+            mat-raised-button
+            class="mat-primary mr-16"           
+            (click)="redirectUser()"
+            >
+            {{ 'Buttons.Login' | translate }}
+          </button>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

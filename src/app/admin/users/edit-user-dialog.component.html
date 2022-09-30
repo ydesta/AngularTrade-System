@@ -1,0 +1,17 @@
+<div style="width:550px; height:550px">
+  <mat-toolbar color="primary" mat-dialog-title>
+    <h1 mat-dialog-title>
+     {{userName ? ('users.management.EditUser' | translate:userName) : ('users.management.NewUser' | translate)}}</h1>
+  </mat-toolbar>
+  <div>
+    <div mat-dialog-content>
+      <user-editor [user]="data.user" [roles]="data.roles" [isStaff]="data.isStaff" isEditMode="true"></user-editor>
+    </div>
+    <div fxLayoutGap="3px" fxLayoutAlign="end" mat-dialog-actions class="p-2">
+      <button mat-stroked-button (click)="cancel()" color="warn">{{'commands.Cancel'|translate}}</button>
+      <button mat-raised-button
+      [disabled]="(editUser.isNewUser && !editUser.isTinExisting) || editUser.userProfileForm.invalid || editUser.isSaving"
+      (click)="editUser.save();" color="primary">{{'commands.Save'|translate}}</button>
+    </div>
+  </div>
+</div>

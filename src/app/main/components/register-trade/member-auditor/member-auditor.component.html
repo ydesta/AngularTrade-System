@@ -1,0 +1,79 @@
+<app-breadcrumb [title]="'MemberAuditor.editor.MemberAuditorList' |
+  translate"></app-breadcrumb>
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="60">
+        <mat-card-title>{{'MemberAuditor.editor.MemberAuditorList' | translate}}
+        </mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+      </div>
+    </mat-card-header>
+
+    <div class="responsive-table" style="margin: 5px">
+      <mat-card>
+        <mat-card-title align="end">
+          <button mat-button color="primary" (click)="AddMemeberAuditor()">
+            <i class="material-icons">
+              add_box
+            </i>
+            {{'registerTrade.editor.CreateAgrement' | translate}}
+          </button>
+        </mat-card-title>
+        <mat-card-content>
+          <mat-table [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{'registerTrade.editor.Sno'|translate}}
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element;let i=index;">
+                {{i + 1}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="OrganiztionName">
+              <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.OrganizationName' | translate}}
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.OrganiztionName?.OrganiztionNames}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="EcxCode">
+              <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.IndependentAuditorEcxCode' | translate}}
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.EcxCode}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="FromDate">
+              <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.FromDate' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.StartDate}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ToDate">
+              <mat-header-cell *matHeaderCellDef> {{'registerTrade.editor.ToDate' | translate}}</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element?.EndDate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let financialTrade">
+                <button type="button" id="update" mat-icon-button *ngIf="(financialTrade.Status==0)"
+                  (click)="editMemberAuditorAgreement(financialTrade)" matTooltip="{{'common.commands.Edit' |
+                translate}}">
+                  <mat-icon class="mat-18">edit</mat-icon>
+                </button>
+                <button *ngIf="(financialTrade.Status==0)" mat-icon-button matTooltip="Send"
+                  (click)="sendAnnualAuditor(financialTrade)" matTooltip="{{'registerTrade.editor.Send' |
+                  translate}}">
+                  <mat-icon color="warn" class="mat-18">send</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+          </mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

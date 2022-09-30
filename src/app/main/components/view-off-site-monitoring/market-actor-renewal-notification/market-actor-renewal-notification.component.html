@@ -1,0 +1,60 @@
+<app-breadcrumb [title]="'registerTrade.editor.RenewalNotify' | translate"></app-breadcrumb>
+<div class="mt-4 p-4" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+    <mat-card fxFlex="100">
+        <mat-card-header>
+            <mat-card-title>
+                {{
+        "registerTrade.editor.RenewalNotify" | translate | uppercase
+      }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-table [dataSource]="datasource" matSort matSortStart="desc" class="mat-elevation-z8">
+
+
+
+                <ng-container matColumnDef="IssuedDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'registerTrade.editor.IssuedDate' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.IssuedDate }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ExpiredDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'registerTrade.editor.ExpiredDate' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.ExpiredDate }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="GracePeriod">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'registerTrade.editor.GracePeriod' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.GracePeriod }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="NoOfLeftDay">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'registerTrade.editor.NoOfLeftDay' | translate}}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.NoOfLeftDay}}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row">
+                </mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row"></mat-row>
+
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>

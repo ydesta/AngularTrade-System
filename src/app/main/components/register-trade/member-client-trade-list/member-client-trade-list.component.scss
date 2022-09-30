@@ -1,0 +1,36 @@
+
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+.my-list-1 .mat-list-item {
+  height: 30px;
+}
+
+.my-list-2 .mat-list-item .mat-list-item-content {
+  height: 30px;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}
+.mat-nav-list {
+  flex-grow: 1;
+  border: 3px solid green;
+  overflow: auto;
+}

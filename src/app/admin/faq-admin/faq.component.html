@@ -1,0 +1,30 @@
+<div fxLayout="row" class="p-5 mt-5">
+    <mat-card fxFlex="100" fxLayout="column" class="mt-5 mat-card-custom">
+        <mat-card-header class="custom-mat-card-header" fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'Faqs.header'|translate }}</mat-card-title>
+            </div>
+        </mat-card-header>
+        <mat-card-content fxFlex="100">
+            <div fxLayout="column"  >
+                <div fxFlex fxLayoutAlign="end" >
+                    <button fxFlexAlign="end" mat-button color="primary" (click)="openEditUserInstructionDialog(0)"><mat-icon>add</mat-icon></button>
+                </div>
+                <mat-accordion class="mt-2">
+                    <mat-expansion-panel  *ngFor="let faq of listOfFaqs">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <h3>{{faq.Question}}</h3>
+                                <button fxFlexAlign="end" mat-button color="primary" (click)="openEditUserInstructionDialog(faq.Id)"><mat-icon class="icon-sm">edit</mat-icon></button>
+                                                    <button fxFlexAlign="end" mat-button color="warn" (click)="delete(faq.Id)">
+                                                        <mat-icon class="icon-sm">delete</mat-icon>
+                                                    </button>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p> {{faq.Answer}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

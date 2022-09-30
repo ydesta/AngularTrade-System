@@ -1,0 +1,494 @@
+<app-breadcrumb
+  [title]="'registerTrade.editor.SendReportToECEA' | translate"
+></app-breadcrumb>
+<div fxLayout="row" class="p-4 mt-4">
+  <mat-card fxFlex="100" class="p-2">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{
+          "registerTrade.editor.SendReportToECEA" | translate
+        }}</mat-card-title>
+      </div>
+      <!-- <div fxFlex fxLayoutAlign="end">
+        <button style="color: red" mat-button (click)="onClose()">X</button>
+      </div> -->
+    </mat-card-header>
+    <!-- <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>{{'registerTrade.editor.SendReportToECEA' | translate}} </span>
+      </mat-toolbar-row>
+    </mat-toolbar> -->
+    <div class="responsive-table" style="margin: 5px" class="p-2">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" class="p-3 primary">
+          <form
+            [formGroup]="sendReportForm"
+            fxFlex.gt-lg="100"
+            fxFlex.gt-md="100"
+            fxFlex.gt-xs="100"
+            fxFlex="100"
+            autocomplete="off"
+          >
+            <div class="row wrap" fxLayoutGap="2em">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.PreparedByFirstNameAmh" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="preparedByFirstNameAmh"
+                  formControlName="PreparedByFirstNameAmh"
+                  required
+                />
+                <mat-error *ngIf="PreparedByFirstNameAmh.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="PreparedByFirstNameAmh.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByFirstNameAmh.hasError('required') &&
+                    !PreparedByFirstNameAmh.hasError('minlength') &&
+                    PreparedByFirstNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.PreparedByFatherNameAmh" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="preparedByFatherNameAmh"
+                  formControlName="PreparedByFatherNameAmh"
+                  required
+                />
+
+                <mat-error *ngIf="PreparedByFatherNameAmh.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="PreparedByFatherNameAmh.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByFatherNameAmh.hasError('required') &&
+                    !PreparedByFatherNameAmh.hasError('minlength') &&
+                    PreparedByFatherNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.PreparedByGrandFatherNameAmh"
+                      | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="PreparedByGrandFatherNameAmh"
+                  formControlName="PreparedByGrandFatherNameAmh"
+                  required
+                />
+
+                <mat-error
+                  *ngIf="PreparedByGrandFatherNameAmh.hasError('required')"
+                >
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="PreparedByGrandFatherNameAmh.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByGrandFatherNameAmh.hasError('required') &&
+                    !PreparedByGrandFatherNameAmh.hasError('minlength') &&
+                    PreparedByGrandFatherNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="row wrap" fxLayoutGap="2em">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.PreparedByFirstName" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="PreparedByFirstName"
+                  formControlName="PreparedByFirstName"
+                />
+                <mat-error *ngIf="PreparedByFirstName.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="PreparedByFirstName.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByFirstName.hasError('required') &&
+                    !PreparedByFirstName.hasError('minlength') &&
+                    PreparedByFirstName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.PreparedByFatherName" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="preparedByFatherName"
+                  formControlName="PreparedByFatherName"
+                />
+                <mat-error *ngIf="PreparedByFatherName.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="PreparedByFatherName.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "8" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByFatherName.hasError('required') &&
+                    !PreparedByFatherName.hasError('minlength') &&
+                    PreparedByFatherName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.PreparedByGrandFatherName" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="PreparedByGrandFatherName"
+                  formControlName="PreparedByGrandFatherName"
+                />
+                <mat-error
+                  *ngIf="PreparedByGrandFatherName.hasError('required')"
+                >
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="PreparedByGrandFatherName.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "8" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !PreparedByGrandFatherName.hasError('required') &&
+                    !PreparedByGrandFatherName.hasError('minlength') &&
+                    PreparedByGrandFatherName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row wrap" fxLayoutGap="2em">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.ApprovedByFirstNameAmh" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="approvedByFirstNameAmh"
+                  formControlName="ApprovedByFirstNameAmh"
+                  required
+                />
+                <mat-error *ngIf="ApprovedByFirstNameAmh.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="ApprovedByFirstNameAmh.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByFirstNameAmh.hasError('required') &&
+                    !ApprovedByFirstNameAmh.hasError('minlength') &&
+                    ApprovedByFirstNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.ApprovedByFatherNameAmh" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="approvedByFatherNameAmh"
+                  formControlName="ApprovedByFatherNameAmh"
+                  required
+                />
+
+                <mat-error *ngIf="ApprovedByFatherNameAmh.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="ApprovedByFatherNameAmh.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByFatherNameAmh.hasError('required') &&
+                    !ApprovedByFatherNameAmh.hasError('minlength') &&
+                    ApprovedByFatherNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.PreparedByGrandFatherNameAmh"
+                      | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="approvedByGrandFatherNameAmh"
+                  formControlName="ApprovedByGrandFatherNameAmh"
+                  required
+                />
+
+                <mat-error
+                  *ngIf="ApprovedByGrandFatherNameAmh.hasError('required')"
+                >
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="ApprovedByGrandFatherNameAmh.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByGrandFatherNameAmh.hasError('required') &&
+                    !ApprovedByGrandFatherNameAmh.hasError('minlength') &&
+                    ApprovedByGrandFatherNameAmh.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseEthiopicOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row wrap" fxLayoutGap="2em">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.ApprovedByFirstName" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="approvedByFirstName"
+                  formControlName="ApprovedByFirstName"
+                />
+                <mat-error *ngIf="ApprovedByFirstName.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="ApprovedByFirstName.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "6" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByFirstName.hasError('required') &&
+                    !ApprovedByFirstName.hasError('minlength') &&
+                    ApprovedByFirstName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.ApprovedByFatherName" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="approvedByFatherName"
+                  formControlName="ApprovedByFatherName"
+                />
+                <mat-error *ngIf="ApprovedByFatherName.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="ApprovedByFatherName.hasError('minlength')">
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "8" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByFatherName.hasError('required') &&
+                    !ApprovedByFatherName.hasError('minlength') &&
+                    ApprovedByFatherName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{
+                    "registerTrade.editor.ApprovedByGrandFatherName" | translate
+                  }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  id="ApprovedByGrandFatherName"
+                  formControlName="ApprovedByGrandFatherName"
+                />
+                <mat-error
+                  *ngIf="ApprovedByGrandFatherName.hasError('required')"
+                >
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+                <mat-error
+                  *ngIf="ApprovedByGrandFatherName.hasError('minlength')"
+                >
+                  {{
+                    "common.validation.MinLengthChar" | translate: { min: "8" }
+                  }}
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    !ApprovedByGrandFatherName.hasError('required') &&
+                    !ApprovedByGrandFatherName.hasError('minlength') &&
+                    ApprovedByGrandFatherName.hasError('pattern')
+                  "
+                >
+                  {{ "common.validation.UseLatinOnly" | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row wrap" fxLayoutGap="2em">
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.PreparedDate" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [matDatepicker]="prepareDate"
+                  id="prepareDate"
+                  formControlName="PreparedDate"
+                  [max]="maxDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="prepareDate"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #prepareDate></mat-datepicker>
+                <mat-error *ngIf="PreparedDate.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex>
+                <mat-label
+                  >{{ "registerTrade.editor.ApprovedDate" | translate }}
+                </mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [matDatepicker]="approvedDates"
+                  id="approvedDates"
+                  formControlName="ApproveDate"
+                  [max]="maxDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="approvedDates"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #approvedDates></mat-datepicker>
+                <mat-error *ngIf="ApproveDate.hasError('required')">
+                  {{ "common.validation.Required" | translate }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <mat-card-actions align="end">
+              <div fxLayout="row" layout-align="start center">
+                <!-- <button mat-stroked-button (click)="onClose()" type="button">
+              {{'common.commands.Cancel' | translate}}
+            </button> -->
+                <button mat-raised-button color="warn" (click)="clearForm()">
+                  {{ "registerTrade.editor.Clear" | translate }}
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="!sendReportForm.valid"
+                  (click)="saveSendReportToECEA()"
+                >
+                  &nbsp; &nbsp; &nbsp; &nbsp;<mat-label>
+                    {{ "registerTrade.editor.Send" | translate }}
+                  </mat-label>
+                </button>
+              </div>
+            </mat-card-actions>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-card>
+</div>

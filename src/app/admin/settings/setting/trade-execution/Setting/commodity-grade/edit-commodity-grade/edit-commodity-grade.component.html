@@ -1,0 +1,71 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span mat-dialog-title>
+                {{IsEdit ? ('pageHeader.AddRecord' | translate:IsEdit) : ('pageHeader.RecordEdit' | translate)}}
+              </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div style="padding-left: 5%; padding-right: 5%;">
+            <br/>
+            <div mat-dialog-content style="padding: 8%">
+            <form fxLayout="column" [formGroup]="commodityGradeForm" autocomplete="off" (ngSubmit)="onSubmit()">
+                <mat-form-field fxFlex>
+                  <mat-label> {{'registerTrade.editor.CommodityName' | translate}}</mat-label>
+                  <mat-select  matInput type="text" id="commudity" formControlName="CommodityId" required>
+                    <mat-option *ngFor="let commidityType of commudityList" [value]="commidityType.Id"
+                                (click)="getCommudityType(commidityType.Id)" >
+                      <span>{{commidityType.Description}}</span>
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="CommodityId.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label> {{'registerTrade.editor.CommodityTypeName' | translate}}</mat-label>
+                  <mat-select matInput type="text" id="commudityType"
+                              formControlName="CommodityTypeId" required>
+                    <mat-option *ngFor="let commidityType of commidityTypeList" [value]="commidityType.Id">
+                      <span>{{commidityType.Description}}</span>
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="CommodityTypeId.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.CommodityGradeNameAmh' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="text" formControlName="DescriptionAmh">
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.CommodityGradeNameEng' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="text" formControlName="DescriptoinEng">
+                  <mat-error *ngIf="DescriptoinEng.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptoinEng.hasError('minlength')">
+                    {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptoinEng.hasError('pattern')">
+                    {{'common.validation.UseLatinOnly' | translate }}
+                  </mat-error>
+                </mat-form-field>
+
+              <div class="mat-dialog-actions" fxLayoutAlign="end end">
+          
+                    <button mat-raised-button  color="warn" type="button"
+                              (click)="dialogRef.close(null)">                 {{'registerTrade.editor.Cancel' | translate}}
+    
+                    </button>
+                    <button mat-raised-button color="primary" [disabled]="!commodityGradeForm.valid" mat-raised-button color="primary" type="submit">
+                    {{'registerTrade.editor.Save' | translate}}
+                             
+                    </button>
+          
+                  </div>
+            </form>
+         </div>
+      </div>

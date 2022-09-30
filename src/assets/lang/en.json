@@ -1,0 +1,560 @@
+{
+  "common": {
+    "commands": {
+      "Search": "Search",
+      "Add": "Add",
+      "New": "New",
+      "Edit": "Edit",
+      "Save": "Save",
+      "Delete": "Delete",
+      "Remove": "Remove",
+      "Show": "Show",
+      "Next": "Next",
+      "Back": "Back",
+      "Refresh": "Refresh",
+      "Cancel": "Cancel",
+      "Start": "Start",
+      "Close": "Close",
+      "End": "End",
+      "Finish": "Finish",
+      "Stop": "Stop",
+      "Approve": "Approve",
+      "Select": "Select",
+      "Unselect": "Unselect",
+      "Send": "Send",
+      "Exit": "Exit",
+      "Upload": "Upload",
+      "UploadFile": "Upload File"
+    },
+    "validation": {
+      "IsRequired": "{{fieldName}} is required",
+      "Required": "This field is required",
+      "MinLengthChar": "Must be at least {{min}} characters long",
+      "MaxLengthChar": "Can not exceed {{max}} charcters",
+      "MinLengthNum": "Must be at least {{min}} digits",
+      "MaxLengthNum": "Can not exceed {{max}} digits",
+      "UseEthiopicOnly": "Use Ethiopic characters only",
+      "UseLatinOnly": "Use Latin characters only",
+      "InvalidDate": "Enter correct date",
+      "FutureDate": "This date can not be greater than Today",
+      "InvalidEmail": "Enter a valid email address ",
+      "NumberOnly": "Enter number only!"
+    },
+    "messages": {
+      "Saved": "Data was saved successfully",
+      "Deleted": "Data was deleted successfully",
+      "Confirm": "Are you sure?",
+      "Error": "Error has occurred"
+    }
+  },
+  "mainMenu": {
+    "Home": "Home",
+    "Customers": "Customers",
+    "officer": "Officer Task",
+    "Services": "Services",
+    "ServiceLookups": "Service Maintainace",
+    "Service": "Service",
+    "Tariff": "Tariff",
+    "Serviceprerequisite": "Service Prerequisite",
+    "Servicetariff": "Service Tariff",
+    "Servicestepper": "Service Stepper",
+    "Order": "Order",
+    "Serviceappilcation": "Serviceappilcation",
+    "Site": "Site",
+    "setting": "Settings",
+    "address": "Address",
+    "site": "site",
+    "Category": "Category",
+    "Sector": "Sector",
+    "SubSector": "SubSector",
+    "Activity": "Activity",
+    "InvActivity": "InvActivity",
+    "Regions": "Regions",
+    "Region": "Region",
+    "Zone": "Zone",
+    "Woreda": "Sub City/Woreda",
+    "Kebele": "Kebele",
+    "Followup": "Service Followup",
+    "About": "About",
+    "Logout": "Logout",
+    "Login": "Login",
+    "Register": "Register",
+    "Account": "Account",
+    "UserAccount": "User Account",
+    "Profile": "Profile",
+    "Settings": "Settings",
+    "Admin": "Admin",
+    "Users": "Users",
+    "Roles": "Roles",
+    "Sites": "Sites",
+    "Lookups": "Lookups",
+    "Addresses": "Addresses",
+    "AuditTrail": "Audit Trail",
+    "Aftercare": "After Care",
+    "lookup": "Look Up",
+    "InvestorProfile": "My Profile",
+    "BusinessProfile": "Business Profile",
+    "associate": "Manager",
+    "capitalRegistration": "Capital Registration",
+    "customerRegistration": "Customer Registration",
+    "changePassword": "Change Password",
+    "lettertemplate": "Letter Tempalte"
+  },
+  "pageHeader": {
+    "Dashboard": "Dashboard",
+    "Customers": "Customers",
+    "Customer": "Customer",
+    "NotFound": "Not Found",
+    "AccessDenied": "Access Denied",
+    "About": "About",
+    "Settings": "Settings",
+    "Users": "User Management",
+    "Roles": "Role Management",
+    "Investors": "Investors List",
+    "customer-profile": "Your Profile Detail",
+    "Mangers": "List of manager",
+    "manager": "Manager form",
+    "appointment": "All Notification",
+    "draftedApplication": "Drafted Application",
+    "archiveApplication": "Archive Application",
+    "dashboard": "My DashBoard",
+    "New IP": "New IP",
+    "IP Expansion": "IP Expansion",
+    "aftercare": "After Care",
+    "projectrenewal": "Project Renewal",
+    "projectsubstitute": "Project Substitute",
+    "projectCancellation": "Project Cancellation",
+    "search": "Search",
+    "new": "Investment Permit Form",
+    "ProjectDetail": "Project Detail",
+    "Investor": "Investor",
+    "Confirm": "Registration Message",
+    "projectlist": "Project List",
+    "incentiveServiceList": "Incentive Service List",
+    "Service": "Services",
+    "TaxExemption": "Tax Exemption",
+    "IncentiveRequest": "Incentive Request",
+    "address": "Address",
+    "RequestedItemsList": "Requested Items List",
+    "capitalRegistration": "Capital Registration",
+    "billOfMaterial": "bill Of Material",
+    "projectDetail": "Project Detail",
+    "customerRegistration": "Customer Registration",
+    "applicationList": "All Application List",
+    "businessLicense": "Business License Registration"
+  },
+  "investors": {
+    "management": {
+      "InvestorName": "Investor Name"
+    },
+    "editor": {
+      "LegalStatus": "Legal Status",
+      "FirstName": "First Name (Amharic)",
+      "FatherName": "Father (Amharic)",
+      "GrandName": "Grand Father (Amharic)",
+      "FirstNameEng": "First Name (English)",
+      "Title": "Title",
+      "FatherNameEng": "Father (English)",
+      "GrandNameEng": "Grand Father (English)",
+      "Nationality": "Nationality",
+      "BranchCountry": "Country of Incorporation",
+      "CompanyName": "Company Name (Amharic)",
+      "CompanyNameEng": "Company Name (English)",
+      "Gender": "Gender",
+      "IsDiaspora": "Diaspora?",
+      "IsEthiopianOrigin": "Ethiopian Origin?",
+      "Tin": "TIN",
+      "OtherAddress": "Other Address",
+      "RegNumber": "Registration Number",
+      "RegDate": "Registration Date",
+      "TradeNameEng": "Trade Name (English)",
+      "TradeName": "Trade Name (Amharic)",
+      "Region": "Region",
+      "Zone": "Zone",
+      "Woreda": "Wereda",
+      "Kebele": "Kebele",
+      "HouseNo": "House Number",
+      "PhoneDirect": "Telephine (Direct)",
+      "PhoneMobile": "Telephine (Mobile)",
+      "Fax": "Fax",
+      "Pobox": "P.O.Box",
+      "Email": "Email",
+      "InvestorProfileCaption": "Owner/Business Data",
+      "AddressCaption": "Address in Ethiopia",
+      "BusinessDataCaption": "Commercial Registration Data",
+      "Responsibility ": "Responsibility",
+      "MangerProfile": "Manager Profile",
+      "Photo": "Photo",
+      "MangerAddress": "Manager Address",
+      "PaidCapital": "Paid Capital",
+      "SignedCapital": "Signed Capital",
+      "FormOfOwnership": "Form Of Ownership"
+    }
+  },
+  "form": {
+    "ErrorCaption": "Error in Form",
+    "ErrorMessage": "Please correct any errors and try again."
+  },
+  "notFound": {
+    "404": "404",
+    "pageNotFound": "The page you are looking for does not exist",
+    "backToHome": "Back to home"
+  },
+  "accessDenied": {
+    "403": "403",
+    "accessIsDenied": "You don't have permission to access this resource",
+    "backToHome": "Back to home"
+  },
+  "settings": {
+    "tab": {
+      "Profile": "Profile",
+      "Preferences": "Preferences",
+      "Users": "Users",
+      "Roles": "Roles"
+    },
+    "description": {
+      "UserProfile": "Edit your profile",
+      "UserPreferences": "Edit your preferences",
+      "UserDepartments": "User Departments",
+      "UsersManagement": "Manage all users",
+      "RolesManagement": "Manage user roles"
+    }
+  },
+  "users": {
+    "management": {
+      "Search": "Search for user",
+      "NewUser": "New User",
+      "Edit": "Edit User",
+      "Delete": "Delete User",
+      "EditUser": "Edit User \"{{name}}\"",
+      "TIN": "TIN",
+      "UserName": "User Name",
+      "FullName": "Full Name",
+      "Email": "Email",
+      "Roles": "Roles",
+      "PhoneNumber": "Phone Number"
+    },
+    "editor": {
+      "TIN": "TIN",
+      "TINRequired": "TIN is required (10 digits)",
+      "UserName": "User Name",
+      "UserNameRequired": "User name is required (minimum of 2 and maximum of 200 characters)",
+      "Password": "Password",
+      "PasswordHint": "Your password is required when changing user name",
+      "CurrentPasswordRequired": "Current password is required",
+      "Email": "Email",
+      "EmailRequired": "Email address is required (maximum of 200 characters)",
+      "InvalidEmail": "Specified email is not valid",
+      "ChangePassword": "Change Password",
+      "CurrentPassword": "Current Password",
+      "NewPassword": "New Password",
+      "NewPasswordRequired": "New password is required",
+      "NewPasswordRules": "The new password must contain at least: one uppercase letter, one lowercase letter, one digit, and any special character",
+      "ConfirmPassword": "Confirm Password",
+      "ConfirmationPasswordRequired": "Confirmation password is required",
+      "PasswordMismatch": "New password and confirmation password do not match",
+      "Roles": "Roles",
+      "FullName": " Full Name",
+      "RoleRequired": " Role is required",
+      "PhoneNumber": "Phone Number",
+      "Enabled": "Enabled",
+      "Unblock": "Unblock",
+      "Close": "Close",
+      "Edit": "Edit",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving...",
+      "ExistingCustomer": "I am existing customer of EIC",
+      "SiteName": "Site Name"
+    }
+  },
+  "roles": {
+    "management": {
+      "Search": "Search for role...",
+      "NewRole": "New Role",
+      "Edit": "Edit",
+      "Details": "Details",
+      "Delete": "Delete",
+      "RoleDetails": "Role Details \"{{name}}\"",
+      "EditRole": "Edit Role \"{{name}}\"",
+      "Name": "Name",
+      "Description": "Description",
+      "Users": "Users"
+    },
+    "editor": {
+      "Name": "Name:",
+      "Description": "Description:",
+      "RoleNameRequired": "Role name is required (minimum of 2 and maximum of 200 characters)",
+      "SelectAll": "Select all",
+      "SelectNone": "Select none",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    }
+  },
+  "commands": {
+    "Edit": "Edit",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Reset": "Reset",
+    "Reload": "Reload"
+  },
+  "incentiverequest": {
+    "CustomsBranch": "Customs Branch",
+    "IncentiveCategory": "Incentive Category",
+    "Quantity": "Quantity",
+    "CurrencyType": "Currency Type",
+    "Amount": "Amount",
+    "InvoiceNo": "InvoiceNo",
+    "Phase": "Batch"
+  },
+  "incentiverequestitem": {
+    "IncentiveItem": "Incentive Item",
+    "Description": "Description",
+    "MeasurementUnit": "Unit",
+    "Quantity": "Quantity",
+    "ApprovedQty": "ApprovedQty",
+    "CurrencyType": "Currency Type",
+    "Amount": "Amount"
+  },
+  "taxexemption": {
+    "RevenueBranch": "Revenue Branch",
+    "ExemptionYear": "Exemption Year"
+  },
+  "billofmaterrial": {
+    "Phase": "Batch",
+    "RejectionReason": "Rejection Reason",
+    "MesurmentUnit": "Unit",
+    "Quantity": "Quantity",
+    "HsCode": "HsCode",
+    "Description": "Description"
+  },
+  "balance": {
+    "Phase": "Batch",
+    "MesurmentUnit": "Unit",
+    "Quantity": "Quantity",
+    "HsCode": "HsCode",
+    "Description": "Description"
+  },
+  "region": {
+    "Code": "Code",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English",
+    "Header": "Region Editor"
+  },
+  "zone": {
+    "Region": "Region",
+    "Code": "Code",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English",
+    "Header": "Zone Editor"
+  },
+  "woreda": {
+    "Region": "Region",
+    "Zone": "Zone",
+    "Code": "Code",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English",
+    "Header": "Woreda Editor"
+  },
+  "kebele": {
+    "Region": "Region",
+    "Zone": "Zone",
+    "Woreda": "Woreda",
+    "KebeleCode": "Kebele Code",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English",
+    "Header": "Kebele Editor"
+  },
+  "registration": {
+    "management": {
+      "RegistrationName": "Trade Information",
+      "GeneralInformation" : "General Information"
+    },
+    "editor": {
+      "LegalStatus": "Legal Status",
+      "CompanyNameAmharic": "Company Name (Amharic)",
+      "CompanyNameEnglish": "Company Name (English)",
+      "CompanyNameRegional": "Company Name (Regional)",
+      "IsWithForighner": "With Forighner?",
+      "EthiopiansShare": "Ethiopian's Share",
+      "BudgetCatagory": "Budget Catagory",
+      "RegistrationStatus": "Status",
+      "Tin": "Tin",
+      "RegNumber": "Registration Number",
+      "RegDate": "Registration Date",
+      "PaidCapital": "Paid Up Capital",
+      "SighnedCapital": "Sighned Capital",
+      "SingleShareValue": "Single Share Value",
+      "RepresentativeNameAmharic": "Grantor Company Name(Amharic)",
+      "RepresentativeNameEnglish": "Grantor Company Name(English)",
+      "RepresentativeNameRegional": "Grantor Company Name(Regional)",
+      "RepresentativeManagerNameAmharic": "Grantor Company Manager Name(Amharic)",
+      "RepresentativeManagerNameEnglish": "Grantor Company Manager Name(English)",
+      "RepresentativeManagerNameRegional": "Grantor Company Manager Name(Regional)",
+      "MainOfficeAddressAmharic": "Main Office Country(Amharic)",
+      "MainOfficeAddressEnglish": "Main Office Country(English)",
+      "MainOfficeAddressRegional": "Main Office Country(Regional)",
+      "MainOfficeCountryNameAmharic": "Country (Amharic)",
+      "MainOfficeCountryNameEnglish": "Country(English)",
+      "MainOfficeCountryNameRegional": "Country(Regional)",
+      "CreatedDate":""
+
+    }
+  },
+  "registrationAddress": {
+    "management": {
+      "RegistrationAddressName": "Address"
+    },
+    "editor": {
+      "Region": "Region",
+      "Zone": "Zone",
+      "Town": "Town",
+      "Woreda": "Wereda",
+      "Kebele": "Kebele",
+      "HouseNo": "House Number",
+      "PhoneDirect": "Telephine (Direct)",
+      "PhoneMobile": "Telephine (Mobile)",
+      "Fax": "Fax",
+      "Pobox": "P.O.Box",
+      "Email": "Email",
+      "SpecificAreaName": "Specific Area Name",
+      "IsMainOffice": "Is Main Office"
+    }
+  },
+  "payment": {
+    "Header": "Payment",
+    "investorName": "Investor Name",
+    "paymentDate": "Payment Date",
+    "no": "No",
+    "paymentReason": "Payment Reason",
+    "receiptNo": "Receipt No",
+    "amount": "Amount",
+    "checkNo": "Check No",
+    "totalAmount": "Total Amount",
+    "totalAmountdescription": "Amount Description",
+    "cashierName": "Cashier Name",
+    "goToPayment": "Go To Payment",
+    "pay" : "Pay",
+    "Invoice": "Invoice"
+  },
+  "sector": {
+    "header": "Sector Editor",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias",
+    "EconomicSectorCode": "Economic Sector Code"
+  },
+  "subsector": {
+    "Sector": "Sector",
+    "header": "SubSector Editor",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "section": {
+    "header": "Section",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "subsection": {
+    "header": "Sub-Section",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "classificationLens": {
+    "header": "Classification Lens"
+  },
+  "activity": {
+    "Sector": "Sector",
+    "subSector": "SubSector",
+    "header": "Activity Editor",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "invActivity": {
+    "Sector": "Sector",
+    "subSector": "SubSector",
+    "activity": "Activity",
+    "header": "Activity Editor",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias",
+    "InAddisOromiaAreas": "In Addis Oromia Areas",
+    "InOtherAreas": "In Other Areas"
+  },
+  "lookupTypes": {
+    "Header": "Lookup Types Editor",
+    "LookupType": "LookupType",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English"
+  },
+  "lookup": {
+    "Header": "Lookup Editor",
+    "LookupId": "Lookup Id",
+    "LookupType": "LookupType",
+    "Amharic": "Description",
+    "English": "Description English"
+  },
+  "site": {
+    "Header": "Site Editor",
+    "Amharic": "Amharic",
+    "NameEnglish": "English Name"
+  },
+  "service": {
+    "Header": "Service Editor",
+    "Name": "Name",
+    "ServiceType": "Service Type",
+    "DisplayName": "Display Name",
+    "NameEnglish": "Name English",
+    "DisplayNameEnglish": "Display Name English"
+  },
+  "servicePrerequsite": {
+    "Header": "Service Prerequsite Editor",
+    "ServiceType": "Service Type",
+    "Description": "Description",
+    "DescriptionEnglish": "Description English"
+  },
+  "servicestepper": {
+    "Header": "Service stepper Editor",
+    "ServiceType": "Service Type",
+    "NameAmharic": "Amharic Name",
+    "NameEnglish": "English Name"
+  },
+  "servicesTariff": {
+    "Header": "Service Fee Editor",
+    "ServiceType": "Service Type",
+    "TariffType": "Fee Type"
+  },
+  "tariff": {
+    "Header": "Fee Editor",
+    "AccountCode": "Account Code",
+    "TariffNameEnglish": "Fee Name English",
+    "Fee": "Fee",
+    "IncrementalFee": "Incremental Fee",
+    "Quantity": "Quantity",
+    "TariffMode": "Tariff Mode",
+    "TariffName": "Fee Name"
+  },
+  "letterTemplate": {
+    "Header": "Letter Template Editor",
+    "LetterType": "Letter Type"
+  },
+  "subTitle":{
+    "fillInformation":"Fill Information "
+  },
+  "wizard": {
+    "confirmation": "Confirmation"
+  }
+}
+

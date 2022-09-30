@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAA;EACd,QAAQ,EAAE,KAAK;EACf,OAAO,EAAE,GAAG;CACb",
+    "sources": [
+        "progress-bar.component.scss"
+    ],
+    "names": [],
+    "file": "progress-bar.component.css"
+}

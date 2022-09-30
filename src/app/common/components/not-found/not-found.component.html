@@ -1,0 +1,22 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" class="page-content mat-elevation-z8"    >
+    <div style="width:700px; margin-left:-200px; margin-right:-200px">
+      <app-content-header
+        [icon]="'error'"
+        [title]="'Resource Not Found'"
+        [hasBgImage]="true"
+        [class]="'py-4'">
+      </app-content-header>
+    </div>
+    <br>
+    <br>
+    <p style="font-weight: bold">The resource you are looking for is not found.</p>
+    <br>
+    <br>
+    <button mat-raised-button color="primary" (click)="back()">
+      <mat-icon matSuffix="" color="primary" class="mat-24">home</mat-icon>
+    </button>
+    <br>
+  </div>
+</div>
+

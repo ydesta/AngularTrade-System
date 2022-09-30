@@ -1,0 +1,11 @@
+<mat-dialog-content *ngIf="dialogModel.Url!=null">
+  <img [src]="dialogModel.Url" #imageTag style="max-height: 100%;max-width: 100%" />
+  <!--<div style="height: 750px" *ngIf="dialogModel.Url!=null">-->
+    <!---->
+  <!--</div>-->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="closeDialog()">
+    {{'common.commands.Close' | translate}}
+  </button>
+</mat-dialog-actions>

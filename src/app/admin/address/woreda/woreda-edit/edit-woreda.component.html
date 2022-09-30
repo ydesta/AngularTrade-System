@@ -1,0 +1,82 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+        <span mat-dialog-title>
+          {{isNew ? ('pageHeader.AddRecord' | translate:isNew) : ('pageHeader.RecordEdit' | translate)}}
+        </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div style="padding-left: 5%; padding-right: 5%;">
+  
+  <div mat-dialog-content style="padding: 8%">
+      <form #form="ngForm" [formGroup]="woredaForm" novalidate  fxLayout="column"
+            autocomplete="off">
+            
+        <div fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="2em" class="row">
+          <mat-form-field fxFlex>
+            <mat-label>{{'labels.Region' | translate}}</mat-label>
+            <mat-select formControlName="cRegion" [compareWith]="compareIds" 
+                    (selectionChange)="filterRegion($event.value)" required>
+              <mat-option *ngFor="let reg of regions" [value]="reg.Id">
+                <span>{{reg.Description}}</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="Region.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>{{'labels.Zone' | translate}}</mat-label>
+            <mat-select formControlName="cZone" [compareWith]="compareIds"  required>
+              <mat-option *ngFor="let zed of zones" [value]="zed.Id">
+                <span>{{zed.Description}}</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="Zone.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'labels.DescriptionAmh' | translate}}</mat-label>
+            <input matInput formControlName="cDescription" required maxlength="150"/>
+            <mat-error *ngIf="Description.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Description.hasError('maxlength')">
+              {{'common.validation.MaxLengthChar' | translate: {'max':'150'} }}
+            </mat-error>
+            <mat-error *ngIf="Description.hasError('pattern')">
+              {{'common.validation.UseEthiopicOnly' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'labels.DescriptionEng' | translate}}</mat-label>
+            <input matInput formControlName="cDescriptionEnglish" required maxlength="180"/>
+            <mat-error *ngIf="DescriptionEnglish.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="DescriptionEnglish.hasError('maxlength')">
+              {{'common.validation.MaxLengthChar' | translate: {'max':'180'} }}
+            </mat-error>
+            <mat-error *ngIf="DescriptionEnglish.hasError('pattern')">
+              {{'common.validation.UseLatinOnly' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+
+    <div class="mat-dialog-actions" fxLayoutAlign="end end"> 
+      
+      
+      <button mat-raised-button  color="warn"
+                (click)="dialogRef.close(null)">  {{'common.commands.Close' |translate}}
+      </button>
+      <button mat-raised-button color="primary" [disabled]="woredaForm.invalid" (click)="saveRecord()">
+                {{'common.commands.Save' |translate}}
+      </button>
+     
+
+    </div>
+     
+</div>
+

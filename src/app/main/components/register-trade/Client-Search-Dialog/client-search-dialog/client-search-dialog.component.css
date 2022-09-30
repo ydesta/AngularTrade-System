@@ -1,0 +1,37 @@
+.table-overflow {
+  height: 200px;
+  overflow: auto;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}
+
+mat-cell {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
+/*# sourceMappingURL=client-search-dialog.component.css.map */

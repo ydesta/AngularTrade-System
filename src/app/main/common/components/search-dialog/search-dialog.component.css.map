@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACR,UAAU,EAAE,MAAM;CACnB;;AAED,AAAA,QAAQ,AAAA,MAAM,CAAC;EAEb,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "search-dialog.component.scss"
+    ],
+    "names": [],
+    "file": "search-dialog.component.css"
+}

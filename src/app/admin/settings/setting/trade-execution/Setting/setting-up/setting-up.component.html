@@ -1,0 +1,54 @@
+<app-breadcrumb [title]="'registerTrade.editor.Settings' | translate"></app-breadcrumb>
+<div fxLayout="row" class="p-5">
+    <mat-card fxFlex="100" class="">
+        <mat-card-header fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'registerTrade.editor.TradeExceutionSetting' | translate}}</mat-card-title>
+            </div>
+            <div fxFlex fxLayoutAlign="end">
+            </div>
+        </mat-card-header>
+
+        <mat-tab-group>
+            <mat-tab label="{{'registerTrade.editor.ReportPeriod' | translate}}">
+                <app-report-period-setting></app-report-period-setting>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.ReportType' | translate}}">
+                <app-report-type></app-report-type>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.FinancialPerformanceHeader' |
+        translate}}">
+                <app-financial-performance-setting></app-financial-performance-setting>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.ClientInformationReminder' |
+        translate}}">
+                <app-client-information-reminder></app-client-information-reminder>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.FinancialReportReminder' |
+        translate}}">
+                <app-financial-report-reminder></app-financial-report-reminder>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.CommodityName' | translate}}">
+                <app-commodity></app-commodity>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.CommodityTypeName' | translate}}">
+                <app-commodity-type></app-commodity-type>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.CommodityGradeName' |
+        translate}}">
+                <app-commodity-grade></app-commodity-grade>
+            </mat-tab>
+            <mat-tab label="{{'registerTrade.editor.AnnualBudgetCloser' |
+        translate}}">
+                <app-annual-budget-closer></app-annual-budget-closer>
+            </mat-tab>
+
+            <mat-tab label="{{'registerTrade.editor.ConvertingQuntity' |
+            translate}}">
+                <app-covert-quntity-measurement-list></app-covert-quntity-measurement-list>
+            </mat-tab>
+
+        </mat-tab-group>
+
+    </mat-card>
+</div>

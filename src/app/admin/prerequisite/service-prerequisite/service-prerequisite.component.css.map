@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACR,OAAO,EAAE,eAAe;CACzB",
+    "sources": [
+        "service-prerequisite.component.scss"
+    ],
+    "names": [],
+    "file": "service-prerequisite.component.css"
+}

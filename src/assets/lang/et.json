@@ -1,0 +1,541 @@
+{
+  "common": {
+    "commands": {
+      "Search": "ፈልግ",
+      "Add": "ጨምር",
+      "New": "አዲስ",
+      "Edit": "አርም",
+      "Save": "አስቀምጥ",
+      "Delete": "ሰርዝ",
+      "Remove": "አጥፋ",
+      "Show": "አሳይ",
+      "Next": "ቀጥል",
+      "Back": "ተመለስ",
+      "Refresh": "አድስ",
+      "Cancel": "ተው",
+      "Start": "ጀምር",
+      "Close": "ዝጋ",
+      "End": "ጨርስ",
+      "Finish" : "ጨርስ",
+      "Stop": "አቁም",
+      "Approve": "አረጋግጥ",
+      "Select": "ምረጥ",
+      "Unselect": "አይመረጥ",
+      "Send": "ላክ",
+      "Exit": "ውጣ",
+      "Upload": "ስቀል",
+      "UploadFile": "ፋይል ስቀል"
+
+    },
+    "validation": {
+      "IsRequired": "{{fieldName}} ባዶ መሆን አይችልም",
+      "Required": "ይህ መረጃ ባዶ መሆን አይችልም! ",
+      "MinLengthChar": "ቢያንስ {{min}} ፊደላትን ያስገቡ",
+      "MaxLengthChar": "ከ {{max}} መብለጥ የለበትም",
+      "MinLengthNum": "ቢያንስ {{min}} አሃዞችን ያስገቡ",
+      "MaxLengthNum": "Can not exceed {{max}} digits",
+      "UseEthiopicOnly": "ኢትዮፒክ ፊደላትን ብቻ ይጠቀሙ",
+      "UseLatinOnly": "እንግሊዘኛ ፊደላትን ብቻ ይጠቀሙ",
+      "InvalidDate": "ትክክለኛ ቀን ያስገቡ",
+      "FutureDate": "ይህ ቀን ከዛሬ መብለጥ የለበትም",
+      "InvalidEmail": "ትክክለኛ ኢሜል ያስገቡ! ",
+      "NumberOnly": "ቁጥር ብቻ ያስገቡ!"
+    },
+    "messages": {
+      "Saved": "መረጃው በትክክል ተቀምጧል",
+      "Deleted": "መረጃው በትክክል ተሰርዟል",
+      "Confirm": "እርግጠኛ ነዎት?",
+      "Error": "ችግር አጋጥሟል"
+    }
+  },
+  "mainMenu": {
+    "Home": "መግቢያ",
+    "Customers": "ደምበኞች",
+    "officer": "አፊሰር ",
+    "Services": "አገልግሎቶቼ",
+    "ServiceLookups": "አገልግሎት",
+    "Service": "አገልግሎቶቼ",
+    "Tariff": "ታሪፍ",
+    "Serviceprerequisite": "አገልግሎት መስፈርት",
+    "Servicetariff": "አገልግሎት ታሪፍ",
+    "Servicestepper": "አገልግሎት ደረጃ",
+    "Serviceappilcation": "አገልግሎት ማስጀመሪያ",
+    "Site": "ጣቢያ",
+    "Order": "ክፍያ ማዘዣ",
+    "setting": "ማስታካክያ",
+    "address": "አድራሻ",
+    "Category": "ዘርፍ",
+    "Other": "ሌላ",
+    "Sector": "ዋና ዘርፍ",
+    "SubSector": "ዘርፍ",
+    "Activity": "የስራ መስክ",
+    "InvActivity": "ፈቃድ መስጫ",
+    "Regions": "ክልል",
+    "Region": "ክልል",
+    "Zone": "ዞን",
+    "Woreda": "ክፍለ ከተማ/ወረዳ",
+    "Kebele": "ቀበሌ",
+    "Followup": "የአገልግሎት መከታተያ",
+    "About": "ስለ",
+    "Logout": "Logout",
+    "Login": "Login",
+    "Register": "Register",
+    "Account": "Account",
+    "UserAccount": "User Account",
+    "Profile": "Profile",
+    "Settings": "Settings",
+    "Admin": "Admin",
+    "Users": "Users",
+    "Roles": "Roles",
+    "Sites": "Sites",
+    "Lookups": "Lookups",
+    "Addresses": "Addresses",
+    "AuditTrail": "Audit Trail",
+    "Aftercare": "After Care",
+    "lookup": "",
+    "InvestorProfile": "My Profile",
+    "capitalRegistration": "Capital Registration",
+    "customerRegistration": "Customer Registration",
+    "changePassword": "Change Password",
+    "lettertemplate": "Letter Tempalte",
+    "commericalRegistration": "Commercial Registration"
+  },
+  "pageHeader": {
+    "Dashboard": "Dashboard",
+    "Customers": "ደምበኞች",
+    "Customer": "ደምበኛ",
+    "NotFound": "Not Found",
+    "AccessDenied": "የተነፈገ ገፅ",
+    "About": "About",
+    "Settings": "Settings",
+    "Users": "User Management",
+    "Roles": "Role Management",
+    "Investors": "የኢንቨስተሮች ዝርዝር",
+    "Investor": "ኢንቨስተር",
+    "Confirm": "የምዝገባ ማስታወሻ",
+    "capitalRegistration": "Capital Registration",
+    "billOfMaterial": "bill Of Material",
+    "projectDetail": "Project Detail",
+    "customerRegistration": "Customer Registration",
+    "applicationList": "All Application List",
+    "businessLicense": "አዲስ ንግድ ፍቃድ ምዝገባ"
+  },
+  "investors": {
+    "management": {
+      "InvestorName": "የኢንቨስተሩ ስም"
+    },
+    "editor": {
+      "LegalStatus": "ህጋዊ አቋም",
+      "FirstName": "ስም (በአማርኛ)",
+      "FatherName": "የአባት ስም (በአማርኛ)",
+      "GrandName": "የአያት ስም (በአማርኛ)",
+      "FirstNameEng": "ስም (በእንግሊዝኛ)",
+      "FatherNameEng": "የአባት ስም (በእንግሊዝኛ)",
+      "GrandNameEng": "የአያት ስም (በእንግሊዝኛ)",
+      "Nationality": "ዜግነት",
+      "BranchCountry": "የተቋቋመበት አገር",
+      "CompanyName": "የድርጅት ስም (በአማርኛ)",
+      "CompanyNameEng": "የድርጅት ስም (በእንግሊዝኛ)",
+      "Gender": "ፆታ",
+      "IsDiaspora": "ዳያስፖራ?",
+      "IsEthiopianOrigin": "ትውልደ ኢትዮጵያ?",
+      "Tin": "የግብር ከፋይ መለያ",
+      "OtherAddress": "ሌላ አድራሻ",
+      "RegNumber": "የምዝገባ ቁጥር",
+      "RegDate": "የምዝገባ ቀን",
+      "TradeNameEng": "የንግድ ስም (በእንግሊዝኛ)",
+      "TradeName": "የንግድ ስም (በአማርኛ)",
+      "Region": "ክልል",
+      "Zone": "ዞን/ከተማ",
+      "Woreda": "ወረዳ/ክፍለ ከተማ",
+      "Kebele": "ቀበሌ/ወረዳ",
+      "HouseNo": "የቤት ቁጥር",
+      "PhoneDirect": "ቴሌፎን (ቀጥታ)",
+      "PhoneMobile": "ቴሌፎን (ሞባይል)",
+      "Fax": "ፋክስ",
+      "Pobox": "ፓስታ ሳጥን ቁ",
+      "Email": "ኢሜል",
+      "InvestorProfileCaption": "የግል/የድርጅት መረጃ",
+      "AddressCaption": "አድራሻ",
+      "BusinessDataCaption": "የንግድ ምዝገባ መረጃ",
+      "PaidCapital": "የተከፈለ ካፒታል",
+      "SignedCapital": "የተፈረመ ካፒታል",
+      "FormOfOwnership": "Form Of Ownership"
+    }
+  },
+  "form": {
+    "ErrorCaption": "Error in Form",
+    "ErrorMessage": "Please correct any errors and try again."
+  },
+  "notFound": {
+    "404": "404",
+    "pageNotFound": "ይቅርታ፤ የጠየቁትን ገፅ ማግኘት አልተቻለም!",
+    "backToHome": "ወደ መነሻ ገፅ"
+  },
+  "accessDenied": {
+    "403": "403",
+    "accessIsDenied": "ይቅርታ፤ ይህንን ገፅ የመጠቀም መብት አልተሰጠዎትም!",
+    "backToHome": "ወደ መነሻ ገፅ"
+  },
+  "settings": {
+    "tab": {
+      "Profile": "Profile",
+      "Preferences": "Preferences",
+      "Users": "Users",
+      "Roles": "Roles"
+    },
+    "description": {
+      "UserProfile": "Edit your profile",
+      "UserPreferences": "Edit your preferences",
+      "UserDepartments": "User Departments",
+      "UsersManagement": "Manage all users",
+      "RolesManagement": "Manage user roles"
+    }
+  },
+  "users": {
+    "management": {
+      "Search": "Search for user",
+      "NewUser": "New User",
+      "Edit": "Edit User",
+      "Delete": "Delete User",
+      "EditUser": "Edit User \"{{name}}\"",
+      "TIN": "ቲን",
+      "UserName": "User Name",
+      "FullName": "Full Name",
+      "Email": "Email",
+      "Roles": "Roles",
+      "PhoneNumber": "Phone Number"
+    },
+    "editor": {
+      "TIN": "ቲን",
+      "TINRequired": "ቲን ባዶ መሆን አይችልም (10 አሃዝ)",
+      "UserName": "User Name",
+      "UserNameRequired": "User name is required (minimum of 2 and maximum of 200 characters)",
+      "Password": "Password",
+      "PasswordHint": "Your password is required when changing user name",
+      "CurrentPasswordRequired": "Current password is required",
+      "Email": "Email",
+      "EmailRequired": "Email address is required (maximum of 200 characters)",
+      "InvalidEmail": "Specified email is not valid",
+      "ChangePassword": "Change Password",
+      "CurrentPassword": "Current Password",
+      "NewPassword": "New Password",
+      "NewPasswordRequired": "New password is required",
+      "NewPasswordRules": "The new password must contain at least: one uppercase letter, one lowercase letter, one digit, and any special character",
+      "ConfirmPassword": "Confirm Password",
+      "ConfirmationPasswordRequired": "Confirmation password is required",
+      "PasswordMismatch": "New password and confirmation password do not match",
+      "Roles": "Roles",
+      "FullName": " Full Name",
+      "RoleRequired": " Role is required",
+      "PhoneNumber": "Phone Number",
+      "Enabled": "Enabled",
+      "Unblock": "Unblock",
+      "Close": "Close",
+      "Edit": "Edit",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving...",
+      "ExistingCustomer": "የኮሚሽኑ ነባር ደምበኛ ነኝ",
+      "SiteName": "Site Name"
+    }
+  },
+  "roles": {
+    "management": {
+      "Search": "Search for role...",
+      "NewRole": "New Role",
+      "Edit": "Edit",
+      "Details": "Details",
+      "Delete": "Delete",
+      "RoleDetails": "Role Details \"{{name}}\"",
+      "EditRole": "Edit Role \"{{name}}\"",
+      "Name": "Name",
+      "Description": "Description",
+      "Users": "Users"
+    },
+    "editor": {
+      "Name": "Name:",
+      "Description": "Description:",
+      "RoleNameRequired": "Role name is required (minimum of 2 and maximum of 200 characters)",
+      "SelectAll": "Select all",
+      "SelectNone": "Select none",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    }
+  },
+  "commands": {
+    "Edit": "Edit",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Reset": "Reset",
+    "Reload": "Reload"
+  },
+  "incentiverequest": {
+    "CustomsBranch": "ጉምሩክ ጣቢያ",
+    "IncentiveCategory": "የማበረታቻ አይነት",
+    "Quantity": "ብዛት",
+    "CurrencyType": "ገንዘብ አይነት",
+    "Amount": "መጠን",
+    "InvoiceNo": "ኢንቮይስ ቁጥር",
+    "Phase": "ዙር"
+  },
+  "incentiverequest": {
+    "CustomsBranch": "ጉምሩክ ጣቢያ",
+    "IncentiveCategory": "የማበረታቻ አይነት",
+    "Quantity": "ብዛት",
+    "CurrencyType": "ገንዘብ አይነት",
+    "Amount": "መጠን",
+    "InvoiceNo": "ኢንቮይስ ቁጥር",
+    "Phase": "ዙር"
+  },
+  "incentiverequestitem": {
+    "IncentiveItem": "የማበራታቻ እቃ አይነት",
+    "Description": "መግለጫ",
+    "MeasurementUnit": "መለኪያ",
+    "Quantity": "ብዛት",
+    "ApprovedQty": "የጸደቀ ብዛት",
+    "CurrencyType": "ገንዘብ አይነት",
+    "Amount": "መጠን"
+  },
+  "taxexemption": {
+    "RevenueBranch": "የገቢዎች ቅርንጫፍ",
+    "ExemptionYear": "የእፎይታ ጊዜ"
+  },
+  "billofmaterrial": {
+    "Phase": "ዙር",
+    "RejectionReason": "ውድቅ የተደረገበት ምክንያት",
+    "MesurmentUnit": "መለኪያ",
+    "Quantity": "ብዛት",
+    "HsCode": "ኤች ኤስ ኮድ",
+    "Description": "መግለጫ"
+  },
+  "balalnce": {
+    "Phase": "ዙር",
+    "MesurmentUnit": "መለኪያ",
+    "Quantity": "ብዛት",
+    "HsCode": "ኤች ኤስ ኮድ",
+    "Description": "መግለጫ"
+  },
+  "region": {
+    "Code": "ኮድ",
+    "Description": "መግለጫ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "Header": "ክልል"
+  },
+  "zone": {
+    "Region": "ክልል",
+    "Code": "ኮድ",
+    "Description": "መግለጫ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "Header": "ዞን"
+  },
+  "woreda": {
+    "Region": "ክልል",
+    "Zone": "ዞን",
+    "Code": "ኮድ",
+    "Description": "መግለጫ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "Header": "ወረዳ"
+  },
+  "kebele": {
+    "Region": "ክልል",
+    "Zone": "ዞን",
+    "Woreda": "ወረዳ",
+    "KebeleCode": "ቀበሌ ኮድ",
+    "Description": "መግለጫ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "Header": "ቀበሌ"
+  },
+  "registration": {
+    "management": {
+      "RegistrationName": "የ ነጋዴው መረጃ",
+      "GeneralInformation" : "ጠቅላላ መረጃ"
+    },
+    "editor": {
+      "LegalStatus": "ህጋዊ አቋም",
+      "CompanyNameAmharic": "የድርጅት ስም(በአማርኛ)",
+      "CompanyNameEnglish": "የድርጅት ስም(በእንግሊዝኛ)",
+      "CompanyNameRegional": "የድርጅት ስም(በክልል ቋንቋ)",
+      "IsWithForighner": "ከውጭ አገር ዜጋ ጋር?",
+      "EthiopiansShare": "የኢትዮጲያዊው ድርሻ",
+      "BudgetCatagory": "የበጀት ምድብ",
+      "RegistrationStatus": "ያለበት ሁኔታ",
+      "Tin": "የግብር ከፋይ መለያ",
+      "RegNumber": "የምዝገባ ቁጥር",
+      "RegDate": "የምዝገባ ቀን",
+      "PaidCapital": "የግብር ከፋይ መለያ",
+      "SighnedCapital": "የምዝገባ ቁጥር",
+      "SingleShareValue": "የምዝገባ ቀን",
+      "RepresentativeNameAmharic": "የወካይ ድርጅት ስም(በአማርኛ)",
+      "RepresentativeNameEnglish": "የወካይ ድርጅት ስም(በእንግሊዝኛ)",
+      "RepresentativeNameRegional": "የወካይ ድርጅት ስም(በክልል ቋንቋ)",
+      "RepresentativeManagerNameAmharic": "የድርጅቱ ሥራ አሥኪያጅ ሥም(በአማርኛ)",
+      "RepresentativeManagerNameEnglish": "የድርጅቱ ሥራ አሥኪያጅ ሥም(በእንግሊዝኛ)",
+      "RepresentativeManagerNameRegional": "የድርጅቱ ሥራ አሥኪያጅ ሥም(በክልል ቋንቋ)",
+      "MainOfficeAddressAmharic": "የውና መ/ቤት አድራሻ ከኢትዮጲያ ውጪ",
+      "MainOfficeAddressEnglish": "የውና መ/ቤት አድራሻ ከኢትዮጲያ ውጪ(በእንግሊዝኛ)",
+      "MainOfficeAddressRegional": "የውና መ/ቤት አድራሻ ከኢትዮጲያ ውጪ(በክልል ቋንቋ)",
+      "MainOfficeCountryNameAmharic": "የተቋቋመበት አገር",
+      "MainOfficeCountryNameEnglish": "የተቋቋመበት አገር(በእንግሊዝኛ)",
+      "MainOfficeCountryNameRegional": "የተቋቋመበት አገር(በክልል ቋንቋ)",
+       "CreatedDate": "የምዝገባ ቀን"
+    }
+  },
+  "registrationAddress": {
+    "management": {
+      "RegistrationAddressName": "አድራሻ"
+    },
+    "editor": {
+      "Region": "ክልል",
+      "Zone": "ዞን/ከተማ",
+      "Town": "ከተማ",
+      "Woreda": "ወረዳ/ክፍለ ከተማ",
+      "Kebele": "ቀበሌ/ወረዳ",
+      "HouseNo": "የቤት ቁጥር",
+      "PhoneDirect": "ቴሌፎን (ቀጥታ)",
+      "PhoneMobile": "ቴሌፎን (ሞባይል)",
+      "Fax": "ፋክስ",
+      "Pobox": "ፓስታ ሳጥን ቁ",
+      "Email": "ኢሜል",
+      "SpecificAreaName": "የአካባቢው ልዩ ",
+      "IsMainOffice": "ዋና መስሪያ ቤት"
+    }
+  },
+  "payment": {
+    "Header": "ክፍያ",
+    "investorName": "ስም",
+    "paymentDate": "የክፍያ ቀን",
+    "no": "ተ.ቁ",
+    "paymentReason": "የክፍያ ምክንያት",
+    "receiptNo": "ደረሰኝ ቁጥር",
+    "amount": "የገንዘቡ መጠን",
+    "checkNo": "የቼክ ቁጥር",
+    "totalAmount": "ድምር",
+    "totalAmountdescription": "የገንዘቡ ልክ በፊደል",
+    "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ",
+    "goToPayment": "ወደ ክፍያ",
+    "pay": "ክፈል",
+    "Invoice": "የገቢ ደረሰኝ"
+  },
+  "sector": {
+    "header": "ዘረፍ",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ",
+    "EconomicSectorCode": "ኢኮኖሚክ ሴክተር ኮድ"
+  },
+  "subsector": {
+    "sector": "ዘረፍ",
+    "header": "ዋና ዘረፍ",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "section": {
+    "header": "ክፍል",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "subsection": {
+    "header": "ንዑስ ክፍል",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "classificationLens": {
+    "header": "ፍቃድ ፈርጅ"
+  },
+  "invActivity": {
+    "sector": "ዘረፍ",
+    "subsector": "ዋና ዘረፍ",
+    "activity": "መስክ",
+    "header": "ፍቃድ መስጫ መደብ",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ",
+    "InAddisOromiaAreas": "አዲስ አበባና ኦሮሚያ ልዩ ዞን",
+    "InOtherAreas": "በሌሎች  አከባቢ"
+  },
+  "activity": {
+    "sector": "ዘረፍ",
+    "subsector": "ዋና ዘረፍ",
+    "header": "መስክ",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "lookupTypes": {
+    "Header": "ሉክአፕ አይነት",
+    "LookupType": "LookupType",
+    "Description": "መግለጫ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ"
+  },
+  "lookup": {
+    "Header": "ሉክአፕ",
+    "LookupType": "LookupType",
+    "LookupId": "Lookup Id",
+    "Amharic": "መግለጫ",
+    "English": "መግለጫ በእንግሊዘኛ"
+  },
+  "site": {
+    "Header": "ጣቢያ",
+    "Amharic": "ስም",
+    "NameEnglish": "ስምበእንግሊዘኛ"
+  },
+  "service": {
+    "Header": "አገልግሎት",
+    "Name": "ስም",
+    "ServiceType": "አገልግሎት አይነት",
+    "DisplayName": "ስም /ባጭሩ/",
+    "NameEnglish": "ስም በእንግሊዘኛ",
+    "DisplayNameEnglish": "ስምበእንግሊዘኛ/ማሳያ/"
+  },
+  "servicePrerequsite": {
+    "Header": "መስፈርት",
+    "ServiceType": "አገልግሎት አይነት",
+    "Description": "ስም",
+    "DescriptionEnglish": "ስምበእንግሊዘኛ/ማሳያ/"
+  },
+  "servicestepper": {
+    "Header": "የአገልግሎት ደረጃ",
+    "ServiceType": "አገልግሎት አይነት",
+    "NameAmharic": "ስም",
+    "NameEnglish": "ስምበእንግሊዘኛ/ማሳያ/"
+  },
+  "servicesTariff": {
+    "Header": "የአገክግሎት ክፍያ",
+    "ServiceType": "አገልግሎት አይነት",
+    "TariffType": "የክፍያ አይነት"
+  },
+  "tariff": {
+    "Header": "ክፍያ",
+    "AccountCode": "አካውንት ኮድ",
+    "TariffNameEnglish": "ስም በእንግሊዘኛ",
+    "Fee": "ክፍያ",
+    "IncrementalFee": "ተጨማሪ ክፍያ",
+    "Quantity": "ብዛት",
+    "TariffMode": "የክፍያ አይነት",
+    "TariffName": "ስም"
+  },
+  "letterTemplate": {
+    "Header": "Letter Template",
+    "LetterType": "Letter Type"
+  },
+  "subTitle":{
+    "fillInformation":"መረጃ መሙያ "
+  },
+  "wizard": {
+    "confirmation": "ማረጋገጫ"
+  }
+}
+
+

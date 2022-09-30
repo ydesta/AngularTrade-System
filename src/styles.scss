@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'IBM Plex Serif';
+    src: url('assets/font//IBMPlexSerif.woff2') format('woff2'), url('assets/font/IBMPlexSerif.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  // Custom Theming for Angular Material
+  // For more information: https://material.angular.io/guide/theming
+  @import '~@angular/material/theming';
+  // Plus imports for other components in your app.
+  //@import '~material-icons/iconfont/material-icons.css';
+  // Include the common styles for Angular Material. We include this here so that you only
+  // have to load a single css file for Angular Material in your app.
+  // Be sure that you only ever include this mixin once!
+  $custom-typography: mat-typography-config($font-family: 'IBM Plex Serif,Roboto, "Helvetica Neue", sans-serif');
+  @include angular-material-typography($custom-typography);
+  @include mat-core($custom-typography);
+  // Define the palettes for your theme using the Material Design palettes available in palette.scss
+  // (imported above). For each palette, you can optionally specify a default, lighter, and darker
+  // hue. Available color palettes: https://material.io/design/color/
+  $Web-primary: mat-palette($mat-indigo);
+  $Web-accent: mat-palette($mat-pink,
+    A200,
+    A100,
+    A400);
+  // The warn palette is optional (defaults to red).
+  $Web-warn: mat-palette($mat-red);
+  // Create the theme object (a Sass map containing all of the palettes).
+  $Web-theme: mat-light-theme($Web-primary,
+    $Web-accent,
+    $Web-warn);
+  // Include theme styles for core and each component used in your app.
+  // Alternatively, you can import and @include the theme mixins for each component
+  // that you are using.
+  @include angular-material-theme($Web-theme);
+  // @import '../node_modules/@angular/material/theming';
+  @import '~ngx-toastr/toastr.css';
+  @import "./@custor/styles/spaces";
+  @import "./@custor/styles/base";
+  // @include mat-core();
+  // @import "./@custor/styles/font-sizes";
+  $primary: mat-palette($mat-teal,
+    700,
+    50,
+    800);
+  $accent: mat-palette($mat-deep-orange,
+    600,
+    A400,
+    900);
+  $warn: mat-palette($mat-red,
+    600);
+  $theme: mat-light-theme($primary,
+    $accent,
+    $warn);
+  @include angular-material-theme($theme);
+  
+  .bg-primary {
+    @include _mat-toolbar-color($primary);
+  }
+  
+  .primary-color {
+    color: mat-color($primary) !important;
+  }
+  
+  * .accent-color {
+    color: mat-color($accent) !important;
+  }
+  
+  // * {
+  //   font-family: 'Abyssinica', 'arial', sans-serif;
+  // }
+  .warn-color {
+    color: mat-color($warn) !important;
+  }
+  
+  .page-content {
+    padding: 0 2em;
+  }
+  
+  mat-divider {
+    position: relative;
+    margin-bottom: 10px;
+    border-top-color: mat-color($primary) !important;
+  }
+  
+  .green-top-border {
+    border-top: 3px solid #349f92 !important;
+  }
+  
+  .mat-table .mat-row:nth-child(even) {
+    background: #f7f7f7
+  }
+  
+  .mat-table .mat-row:nth-child(odd) {
+    background: #FFF
+  }
+  
+  .mat-input-element {
+    background-color: gray;
+    border-bottom: yellow;
+  }
+  
+  
+  //dialog styles
+  .mat-dialog-container {
+    padding: 0 !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  // background color for dialog backdrop
+  .custom-backdrop {
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .custom-mat-card-header {
+  
+    mat-card-title,
+    mat-card-subtitle {
+      color: #fff;
+    }
+  }
+  
+  .custom-mat-list {
+    mat-list-item {
+      .mat-list-item-content {
+        border-left: 4px solid #2b978a !important;
+      }
+    }
+  }
+  
+  .green-font {
+    color: #00796b !important;
+  }
+  
+  .red-font {
+    color: #ae0013;
+  }
+  
+  .mat-table-column-title {
+    font-weight: bold !important;
+    font-size: 14px;
+  }
+  
+  .light {
+    font-weight: normal !important;
+    margin-bottom: 1%;
+  }
+  
+  mat-card-header {
+    border-radius: 3px;
+    top: -42px;
+    padding: 8px;
+    background: linear-gradient(60deg, #349f92, #13786b);
+    margin: 0 15px;
+    position: relative;
+    z-index: 3 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #607d8b;
+  }
+  
+  mat-card-header,
+  mat-card-title,
+  mat-card-subtitle,
+  .white {
+    color: #fff !important;
+  }
+  
+  .mat-tab-label-active {
+    background-color: #00796b;
+    border-radius: 3px;
+  
+    .mat-tab-label-content {
+      color: #fff;
+  
+      .custom-mat-icon-for-tab {
+        color: #fff;
+      }
+    }
+  }
+  
+  .custom-mat-icon-for-tab {
+    border: 2px solid;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    margin-right: 4px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .custom-card:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px -1px #00796b6b, 0px 4px 5px 0px #00796b8f, 0px 1px 10px 0px #00796b94;
+    z-index: 9000;
+  }
+  .green-font{
+    color: #00796b !important;
+  }
+  

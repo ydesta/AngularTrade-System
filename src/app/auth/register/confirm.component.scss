@@ -1,0 +1,44 @@
+.page-content {
+    // background-color: white;
+    margin-top: 70px;
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 160px;
+}
+//    Info Bar
+.info-nag{
+    display: inline-block;
+    font-size: 14px;
+    text-align: left;
+    background-color:#fff;
+    // color: white;
+    // height: 70px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: auto;
+    // width: 1000px;
+    margin-top: 10px;
+  }
+
+  .info-nag:hover{
+      cursor: pointer;
+      -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.4);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.3);
+  }
+  .info-nag > .info-split{
+    background: #337ab7;
+    width: 10px;
+    float: left;
+    color: #fff!important;
+    height: 100%;
+    text-align: center;
+  }
+  .info-nag > .info-split.info-info{
+    background: #5bc0de!important;
+  }
+  .info-nag > .info-text{
+    line-height: 19px;
+    padding-top: 11px;
+    padding-left: 45px;
+    padding-right: 20px;
+  }

@@ -1,0 +1,57 @@
+<app-breadcrumb [title]="'mainMenu.Prerequisites' | translate"></app-breadcrumb>
+
+
+<mat-progress-bar mode="indeterminate" *ngIf="loadingIndicator"></mat-progress-bar>
+<div class="page-content">
+  <div style="margin-top:50px">
+  <mat-card>
+    <mat-card-header class="custom-mat-card-header" fxLayout="row">
+      <div fxFlex="100">
+        <mat-card-title>
+          {{'prerequisite.title' | translate}}
+        </mat-card-title>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z2 mt-3" fxFlexAlign="center">
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  fxFlex="40%">{{'prerequisite.amharicDescription' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let row" fxFlex="40%"> {{row.DescriptionAmh}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="EnglishDescription">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  fxFlex="40%">{{'prerequisite.englishDescription' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let row" fxFlex="40%"> {{row.DescriptionEng}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef   >
+          <button [disabled]="!canManageSetting" mat-button color="primary"  (click)="addPrerequisite()">
+            <mat-icon class="mat-button-icon">add</mat-icon>{{'common.commands.Add' | translate}}
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let Prerequisite"   >
+          <!-- <div mat-dialog-actions> -->
+
+          <button [disabled]="!canManageSetting" mat-icon-button (click)="editPrerequisite(Prerequisite)" type="button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button [disabled]="!canManageSetting" mat-icon-button (click)="confirmDelete(Prerequisite)" type="button">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+          <!-- </div> -->
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [showFirstLastButtons]="true"
+                   [length]="totalCount"
+                   [pageSize]="paginationService.pageCount"
+                   [pageSizeOptions]="paginationService.selectItemsPerPage"
+                   (page)="switchPage($event)" >
+    </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>

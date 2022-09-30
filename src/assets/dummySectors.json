@@ -1,0 +1,84 @@
+{
+  "sector": [
+    {
+      "id": 1,
+      "name": "Sector 1"
+    },
+    {
+      "id": 2,
+      "name": "Sector 2"
+    },
+    {
+      "id": 3,
+      "name": "Sector 3"
+    }
+  ],
+  "subSectors": [
+    {
+      "id": 1,
+      "sectorId": 1,
+      "name": "subsector 1"
+    },
+    {
+      "id": 2,
+      "sectorId": 1,
+      "name": "subsector 2"
+    },
+    {
+      "id": 3,
+      "sectorId": 2,
+      "name": "subsector 3"
+    }
+  ],
+  "sections": [
+    {
+      "id": 1,
+      "subSectorId": 1,
+      "name": "section 1"
+    },
+    {
+      "id": 2,
+      "subSectorId": 1,
+      "name": "section 2"
+    },
+    {
+      "id": 3,
+      "subSectorId": 2,
+      "name": "section 3"
+    }
+  ],
+  "subSections": [
+    {
+      "id": 1,
+      "sectionId": 1,
+      "name": "subsection 1"
+    },
+    {
+      "id": 2,
+      "sectionId": 1,
+      "name": "subsection 2"
+    },
+    {
+      "id": 3,
+      "sectionId": 2,
+      "name": "subsection 3"
+    }
+  ],
+  "classificationLens": [
+    {
+      "id": 1,
+      "subSectionId": 1,
+      "name": "classification 1"
+    },
+    {
+      "id": 2,
+      "subSectionId": 1,
+      "name": "classification 2"
+    },
+    {
+      "id": 3,
+      "subSectionId": 3,
+      "name": "classification 3"
+    }
+  ]
+}

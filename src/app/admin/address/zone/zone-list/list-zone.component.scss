@@ -1,0 +1,17 @@
+
+  .mat-footer-row,
+  .mat-header-row,
+  .mat-row {
+    display: inline-flex;
+    min-width: 100%;
+  }
+  .mat-column-lookUpTypeId {
+    flex: 0 0 10% !important;
+  }
+  .mat-column-descriptionAmh, .mat-column-descriptionEng {
+    flex: 0 0 30% !important;
+  }
+
+  span {
+      width: 70px
+  }

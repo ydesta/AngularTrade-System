@@ -1,0 +1,19 @@
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+}
+
+.text-clolor {
+  color: #0a25e7;
+}
+/*# sourceMappingURL=viw-member-financial-detail.component.css.map */

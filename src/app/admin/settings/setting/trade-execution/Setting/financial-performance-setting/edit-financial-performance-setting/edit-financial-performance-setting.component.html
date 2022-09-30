@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <span mat-dialog-title>
+          {{IsEdit ? ('pageHeader.AddRecord' | translate) : ('pageHeader.RecordEdit' | translate)}}
+        </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div style="padding-left: 5%; padding-right: 5%;">
+      <br/>
+      <div mat-dialog-content style="padding: 8%">
+            <form fxLayout="column" [formGroup]="formFinancialPerformance" autocomplete="off" (ngSubmit)="onSubmit()">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.CustomerType' | translate}}</mat-label>
+                  <mat-select formControlName="CustomerTypeId" required id="CustomerTypeId" [compareWith]="compareIds">
+                    <mat-option *ngFor="let customerType of financialPerformanceCustomerType" [value]="customerType.Id" >
+                      {{(currentLang === 'et') ?customerType.DecisionNameAmh:customerType.DecisionNameEng}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="CustomerTypeId.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.Amount' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="number" formControlName="Amount">
+                  <mat-error *ngIf="Amount.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <div class="mat-dialog-actions" fxLayoutAlign="end end">
+          
+         <button mat-raised-button  color="warn" type="button" (click)="dialogRef.close(null)"> {{'registerTrade.editor.Cancel' | translate}}
+                  </button>
+                  <button mat-raised-button color="primary" [disabled]="!formFinancialPerformance.valid" mat-raised-button color="primary" type="submit">
+                  {{'registerTrade.editor.Save' | translate}}
+                           
+                  </button>
+        
+                </div>
+      
+            </form>
+          </div>
+        </div>

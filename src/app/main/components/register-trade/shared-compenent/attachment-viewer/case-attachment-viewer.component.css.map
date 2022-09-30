@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,GAAG,CAAC;EACF,SAAS,EAAC,IAAI;EACd,MAAM,EAAC,IAAI;EAAC,IAAI;EAEhB,UAAU,EAAE,OAAO;CACpB;;AACD,AAAA,OAAO,CAAC;EACN,KAAK,EAAC,IAAI;EACV,UAAU,EAAC,MAAM;EACjB,OAAO,EAAC,IAAI;CACb;;AAED;;;;;;;;;;;EAWE",
+    "sources": [
+        "case-attachment-viewer.component.scss"
+    ],
+    "names": [],
+    "file": "case-attachment-viewer.component.css"
+}

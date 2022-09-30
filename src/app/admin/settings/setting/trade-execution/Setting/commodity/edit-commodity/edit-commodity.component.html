@@ -1,0 +1,86 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span mat-dialog-title>
+                {{IsEdit ? ('pageHeader.AddRecord' | translate:IsEdit) : ('pageHeader.RecordEdit' | translate)}}
+              </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div style="padding-left: 5%; padding-right: 5%;">
+            <br/>
+            <div mat-dialog-content style="padding: 8%">
+            <form fxLayout="column" [formGroup]="commodityForm" autocomplete="off" (ngSubmit)="onSubmit()">
+              <div fxLayout="row wrap" fxLayoutGap="2em">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.CommodityAmh' | translate}}</mat-label>
+                  <input matInput id="DescriptionAmh" formControlName="DescriptionAmh">
+                  <mat-error *ngIf="DescriptionAmh.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionAmh.hasError('minlength')">
+                    {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionAmh.hasError('pattern')">
+                    {{'common.validation.UseEthiopicOnly' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.CommodityEng' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="text" formControlName="DesciptionEng">
+                  <mat-error *ngIf="DesciptionEng.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="DesciptionEng.hasError('minlength')">
+                    {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                  </mat-error>
+                  <mat-error *ngIf="DesciptionEng.hasError('pattern')">
+                    {{'common.validation.UseLatinOnly' | translate }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div fxLayout="row wrap" fxLayoutGap="2em">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.UnitMeasurement' | translate}}</mat-label>
+                  <mat-select autocomplete="off" matInput type="text" formControlName="UnitMeasurementId">
+                    <mat-option *ngFor="let unit of unitMeasurementList" [value]="unit.Id">
+                      {{unit.Description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="UnitMeasurementId.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.PriceTollerance' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="number" formControlName="PriceTollerance">
+                  <mat-error *ngIf="PriceTollerance.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row wrap" fxLayoutGap="2em">    
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.WeightedAverage' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="number" formControlName="WeightedAverage">
+                  <mat-error *ngIf="WeightedAverage.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="WeightedAverage.hasError('minlength')">
+                    {{'common.validation.MinLengthNum' | translate : {'min': '0'} }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="mat-dialog-actions" fxLayoutAlign="end end">
+          
+                    <button mat-raised-button  color="warn" type="button"
+                              (click)="dialogRef.close(null)">{{'registerTrade.editor.Cancel' | translate}}
+                    </button>
+                    <button mat-raised-button color="primary" [disabled]="!commodityForm.valid" mat-raised-button color="primary" type="submit">
+                    {{'registerTrade.editor.Save' | translate}}
+                    </button>
+                  </div>
+            </form>
+        </div>
+      </div>

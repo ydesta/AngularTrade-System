@@ -1,0 +1,25 @@
+.mat-footer-row,
+.mat-header-row,
+.mat-row {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  min-width: 100%;
+}
+
+.mat-column-lookUpTypeId {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 10% !important;
+          flex: 0 0 10% !important;
+}
+
+.mat-column-descriptionAmh, .mat-column-descriptionEng {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 30% !important;
+          flex: 0 0 30% !important;
+}
+
+span {
+  width: 70px;
+}
+/*# sourceMappingURL=list-region.component.css.map */

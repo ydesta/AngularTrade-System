@@ -1,0 +1,182 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>{{'search.management.Header' | translate}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-card>
+    <form fxLayout="column" [formGroup]="searchForm" autocomplete="off" (ngSubmit)="onSubmit()">
+
+      <div fxLayout="row wrap" fxLayoutGap="2em">
+
+        <mat-form-field fxFlex>
+          <mat-label>
+            {{'search.OrganizationName' | translate}}
+          </mat-label>
+
+          <input matInput id="OrganizationName" formControlName="OrganizationName">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+
+          <mat-label>
+            {{'search.Code' | translate}}
+          </mat-label>
+
+          <input matInput id="Ecxcode" formControlName="Ecxcode">
+
+        </mat-form-field>
+
+        <!-- <mat-form-field fxFlex>
+          <mat-label>
+            {{'search.Name' | translate}}
+          </mat-label>
+
+          <input matInput id="Name" formControlName="Name">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field fxFlex>
+          <mat-label>
+            {{'search.FatherName' | translate}}
+          </mat-label>
+
+          <input matInput id="FatherName" formControlName="FatherName">
+        </mat-form-field> -->
+
+        <!-- <mat-form-field fxFlex>
+          <mat-label>
+            {{'search.GrandfatherName' | translate}}
+          </mat-label>
+
+          <input matInput id="GrandfatherName" formControlName="GrandfatherName" >
+        </mat-form-field> -->
+
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutGap="2em">
+
+        
+
+        <mat-form-field fxFlex>
+
+          <mat-label>
+            {{'search.Tin' | translate}}
+          </mat-label>
+
+          <input matInput id="Tin" formControlName="Tin">
+
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+
+          <mat-label>
+            {{'search.CustomerType' | translate}}
+          </mat-label>
+
+          <mat-select id="CustomerType" formControlName="CustomerType">
+            <mat-option *ngFor="let customerType of customerTypes"  [value]="customerType.Id">
+              {{customerType.Description}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+
+          <mat-label>
+            {{'exchangeActor.editor.MemberCategory' | translate}}
+          </mat-label>
+
+          <mat-select id="CustomerType" formControlName="MemberCategory">
+            <mat-option *ngFor="let memberCategory of memberCategories"  [value]="memberCategory.Id">
+              {{memberCategory.Description}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        
+
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="end end">
+        <mat-card-actions fxLayoutAlign="end end">
+
+          <button mat-stroked-button (click)="dialogRef.close(true)" type="button">
+            {{'common.commands.Cancel' | translate}}
+          </button>
+
+          <button mat-raised-button color="warn" type="button" (click)="clearForm()">
+            {{'common.commands.Clear' | translate}}
+          </button>
+
+          <button mat-raised-button color="primary" type="submit">
+            {{'common.commands.Search' | translate}}
+          </button>
+
+        </mat-card-actions>
+
+      </div>
+
+      <mat-table multitemplatedatarows role="grid" [dataSource]="dataSource" class="mat-elevation-z2 example-container" style="max-height: 300px;">
+        <ng-container matColumnDef="OrganizationName" >
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title">{{'search.columnName.OrganizationName2' | translate}} </mat-header-cell>
+          <mat-cell *matCellDef="let element" > {{element.OrganizationName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="FullName">
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title" > {{'search.columnName.OwnerManagerRepresentativeName' | translate}} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.LegalBodyName + ' ' + element.LegalBodyFatherName + ' ' + element.LegalBodyGrandFatherName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="CustomerType">
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title"> {{ 'search.CustomerType' | translate}} </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.CustomerType}}
+          </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="MemberCategory">
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title">{{'search.columnName.MemberCategory' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.MemberCategory}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Ecxcode">
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title">{{'search.columnName.Ecxcode' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.Ecxcode}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef class="mat-table-column-title"></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="onSelect(element)" [matTooltip]="translate.instant('common.commands.Select')">
+              <mat-icon class="mat-18">launch</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container> -->
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true">
+
+        </mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelect(row)" class="mat-row"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator [showFirstLastButtons]="true"
+                     [length]="totalCount"
+                     [pageSize]="paginationService.pageCount"
+                     [pageSizeOptions]="paginationService.selectItemsPerPage"
+                     (page)="switchPage($event)">
+      </mat-paginator>
+
+    </form>
+  </mat-card>
+
+</div>
+

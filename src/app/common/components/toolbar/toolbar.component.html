@@ -1,0 +1,23 @@
+<div>
+    <mat-toolbar class="landing-toolbar mat-elevation-z8" fxLayoutAlign="center center" fxLayout.lt-lg="column"
+                 fxLayout.lg="row" fxLayout.gt-lg="row" color="primary" style="background-image: url('/assets/image/header-bg.png')">
+  
+      <div fxLayout="row" fxFlex.gt-md="80" fxLayoutAlign="center center">
+        <div fxLayout="row" fxFlexOffset.gt-md="10">
+          <a routerLink="/" fxLayout="row" fxLayoutAlign="center center" class="logo">
+            <span class="mx-2"><h1 style="font-weight:bolder">የኢትዮጵያ ምርት ገበያ ባለስልጣን</h1></span>
+            <img [src]="configService.assetsUrl+'/image/CommLogo.png'" alt="logo">
+            <span class="mx-2"><h3 style="font-size:16px">Ethiopian Commodity Exchange Authority</h3></span>
+          </a>
+        </div>
+      </div>
+      <div fxFlex.lt-md="100" fxFlex.gt-md="20" fxLayoutAlign="end end">
+        <div fxLayout="row" fxFlexAlign="end end">
+          <app-lang-switcher fxFlexAlign="end end"></app-lang-switcher>
+        </div>
+      </div>
+    </mat-toolbar>
+  
+  </div>
+  
+  

@@ -1,0 +1,209 @@
+<div class="responsive-table" class="p-5 m-2">
+    <mat-card>
+        <mat-card-header fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'registerTrade.editor.TradeExcutionDetailForm' | translate}}</mat-card-title>
+            </div>
+            <div fxFlex fxLayoutAlign="end">
+                <button style="color: red;" mat-button (click)="onClose()">X</button>
+            </div>
+        </mat-card-header>
+        <mat-card-content style="margin-top: 10px">
+
+            <form [formGroup]="formTardeExcutionDetail" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100"
+                fxFlex="100" autocomplete="off">
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="37" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.TradeDate' | translate}}</mat-label>
+                            <input autocomplete="off" matInput type="text" [matDatepicker]="tradeDate"
+                                formControlName="TradeDate" required (click)="tradeDate.open()" readonly>
+                            <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
+                            <mat-datepicker #tradeDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="38" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.TradeType' | translate}}</mat-label>
+                            <mat-select matInput type="text" id="tradeType" placeholder="የንግድ
+                ዓይነት" formControlName="TradeTypeId" required>
+                                <mat-option *ngFor="let tradeType of tradeTypeList" [value]="tradeType.Id">
+                                    <span>{{tradeType.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.TradeExcutionReport' | translate}}
+                            </mat-label>
+                            <mat-select id="ReportTypeId" formControlName="TradeExcutionReport" placeholder="የግብይት አፈፃፀም
+                ሪፖርት">
+                                <mat-option *ngFor="let reportType of tradeExcutionReportList" [value]="reportType.Id">
+                                    {{reportType.Description}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="37" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.ClientFullName' | translate}}</mat-label>
+                            <mat-select matInput type="text" id="clientId" placeholder="የደንበኛ
+                ስም" formControlName="MemberClientInformationId" [disabled]="clientName == 1">
+                                <mat-option *ngFor="let clientInfo of clientInformatiomList" [value]="clientInfo.Id">
+                                    <span>{{clientInfo.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="38" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.CommodityName' | translate}}</mat-label>
+                            <mat-select matInput type="text" id="commudity" placeholder="ምርት"
+                                formControlName="CommodityId" required>
+                                <mat-option *ngFor="let commidityType of commudityList" [value]="commidityType.Id">
+                                    <span>{{commidityType.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.CommodityTypeName' | translate}}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudityType" placeholder="የምርት ይነት"
+                                formControlName="CommudityTypeId" required>
+                                <mat-option *ngFor="let commidityType of commidityTypeList" [value]="commidityType.Id">
+                                    <span>{{commidityType.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+
+
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.CommodityGradeName' | translate}}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudityGrade" placeholder="የምርት ደረጃ"
+                                formControlName="CommodityGradeId" required>
+                                <mat-option *ngFor="let commidityType of commodityGradeList" [value]="commidityType.Id">
+                                    <span>{{commidityType.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.Quantity' | translate}}</mat-label>
+                            <input matInput type="number" id="quantity" placeholder="ብዛት" formControlName="Quantity"
+                                readonly>
+
+                        </mat-form-field>
+                    </div>
+
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.UnitMeasurement' | translate}}</mat-label>
+                            <mat-select matInput type="text" id="unitMeasurementId" placeholder="መለክያ"
+                                formControlName="UnitMeasurementId" required>
+                                <mat-option *ngFor="let unitmeasure of unitMeasurementList" [value]="unitmeasure.Id">
+                                    {{unitmeasure.Description}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.UnitPrice' | translate}}</mat-label>
+                            <input matInput type="text" id="grandFatherNameEng" placeholder="ነጠላ ዋጋ"
+                                formControlName="UnitPrice" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <div fxLayout="row-wrap">
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.FloorRepresentativeName' | translate}}
+                            </mat-label>
+                            <mat-select matInput type="text" id="floorRepresentativ" placeholder="የመድረክ ተወካይ"
+                                formControlName="OwnerManagerId" required>
+                                <mat-option *ngFor="let floorRepresent of floorReperesentative"
+                                    [value]="floorRepresent.Id">
+                                    {{floorRepresent.Description}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.OrderPrice' | translate}}</mat-label>
+                            <input matInput type="number" id="OrderPrice" placeholder="የትእዛዝ
+                ዋጋ" formControlName="OrderPrice" readonly>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.CommissionInPrice' | translate}}
+                            </mat-label>
+                            <input matInput type="number" id="CommissionInPrice" formControlName="CommissionInPrice"
+                                readonly>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-label>{{'registerTrade.editor.Warehouse' | translate}}</mat-label>
+                            <mat-select matInput type="text" id="fatherNameEng" formControlName="WarehouseId">
+                                <mat-option *ngFor="let reportType of warehouseList" [value]="reportType.Id">
+                                    {{reportType.Description}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+
+                <!-- <div fxLayout="row-wrap">
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field style="width:99%">
+              <mat-label>{{'registerTrade.editor.ClientTradeRemark' | translate}}</mat-label>
+            <textarea matInput id="clientTradeRemark" rows="3"
+                      placeholder="የደንበኛ አስተያየት" formControlName="ClientTradeRemark" readonly>
+            </textarea>
+            </mat-form-field>
+          </div>
+        </div> -->
+                <div fxLayout="row-wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:99%">
+                            <mat-label>{{'registerTrade.editor.MemberTradeRemark' | translate}}
+                            </mat-label>
+                            <textarea rows="3" matInput id="memberTradeRemark" formControlName="MemberTradeRemark"
+                                readonly>
+              </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+</div>

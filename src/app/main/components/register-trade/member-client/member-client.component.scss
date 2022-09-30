@@ -1,0 +1,28 @@
+
+.hide {
+  display: none;
+}
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+
+.customWidthClass{
+  flex: 0 0 40px;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}

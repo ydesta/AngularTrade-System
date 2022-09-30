@@ -1,0 +1,19 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" class="page-content mat-elevation-z8">
+    <div style="width:700px;  margin-left:-200px; margin-right:-200px">
+      <app-content-header style="background-color: brown;" [icon]="'block'" [title]="'Access denied'"
+        [hasBgImage]="true" [class]="'py-4'">
+      </app-content-header>
+    </div>
+    <br>
+    <br>
+    
+    <p style="font-weight: bold">
+      {{'common.commands.AccessDenied'|translate}}
+    </p>
+    <br>
+    <br>
+    <button mat-raised-button (click)="back()">{{'common.commands.Back'|translate}}</button>
+    <br>
+  </div>
+</div>

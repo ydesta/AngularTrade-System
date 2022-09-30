@@ -1,0 +1,124 @@
+.theme-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 2.5rem !important;
+}
+
+.py-3 {
+  padding-top: 1rem !important;
+}
+
+.mt-5,
+.my-5 {
+  margin-top: 2.5rem !important;
+}
+
+.mx-2 {
+  margin-left: 0.5rem !important;
+}
+
+.logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+}
+
+.logo svg {
+  display: block;
+}
+
+.landing-page .header-section {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../../assets/image/Comm4.jpg");
+}
+
+.landing-page .header-section:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.81);
+}
+
+.landing-page .header-section .content {
+  position: relative;
+  z-index: 9;
+  color: #fff;
+  text-align: center;
+}
+
+.landing-page .header-section .content h1 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.landing-page .header-section .content h4 {
+  font-size: 16px;
+  font-weight: 300;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.landing-page .main-wrapper {
+  margin: -16px;
+}
+
+.landing-page .main-wrapper .box {
+  text-align: center;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.landing-page .main-wrapper .box h2 {
+  padding: 16px 0;
+  font-weight: 500;
+}
+
+.landing-page .main-wrapper .box .mat-card {
+  background-size: cover;
+  height: 300px;
+  background-position: top;
+  -webkit-transition: 5s;
+  transition: 5s;
+  -webkit-box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+}
+
+.landing-page .main-wrapper .box:hover .mat-card {
+  background-position: bottom;
+}
+
+.landing-page p {
+  font-size: 16px;
+}
+
+.landing-page .copyright {
+  margin-top: 36px;
+  height: 64px;
+}
+
+.landing-page .copyright p {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+/*# sourceMappingURL=landing.component.css.map */

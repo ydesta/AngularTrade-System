@@ -1,0 +1,202 @@
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>የንግድ የተፈፀመበት ዝርዝር</mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+      </div>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 25px;border: black">
+      <div fxLayout="row wrap">
+        <form [formGroup]="formRegisterTrade" role="form" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100"
+              fxFlex="100">
+          <div class="row wrap">
+            <div fxFlex.gtsm="10" fxFlex.gt-lg="100" fxFlex="100">
+              <mat-form-field style="width:95%">
+                <input matInput id="Member" placeholder="የአባሉ ቁጥር" formControlName="CustomerId" required>
+                <!-- <mat-error *ngIf="hasError('FileNo', 'required')">File Number is required</mat-error> -->
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="70" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field style="width:95%">
+                <input matInput type="text" id="Member" placeholder="የደንበኛ ሙሉ ዝርዝር መረጃ"
+                       value="{{selectedCustomerDetail}}"/>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="20" fxFlex.gt-xs="100" fxFlex="100">
+              <button style="width:100%" mat-raised-button color="primary" (click)="searchCustomer()"
+                      class="btn-block btn-lg m-t-25 m-b-25" type="button">
+                ደንበኛ ለመምረጥ
+              </button>
+            </div>
+
+          </div>
+
+          <div class="row wrap">
+            <div fxFlex.gtsm="25" fxFlex.gt-lg="100" fxFlex="100">
+              <mat-form-field style="width: 95%">
+                <mat-select matInput name="EcxCode" placeholder="የሪፖርት ዓይነት" formControlName="ReportTypeId"
+                            required>
+                  <mat-option *ngFor="let reportTypes of reportTypeList" [value]="reportTypes.Id">
+                    <span>{{reportTypes.Description}}</span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gtsm="25" fxFlex.gt-lg="100" fxFlex="100">
+              <mat-form-field style="width: 95%">
+
+                <input autocomplete="off" matInput type="text" [matDatepicker]="reportStartDate"
+                       placeholder="ያመለከተው ቀን ከ " formControlName="ReportStartDate" required
+                       (click)="reportStartDate.open()"
+                       readonly>
+                <mat-datepicker-toggle matSuffix [for]="reportStartDate"></mat-datepicker-toggle>
+                <mat-datepicker #reportStartDate></mat-datepicker>
+
+
+              </mat-form-field>
+            </div>
+            <div fxFlex.gtsm="25" fxFlex.gt-lg="100" fxFlex="100">
+              <mat-form-field style="width: 95%">
+
+                <input autocomplete="off" matInput type="text" [matDatepicker]="reportEndDate" placeholder="እስከ "
+                       formControlName="ReportEndDate" required (click)="reportEndDate.open()" readonly>
+                <mat-datepicker-toggle matSuffix [for]="reportEndDate"></mat-datepicker-toggle>
+                <mat-datepicker #reportEndDate></mat-datepicker>
+
+
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="responsive-table" style="margin: 5px">
+            <mat-card>
+              <mat-card-content>
+                <mat-card-title>
+
+                  <button mat-button color="primary" type="button" (click)="AddOrEditMemeberFinancialClient(null,registerTrade)">
+                    <mat-icon style="margin-top: -5px" class="mat-8">add</mat-icon>
+                    ጨምር
+                  </button>
+                </mat-card-title>
+
+                <mat-table multitemplatedatarows role="grid" [dataSource]="dataSource" matSort matSortStart="desc">
+
+                  <ng-container matColumnDef="no">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>#</mat-header-cell>
+                    <mat-cell *matCellDef="let element;let i=index;">
+                      {{i + 1}}
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="TotalIncome">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ጠቅላላ ጊዛያዊ ሃብት</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalIncome }}
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="TotalPerShare">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>የኢንቨስትመንት በአክሲዮን ድምር</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalPerShare }}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="TotalFixedAsset">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>የቋሚ ንብረት ድምር</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalFixedAsset }}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="TotalWealth">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ጠቅላላ ሃብት</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalWealth}}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="TotalTemporaryDebts">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>የጊዚያዊ ዕዳ ድምር </mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalTemporaryDebts }}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="TotalLongTermDebts">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>የረጅም ጊዜ  ዕዳ ድምር</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalLongTermDebts}}
+                    </mat-cell>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="TotalDebts">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ጠቅላላ ዕዳ</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.TotalDebts}}
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="NetAssets">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>የተጣራ ሃብት</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      {{ complaint?.NetAssets }}
+                    </mat-cell>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="loading">
+                    <mat-footer-cell *matFooterCellDef colspan="8">
+                      Loading Data ......
+                    </mat-footer-cell>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef colspan="8">
+                      No Data.
+                    </mat-footer-cell>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="Action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                      <button mat-icon-button matTooltip="Edit">
+                        <mat-icon color="primary">launch</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Delete">
+                        <mat-icon color="warn">delete</mat-icon>
+                      </button>
+                    </mat-cell>
+                  </ng-container>
+
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row">
+                  </mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+                  <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource !=null}"></mat-footer-row>
+                  <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(dataSource != null && dataSource.data.length==0)}"></mat-footer-row>
+
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <mat-card-actions align="end">
+            <div fxLayout="row" layout-align="start center">
+              <button mat-raised-button color="primary"  type="button" (click)="saveOrUpdateMemberClient()">
+                &nbsp; &nbsp; &nbsp; &nbsp; አስቀምጥ &nbsp; &nbsp;
+              </button>
+              <button mat-raised-button color="warn">
+                &nbsp; ሰርዝ &nbsp;
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

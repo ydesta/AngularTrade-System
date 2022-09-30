@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+            <span>{{'Sites.header'|translate}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+    <form [formGroup]="editSiteForm" fxLayout="column" class="mt-3">
+        <mat-form-field>
+            <mat-label>{{'Label.SiteCode'|translate}}</mat-label>
+            <input matInput type="text" formControlName="SiteCode">
+            <mat-error *ngIf="SiteCode.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="SiteCode.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!SiteCode.hasError('required') && !SiteCode.hasError('minlength')
+                                                        && !SiteCode.hasError('pattern')&&
+                                                        SiteCode.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.SiteName'|translate}}</mat-label>
+            <input matInput type="text" formControlName="Name">
+            <mat-error *ngIf="Name.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Name.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!Name.hasError('required') && !Name.hasError('minlength')
+                                                        && !Name.hasError('pattern')&&
+                                                        Name.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!Name.hasError('required') && !Name.hasError('minlength')
+                && Name.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnlyWithQuestionMark' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>{{'Label.SiteNameEng'|translate}}</mat-label>
+            <input matInput type="text" formControlName="NameEnglish">
+            <mat-error *ngIf="NameEnglish.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="NameEnglish.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!NameEnglish.hasError('required') && NameEnglish.hasError('minlength')
+                                                        && !NameEnglish.hasError('pattern')&&
+                                                        NameEnglish.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!NameEnglish.hasError('required') && !NameEnglish.hasError('minlength')
+                && NameEnglish.hasError('pattern')">
+                {{'common.validation.UseLatinOnlyWithQuestionMark' | translate}}
+            </mat-error>
+        </mat-form-field>
+            <mat-checkbox [checked]="true"  formControlName="IsActive"
+                          value="1">{{'Label.IsActive' | translate}}</mat-checkbox>
+    </form>
+</div>
+
+<div fxLayoutAlign="end" fxLayoutGap="3px" class="p-3" mat-dialog-actions style="margin-left: 70px">
+    <button mat-stroked-button class="mat-primary mr-16"
+            (click)="dialogRef.close(true)">  {{'common.commands.Close' |translate}}</button>
+ <button mat-raised-button class="mat-primary mr-16" [disabled]="editSiteForm.invalid"
+            (click)="saveSite()">  {{'common.commands.Save' |translate}}</button>
+</div>
+

@@ -1,0 +1,78 @@
+<app-breadcrumb [title]="'Report.Title' | translate"></app-breadcrumb>
+
+<!--   
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex="75" class="mt-7" style="padding:0"></mat-card>
+<mat-card-header class="mat-display-1" [style.backgroundColor]="'primary'">{{'Report.AboutUs'| translate}}<mat-card-header> -->
+  
+       <!-- <div>
+        <mat-toolbar  color="primary" class="footer mt-5">
+            <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between center" class="w-100">
+                <mat-toolbar-row>
+                <span>{{'Report.copyright'| translate}}</span>
+                <span> ECEA</span>
+                </mat-toolbar-row>
+            </div>
+          </mat-toolbar>
+        </div> -->
+
+
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="mt-7">
+
+
+                <mat-card color="accent" class="example-card" >
+                <mat-card-header >
+                  <mat-card-title style="margin-left:8px;">{{'Report.AboutApp'| translate}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    {{'Report.AboutUs'| translate}} 
+                  </mat-card-content>
+              </mat-card>
+
+        
+
+            <mat-card class="example-card">
+            <mat-card-header mat-card-header>
+              <mat-card-title style="margin-left:8px;">{{'Report.AboutService'| translate}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                {{'Report.AboutServicedetail'| translate}} 
+              </mat-card-content>
+          </mat-card>
+          
+   
+        <!-- <div class="header2" #header2>
+                <mat-card  ></mat-card>
+                <mat-card-header >{{'Report.AboutUs'| translate}} </mat-card-header>
+        </div> -->
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="mt-7">
+
+
+          <mat-card color="accent" class="example-card" >
+          <mat-card-header >
+            <mat-card-title style="margin-left:8px;">{{'Report.AboutApp'| translate}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              {{'Report.AboutUs'| translate}} 
+            </mat-card-content>
+        </mat-card>
+
+  
+
+   
+
+  <!-- <div class="header2" #header2>
+          <mat-card  ></mat-card>
+          <mat-card-header >{{'Report.AboutUs'| translate}} </mat-card-header>
+  </div> -->
+  </div>
+
+        <div>             
+            <mat-toolbar  class="footer" #footer  >
+                <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="space-between bottom" class="w-100">
+                    <mat-label>{{'Report.Copyright'| translate}}</mat-label> 
+          </div>
+
+        

@@ -1,0 +1,73 @@
+<mat-table [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8">
+  <ng-container matColumnDef="sn">
+    <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.Sno' | translate}}</mat-header-cell>
+
+    <mat-cell mat-cell *matCellDef="let element; let i = index;">
+      {{i + 1}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="CommodityName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CommodityName' | translate}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let caseList">
+      {{caseList.CommodityName}}
+    </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="CommodityTypeName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CommodityTypeName' | translate}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let caseList">
+      {{caseList.CommodityTypeName}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="DescriptionAmh">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CommodityTypeName' | translate}}
+    </mat-header-cell>
+    <mat-cell *matCellDef="let caseList">
+      {{caseList.DescriptionAmh}}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Action">
+    <mat-header-cell *matHeaderCellDef fxFlex="25%">
+      <button mat-button color="primary" matTooltip="Add New Record" (click)="openEditCommodityGradeDialog(0)">
+        <mat-icon class="mat-button-icon">add</mat-icon>
+        {{'common.commands.Add' | translate}}
+      </button>
+
+    </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let register " fxFlex="25%">
+      <button [disabled]="!canManageSetting" mat-icon-button matTooltip="edit"
+        (click)="openEditCommodityGradeDialog(register.CommodityGradeId)">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button [disabled]="!canManageSetting" mat-icon-button matTooltip="delete"
+        (click)="deleteCommodityGrade(register)">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="loading">
+    <mat-footer-cell *matFooterCellDef colspan="10">
+      {{'registerTrade.editor.LoadingData' | translate}}
+    </mat-footer-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="noData">
+    <mat-footer-cell *matFooterCellDef colspan="10">
+      {{'registerTrade.editor.NoData' | translate}}
+    </mat-footer-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row">
+  </mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row"></mat-row>
+  <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource !=null}"></mat-footer-row>
+  <mat-footer-row *matFooterRowDef="['noData']"
+    [ngClass]="{'hide': !(dataSource != null && dataSource.data.length==0)}"></mat-footer-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5,10, 25, 50]" showFirstLastButtons></mat-paginator>

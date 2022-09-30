@@ -1,0 +1,65 @@
+.hide {
+    display: none;
+}
+
+table {
+    width: 100%;
+}
+
+mat-footer-row mat-footer-cell {
+    justify-content: center;
+    font-style: italic;
+}
+
+.tp-h2 {
+    margin: 10px;
+}
+
+.tp-section {
+    display: flex;
+    align-content: left;
+    align-items: left;
+    height: 60px;
+}
+
+.tp-margin {
+    margin: 0 10px;
+}
+
+.customWidthClass {
+    flex: 0 0 40px;
+}
+
+.totalPriceClass {
+    justify-content: flex-end;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+mat-cell {
+    display: flex !important;
+    justify-content: left !important; // or flex-end
+}
+
+mat-header-cell {
+    display: flex;
+    justify-content: left;
+   // background-color: #00796b;
+    color: black;
+    height: 50px;
+}
+
+.element-row {
+    position: relative;
+}
+
+.element-row:not(.expanded) {
+    cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+    background: #d2ebff;
+}

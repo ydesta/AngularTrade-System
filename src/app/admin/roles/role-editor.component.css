@@ -1,0 +1,12 @@
+span.hr-inner {
+  border-color: green !important;
+}
+
+.hr {
+  margin: 10px 0;
+}
+
+.mat-dialog-container {
+  height: unset !important;
+}
+/*# sourceMappingURL=role-editor.component.css.map */

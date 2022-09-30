@@ -1,0 +1,53 @@
+<mat-accordion style="margin-top: 15px">
+    <mat-expansion-panel [expanded]="true">
+      <mat-table [dataSource]="dataSource" matSort matSortStart="desc" class="mat-elevation-z8">
+        <ng-container matColumnDef="sn">
+          <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.Sno' | translate}}</mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let element; let i = index;">
+            {{i + 1}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="DescriptionAmh">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header>{{'registerTrade.editor.ReportTypetableNameAmh' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let caseList">
+            {{caseList.DescriptionAmh}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="DescriptionEng">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header>{{'registerTrade.editor.ReportTypetableNameEng' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let caseList">
+            {{caseList.DescriptionEng}}
+          </mat-cell>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef  fxFlex="25%">
+                <button mat-button color="primary" matTooltip="Add New Record" (click)="openEditRegionDialog(0)">
+                  <mat-icon class="mat-button-icon">add</mat-icon>
+                  {{'common.commands.Add' | translate}}
+                </button>
+             
+              </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+          <mat-cell *matCellDef="let register " fxFlex="25%">
+              <button [disabled]="!canManageSetting" mat-icon-button matTooltip="edit" (click)="openEditRegionDialog(register.ReportTypeId)">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button [disabled]="!canManageSetting" mat-icon-button matTooltip="delete" (click)="deleteReportType(register)">
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+    </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row">
+        </mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" matRipple class="element-row"></mat-row>
+        
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5,10, 25, 50]" showFirstLastButtons></mat-paginator>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+  

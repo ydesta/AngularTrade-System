@@ -1,0 +1,335 @@
+<div fxLayout="row" class="p-5">
+    <mat-card fxFlex="100" class="">
+        <mat-card-header fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{
+            "registerTrade.editor.TradeExcutionDetailForm" | translate
+          }}</mat-card-title>
+            </div>
+            <div fxFlex fxLayoutAlign="end">
+                <button style="color: red" mat-button (click)="onClose()">X</button>
+            </div>
+        </mat-card-header>
+        <mat-card-content style="margin-top: 10px">
+            <form [formGroup]="formTardeExcutionDetail" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100"
+                fxFlex="100" autocomplete="off">
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="37" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.TradeDate" | translate }}
+                            </mat-label>
+                            <input autocomplete="off" matInput type="text" [matDatepicker]="tradeDate" [max]="maxDate"
+                                formControlName="TradeDate" required (click)="tradeDate.open()" readonly />
+                            <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
+                            <mat-datepicker #tradeDate></mat-datepicker>
+                            <mat-error *ngIf="TradeDate.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="38" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.TradeType" | translate }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="tradeType" formControlName="TradeTypeId" required>
+                                <mat-option *ngFor="let tradeType of tradeTypeList" [value]="tradeType.Id">
+                                    <span>{{ tradeType.Description }}</span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="TradeTypeId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.TradeExcutionReport" | translate }}
+                            </mat-label>
+                            <mat-select id="ReportTypeId" formControlName="TradeExcutionReport">
+                                <mat-option *ngFor="let reportType of tradeExcutionReportList" [value]="reportType.Id"
+                                    [disabled]="
+                      (customerTypeId == 90 && reportType.Id == 2) ||
+                      (customerTypeId == 88 && reportType.Id == 2)
+                    ">
+                                    {{ reportType.Description }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="TradeExcutionReport.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="37" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{
+                    "registerTrade.editor.ClientFullName" | translate
+                  }}
+                            </mat-label>
+                            <input matInput type="text" id="clientId" formControlName="ClientFullName"
+                                [disabled]="clientName == 1" (click)="openSearchDialog()" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="38" fxFlex.gt-xs="100" fxFlex="100" *ngIf="clientName == 1">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{
+                    "registerTrade.editor.CommodityName" | translate
+                  }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudity" formControlName="CommodityId" required>
+                                <mat-option *ngFor="let commidityType of commudityList" [value]="commidityType.Id"
+                                    (click)="getCommudityType(commidityType.Id)">
+                                    <span>{{ commidityType.Description }}</span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="CommodityId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="38" fxFlex.gt-xs="100" fxFlex="100" *ngIf="clientName == 2">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{
+                    "registerTrade.editor.CommodityName" | translate
+                  }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudity" formControlName="CommodityId" required>
+                                <mat-option *ngFor="let commidityType of commudityNameList" [value]="commidityType.Id"
+                                    (click)="getCommudityType(commidityType.Id)">
+                                    <span>{{ commidityType.Description }}</span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="CommodityId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.CommodityTypeName" | translate }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudityType" formControlName="CommudityTypeId"
+                                required>
+                                <mat-option *ngFor="let commidityType of commidityTypeList" [value]="commidityType.Id"
+                                    (click)="getCommudityGrade(commidityType.Id)">
+                                    <span>{{ commidityType.Description }}</span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="CommudityTypeId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.CommodityGradeName" | translate }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="commudityGrade" formControlName="CommodityGradeId"
+                                required>
+                                <mat-option *ngFor="let commidityType of commodityGradeList" [value]="commidityType.Id">
+                                    <span>{{ commidityType.Description }}</span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="CommodityGradeId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.Quantity" | translate }}
+                            </mat-label>
+                            <input matInput type="number" id="quantity" formControlName="Quantity" required
+                                step="0.01" />
+                            <mat-error *ngIf="Quantity.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                            <mat-error *ngIf="Quantity.hasError('minlength')">
+                                {{
+                    "common.validation.MinLengthChar" | translate: { min: "2" }
+                  }}
+                            </mat-error>
+                            <mat-error *ngIf="
+                    !Quantity.hasError('required') &&
+                    !Quantity.hasError('minlength') &&
+                    Quantity.hasError('pattern')
+                  ">
+                                {{ "common.validation.UseEthiopicOnly" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{
+                    "registerTrade.editor.UnitMeasurement" | translate
+                  }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="unitMeasurementId" formControlName="UnitMeasurementId"
+                                required>
+                                <mat-option *ngFor="let unitmeasure of unitMeasurementList" [value]="unitmeasure.Id">
+                                    {{ unitmeasure.Description }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="UnitMeasurementId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.UnitPrice" | translate }}
+                            </mat-label>
+                            <input matInput type="text" id="grandFatherNameEng" formControlName="UnitPrice" required />
+                            <mat-error *ngIf="UnitPrice.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                            <mat-error *ngIf="UnitPrice.hasError('minlength')">
+                                {{
+                    "common.validation.MinLengthChar" | translate: { min: "2" }
+                  }}
+                            </mat-error>
+                            <mat-error *ngIf="
+                    !UnitPrice.hasError('required') &&
+                    !UnitPrice.hasError('minlength') &&
+                    UnitPrice.hasError('pattern')
+                  ">
+                                {{ "common.validation.UseEthiopicOnly" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row-wrap">
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.FloorRepresentativeName" | translate }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="floorRepresentativ" formControlName="OwnerManagerId"
+                                required>
+                                <mat-option *ngFor="let floorRepresent of floorReperesentative"
+                                    [value]="floorRepresent.Id">
+                                    {{ floorRepresent.Description }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="OwnerManagerId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.OrderPrice" | translate }}
+                            </mat-label>
+                            <input matInput type="text" id="OrderPrice" formControlName="OrderPrice" />
+                        </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.CommissionInPrice" | translate }}
+                            </mat-label>
+                            <input matInput type="number" id="CommissionInPrice" formControlName="CommissionInPrice"
+                                step="0.1" />
+                            <!-- <mat-error *ngIf="CommissionInPrice.hasError('required')">
+                                  {{'common.validation.Required' | translate }}
+                              </mat-error> -->
+                            <mat-error *ngIf="CommissionInPrice.hasError('min')">
+                                {{ "common.validation.MinLengthNo" | translate: { min: "0" } }}
+                            </mat-error>
+                            <mat-error *ngIf="CommissionInPrice.hasError('max')">
+                                {{ "common.validation.MaxLengthNo" | translate: { max: "2" } }}
+                            </mat-error>
+                            <mat-error *ngIf="
+                    !CommissionInPrice.hasError('min') &&
+                    !CommissionInPrice.hasError('max') &&
+                    CommissionInPrice.hasError('pattern')
+                  ">
+                                {{ "common.validation.MinLengthNum" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 95%">
+                            <mat-label>
+                                {{ "registerTrade.editor.Warehouse" | translate }}
+                            </mat-label>
+                            <mat-select matInput type="text" id="fatherNameEng" formControlName="WarehouseId" required>
+                                <mat-option *ngFor="let reportType of warehouseList" [value]="reportType.Id">
+                                    {{ reportType.Description }}
+                                </mat-option>
+                            </mat-select>
+
+                            <mat-error *ngIf="WarehouseId.hasError('required')">
+                                {{ "common.validation.Required" | translate }}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- <div fxLayout="row-wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field style="width:99%">
+                <mat-label> {{'registerTrade.editor.ClientTradeRemark' | translate}}</mat-label>
+                <textarea matInput id="clientTradeRemark" rows="3" formControlName="ClientTradeRemark" required>
+              </textarea>
+              </mat-form-field>
+            </div>
+          </div> -->
+                <div fxLayout="row-wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width: 99%">
+                            <mat-label>
+                                {{ "registerTrade.editor.MemberTradeRemark" | translate }}
+                            </mat-label>
+                            <textarea rows="3" matInput id="memberTradeRemark" formControlName="MemberTradeRemark">
+                </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-card-actions align="end">
+                    <div fxLayout="row" layout-align="start center">
+                        <!-- <button mat-stroked-button (click)="onClose()" type="button">
+                {{'common.commands.Cancel' | translate}}
+              </button> -->
+                        <button mat-raised-button color="warn" (click)="clearForm()">
+                            {{ "registerTrade.editor.Clear" | translate }}
+                        </button>
+                        <button mat-raised-button color="primary" [disabled]="!formTardeExcutionDetail.valid"
+                            (click)="saveOrUpdateMemberClient()">
+                            &nbsp; &nbsp; &nbsp; &nbsp;<mat-label>
+                                {{ "registerTrade.editor.Save" | translate }}
+                            </mat-label>
+                        </button>
+                    </div>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

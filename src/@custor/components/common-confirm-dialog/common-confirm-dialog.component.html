@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span> {{'common.messages.Confirm' |translate}}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+  <h4 class="mt-4">{{data.message}}</h4>
+</div>
+<mat-divider class="mt-5"></mat-divider>
+<div mat-dialog-actions fxLayoutAlign="end" class="p-3">
+  <button mat-raised-button color="warn" (click)="dialogRef.close(false)"> {{'common.commands.Cancel' | translate}}</button>
+  <button mat-raised-button class="mat-primary mr-16" (click)="dialogRef.close(true)">{{'common.commands.Ok' | translate}}</button>
+</div>
+

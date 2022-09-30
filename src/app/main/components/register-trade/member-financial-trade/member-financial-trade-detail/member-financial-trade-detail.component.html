@@ -1,0 +1,1264 @@
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{
+          "registerTrade.editor.FinancialPerformanceHeader" | translate
+        }}</mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <button style="color: red" mat-raised-button (click)="onClose()">
+          X
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-tab-group>
+      <mat-tab label="{{ 'registerTrade.editor.Reminder' | translate }}">
+        <mat-nav-list>
+          <mat-list-item *ngFor="let i = index; let shoe; of: dataSource">
+            <span matLine class="text-clolor"> {{ shoe.DescriptionAmh }} </span>
+            <mat-divider [inset]="true"></mat-divider>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-tab>
+      <mat-tab label="{{ 'registerTrade.editor.FinancialForm' | translate }}">
+        <form
+          [formGroup]="formFinancial"
+          fxFlex.gt-lg="100"
+          fxFlex.gt-md="100"
+          fxFlex.gt-xs="100"
+          fxFlex="100"
+          autocomplete="off"
+        >
+          <mat-accordion class="example-headers-align p-1 mt-2">
+            <mat-expansion-panel
+              [expanded]="step === 0"
+              (opened)="setStep(0)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.TemporaryWealth" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.DepositsMoney" | translate }}
+                    </mat-label>
+                    <input
+                      #dm
+                      matInput
+                      id="depositsMoney"
+                      formControlName="DepositsMoney"
+                      type="number"
+                    />
+                    <mat-error *ngIf="DepositsMoney.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="DepositsMoney.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !DepositsMoney.hasError('required') &&
+                        !DepositsMoney.hasError('minlength') &&
+                        DepositsMoney.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.CollectedPayment" | translate }}
+                    </mat-label>
+                    <input
+                      #cm
+                      matInput
+                      type="number"
+                      id="collectedPayment"
+                      formControlName="CollectedPayment"
+                      required
+                    />
+
+                    <mat-error *ngIf="CollectedPayment.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="CollectedPayment.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !CollectedPayment.hasError('required') &&
+                        !CollectedPayment.hasError('minlength') &&
+                        CollectedPayment.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.Stock" | translate
+                    }}</mat-label>
+                    <input
+                      #stock
+                      matInput
+                      type="number"
+                      id="stock"
+                      formControlName="Stock"
+                      required
+                    />
+
+                    <mat-error *ngIf="Stock.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="Stock.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !Stock.hasError('required') &&
+                        !Stock.hasError('minlength') &&
+                        Stock.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.AdvancePayment" | translate }}
+                    </mat-label>
+                    <input
+                      #ap
+                      matInput
+                      type="number"
+                      id="advancePayment"
+                      formControlName="AdvancePayment"
+                      required
+                    />
+
+                    <mat-error *ngIf="AdvancePayment.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="AdvancePayment.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !AdvancePayment.hasError('required') &&
+                        !AdvancePayment.hasError('minlength') &&
+                        AdvancePayment.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.InvestOthers" | translate
+                    }}</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      id="currentAssetsOthers"
+                      formControlName="CurrentAssetsOthers"
+                      required
+                      #cao
+                    />
+
+                    <mat-error *ngIf="CurrentAssetsOthers.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="CurrentAssetsOthers.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !CurrentAssetsOthers.hasError('required') &&
+                        !CurrentAssetsOthers.hasError('minlength') &&
+                        CurrentAssetsOthers.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.TotalIncome" | translate }}
+                    </mat-label>
+                    <input
+                      #totalIncome
+                      matInput
+                      value="{{
+                        dm.value * 1 +
+                          stock.value * 1 +
+                          ap.value * 1 +
+                          cm.value * 1 +
+                          cao.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalIncome"
+                      formControlName="TotalIncome"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel
+              [expanded]="step === 1"
+              (opened)="setStep(1)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.Investment" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.Investment" | translate
+                    }}</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      id="perShare"
+                      formControlName="PerShare"
+                      required
+                      #share
+                    />
+
+                    <mat-error *ngIf="PerShare.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="PerShare.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !PerShare.hasError('required') &&
+                        !PerShare.hasError('minlength') &&
+                        PerShare.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.InvestOthers" | translate
+                    }}</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      id="others"
+                      formControlName="InvestOthers"
+                      required
+                      #others
+                    />
+
+                    <mat-error *ngIf="InvestOthers.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="InvestOthers.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !InvestOthers.hasError('required') &&
+                        !InvestOthers.hasError('minlength') &&
+                        InvestOthers.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.TotalPerShare" | translate }}
+                    </mat-label>
+                    <input
+                      #perShare
+                      matInput
+                      type="text"
+                      value="{{
+                        share.value * 1 + others.value * 1
+                          | number: '1.0':'en-US'
+                      }}"
+                      id="totalPerShare"
+                      formControlName="TotalPerShare"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel
+              [expanded]="step === 2"
+              (opened)="setStep(2)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.FixedAsset" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.Building" | translate
+                    }}</mat-label>
+                    <input
+                      #build
+                      matInput
+                      type="number"
+                      id="building"
+                      formControlName="Building"
+                      required
+                    />
+
+                    <mat-error *ngIf="Building.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="Building.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !Building.hasError('required') &&
+                        !Building.hasError('minlength') &&
+                        Building.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.Vehicle" | translate
+                    }}</mat-label>
+                    <input
+                      #vechile
+                      matInput
+                      type="number"
+                      id="vehicle"
+                      formControlName="Vehicle"
+                      required
+                    />
+
+                    <mat-error *ngIf="Vehicle.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="Vehicle.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !Vehicle.hasError('required') &&
+                        !Vehicle.hasError('minlength') &&
+                        Vehicle.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.Tools" | translate
+                    }}</mat-label>
+                    <input
+                      #tools
+                      matInput
+                      type="number"
+                      id="tools"
+                      formControlName="Tools"
+                      required
+                    />
+
+                    <mat-error *ngIf="Tools.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="Tools.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !Tools.hasError('required') &&
+                        !Tools.hasError('minlength') &&
+                        Tools.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.OfficeFurniture" | translate }}
+                    </mat-label>
+                    <input
+                      #officeFur
+                      matInput
+                      type="number"
+                      id="officeFurniture"
+                      formControlName="OfficeFurniture"
+                      required
+                    />
+                    <mat-error *ngIf="OfficeFurniture.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="OfficeFurniture.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !OfficeFurniture.hasError('required') &&
+                        !OfficeFurniture.hasError('minlength') &&
+                        OfficeFurniture.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{
+                        "registerTrade.editor.ComputerandAccessories"
+                          | translate
+                      }}
+                    </mat-label>
+                    <input
+                      #computer
+                      matInput
+                      type="number"
+                      id="Computerandaccessories"
+                      formControlName="Computerandaccessories"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="Computerandaccessories.hasError('required')"
+                    >
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="Computerandaccessories.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !Computerandaccessories.hasError('required') &&
+                        !Computerandaccessories.hasError('minlength') &&
+                        Computerandaccessories.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.InvestOthers" | translate
+                    }}</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      id="tangibaleAssetsOthers"
+                      formControlName="TangibaleAssetsOthers"
+                      required
+                      #tao
+                    />
+
+                    <mat-error
+                      *ngIf="TangibaleAssetsOthers.hasError('required')"
+                    >
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="TangibaleAssetsOthers.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !TangibaleAssetsOthers.hasError('required') &&
+                        !TangibaleAssetsOthers.hasError('minlength') &&
+                        TangibaleAssetsOthers.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.TotalFixedAsset" | translate }}
+                    </mat-label>
+                    <input
+                      #fixedAsset
+                      matInput
+                      type="text"
+                      value="{{
+                        officeFur.value * 1 +
+                          tools.value * 1 +
+                          vechile.value * 1 +
+                          build.value * 1 +
+                          computer.value * 1 +
+                          tao.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalFixedAsset"
+                      formControlName="TotalFixedAsset"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel
+              [expanded]="step === 3"
+              (opened)="setStep(3)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.TotalTemporaryWealth" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>
+                      {{ "registerTrade.editor.TotalWealth" | translate }}
+                    </mat-label>
+                    <input
+                      #totalwealth
+                      matInput
+                      type="text"
+                      value="{{
+                        dm.value * 1 +
+                          stock.value * 1 +
+                          ap.value * 1 +
+                          cm.value * 1 +
+                          officeFur.value * 1 +
+                          tools.value * 1 +
+                          vechile.value * 1 +
+                          build.value * 1 +
+                          share.value * 1 +
+                          computer.value * 1 +
+                          tao.value * 1 +
+                          cao.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalWealth"
+                      formControlName="TotalWealth"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel
+              [expanded]="step === 4"
+              (opened)="setStep(4)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.TemporaryDebts" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.PayableDebts" | translate }}
+                    </mat-label>
+                    <input
+                      #payableDebts
+                      matInput
+                      ttype="number"
+                      id="payableDebts"
+                      formControlName="PayableDebts"
+                      required
+                    />
+                    <mat-error *ngIf="PayableDebts.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="PayableDebts.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !PayableDebts.hasError('required') &&
+                        !PayableDebts.hasError('minlength') &&
+                        PayableDebts.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.OverDraft" | translate
+                    }}</mat-label>
+                    <input
+                      #overDraft
+                      matInput
+                      type="number"
+                      id="overDraft"
+                      formControlName="OverDraft"
+                      required
+                    />
+
+                    <mat-error *ngIf="OverDraft.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="OverDraft.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !OverDraft.hasError('required') &&
+                        !OverDraft.hasError('minlength') &&
+                        OverDraft.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.AccountsPriority" | translate }}
+                    </mat-label>
+                    <input
+                      #accountsPriority
+                      matInput
+                      type="number"
+                      id="accountsPriority"
+                      formControlName="AccountsPriority"
+                      required
+                    />
+
+                    <mat-error *ngIf="AccountsPriority.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="AccountsPriority.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !AccountsPriority.hasError('required') &&
+                        !AccountsPriority.hasError('minlength') &&
+                        AccountsPriority.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{
+                        "registerTrade.editor.LongTermLoanPayable" | translate
+                      }}
+                    </mat-label>
+                    <input
+                      #longTerm
+                      matInput
+                      type="number"
+                      id="longTermLoanPayable"
+                      formControlName="LongTermLoanPayable"
+                      required
+                    />
+
+                    <mat-error *ngIf="LongTermLoanPayable.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="LongTermLoanPayable.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !LongTermLoanPayable.hasError('required') &&
+                        !LongTermLoanPayable.hasError('minlength') &&
+                        LongTermLoanPayable.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.ShortTermLoan" | translate }}
+                    </mat-label>
+                    <input
+                      #shortTerm
+                      matInput
+                      type="number"
+                      id="shortTermLoan"
+                      formControlName="ShortTermLoan"
+                      required
+                    />
+                    <mat-error *ngIf="ShortTermLoan.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="ShortTermLoan.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !ShortTermLoan.hasError('required') &&
+                        !ShortTermLoan.hasError('minlength') &&
+                        ShortTermLoan.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.InvestOthers" | translate
+                    }}</mat-label>
+                    <input
+                      #clo
+                      matInput
+                      type="number"
+                      id="currentLiabilityOthers"
+                      formControlName="CurrentLiabilityOthers"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="CurrentLiabilityOthers.hasError('required')"
+                    >
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="CurrentLiabilityOthers.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !CurrentLiabilityOthers.hasError('required') &&
+                        !CurrentLiabilityOthers.hasError('minlength') &&
+                        CurrentLiabilityOthers.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{
+                        "registerTrade.editor.TotalTemporaryDebts" | translate
+                      }}
+                    </mat-label>
+                    <input
+                      #temporaryDebts
+                      matInput
+                      type="text"
+                      value="{{
+                        shortTerm.value * 1 +
+                          longTerm.value * 1 +
+                          accountsPriority.value * 1 +
+                          payableDebts.value * 1 +
+                          overDraft.value * 1 +
+                          clo.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalTemporaryDebts"
+                      formControlName="TotalTemporaryDebts"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel
+              [expanded]="step === 5"
+              (opened)="setStep(5)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.LongtermDebts" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{ "registerTrade.editor.MortgageLoan" | translate }}
+                    </mat-label>
+                    <input
+                      #mortgage
+                      matInput
+                      type="number"
+                      id="mortgageLoan"
+                      formControlName="MortgageLoan"
+                      required
+                    />
+
+                    <mat-error *ngIf="MortgageLoan.hasError('required')">
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="MortgageLoan.hasError('minlength')">
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !MortgageLoan.hasError('required') &&
+                        !MortgageLoan.hasError('minlength') &&
+                        MortgageLoan.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.LongTermloanFromfinancial"
+                        | translate
+                    }}</mat-label>
+                    <input
+                      #loanFinancial
+                      matInput
+                      type="number"
+                      id="longTermloanFromfinancial"
+                      formControlName="LongTermloanFromfinancial"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="LongTermloanFromfinancial.hasError('required')"
+                    >
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="LongTermloanFromfinancial.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !LongTermloanFromfinancial.hasError('required') &&
+                        !LongTermloanFromfinancial.hasError('minlength') &&
+                        LongTermloanFromfinancial.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.InvestOthers" | translate
+                    }}</mat-label>
+                    <input
+                      #ltlo
+                      matInput
+                      type="number"
+                      id="longTermLiabilityOthers"
+                      formControlName="LongTermLiabilityOthers"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="LongTermLiabilityOthers.hasError('required')"
+                    >
+                      {{ "common.validation.Required" | translate }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="LongTermLiabilityOthers.hasError('minlength')"
+                    >
+                      {{
+                        "common.validation.MinLengthChar"
+                          | translate: { min: 0 }
+                      }}
+                    </mat-error>
+                    <mat-error
+                      *ngIf="
+                        !LongTermLiabilityOthers.hasError('required') &&
+                        !LongTermLiabilityOthers.hasError('minlength') &&
+                        LongTermLiabilityOthers.hasError('pattern')
+                      "
+                    >
+                      {{ "registerTrade.editor.ValidationMessage" | translate }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label
+                      >{{
+                        "registerTrade.editor.TotalLongTermDebts" | translate
+                      }}
+                    </mat-label>
+                    <input
+                      #totalLongTerm
+                      matInput
+                      type="text"
+                      value="{{
+                        mortgage.value * 1 +
+                          loanFinancial.value * 1 +
+                          ltlo.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalLongTermDebts"
+                      formControlName="TotalLongTermDebts"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel
+              [expanded]="step === 6"
+              (opened)="setStep(6)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.TotalCustomerDebts" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.TotalDebts" | translate
+                    }}</mat-label>
+                    <input
+                      #totalDebts
+                      matInput
+                      type="text"
+                      value="{{
+                        shortTerm.value * 1 +
+                          longTerm.value * 1 +
+                          accountsPriority.value * 1 +
+                          payableDebts.value * 1 +
+                          overDraft.value * 1 +
+                          mortgage.value * 1 +
+                          loanFinancial.value * 1 +
+                          ltlo.value * 1 +
+                          clo.value * 1 | number: '1.0':'en-US'
+                      }}"
+                      id="totalDebts"
+                      formControlName="TotalDebts"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.Next" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel
+              [expanded]="step === 7"
+              (opened)="setStep(7)"
+              hideToggle
+              class="green-top-border"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ "registerTrade.editor.NetWealth" | translate }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="60" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field appearance="outline" style="width: 95%">
+                    <mat-label>{{
+                      "registerTrade.editor.NetAssets" | translate
+                    }}</mat-label>
+                    <input
+                      #netAssets
+                      matInput
+                      type="text"
+                      value="{{
+                        dm.value * 1 +
+                          stock.value * 1 +
+                          ap.value * 1 +
+                          cm.value * 1 +
+                          officeFur.value * 1 +
+                          tools.value * 1 +
+                          vechile.value * 1 +
+                          build.value * 1 +
+                          share.value * 1 +
+                          others.value * 1 +
+                          computer.value * 1 +
+                          tao.value * 1 +
+                          cao.value * 1 -
+                          (shortTerm.value * 1 +
+                            longTerm.value * 1 +
+                            accountsPriority.value * 1 +
+                            payableDebts.value * 1 +
+                            overDraft.value * 1 +
+                            mortgage.value * 1 +
+                            loanFinancial.value * 1 +
+                            ltlo.value * 1 +
+                            clo.value * 1) | number: '1.0':'en-US'
+                      }}"
+                      id="netAssets"
+                      formControlName="NetAssets"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-raised-button color="warn" (click)="prevStep()">
+                  {{ "registerTrade.editor.Back" | translate }}
+                </button>
+                <button mat-raised-button color="primary" (click)="nextStep()">
+                  {{ "registerTrade.editor.End" | translate }}
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-card-actions align="end">
+            <div fxLayout="row" layout-align="start center">
+              <!-- <button mat-stroked-button (click)="dialogRef.close(true)" type="button">
+                {{'common.commands.Cancel' | translate}}
+              </button> -->
+              <button mat-raised-button color="warn" (click)="clearForm()">
+                &nbsp; {{ "registerTrade.editor.Clear" | translate }}
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!formFinancial.valid"
+                (click)="saveOrUpdateMemberFinancialStatus()"
+              >
+                &nbsp; &nbsp; &nbsp; &nbsp;{{
+                  "registerTrade.editor.Save" | translate
+                }}
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

@@ -1,0 +1,96 @@
+<mat-toolbar class="mb-4" fxLayoutAlign="space-between stretch" color="primary">
+    <h1 mat-dialog-title>
+        {{ ('mainMenu.LookUpValue' | translate)}} ({{parentlookup}})</h1>
+  </mat-toolbar>
+<div class="responsive-table" fxLayout="column" class="ml-3 mr-3 pt-4">
+        <mat-accordion>
+          <mat-expansion-panel class="green-top-border mb-4" [expanded]="ExpandedPanel">
+            <mat-expansion-panel-header color='primary'>{{'general.NewLookUpValue'| translate}}</mat-expansion-panel-header>
+            <form fxLayout="column" [formGroup]="formLookupType" autocomplete="off" (ngSubmit)="onSubmit()" >
+              <div fxLayout="row wrap" fxLayoutGap="2em">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'general.DescriptionAmh' | translate}}</mat-label>
+                  <input matInput id="DescriptionAmh" formControlName="DescriptionAmh">
+                  <mat-error *ngIf="DescriptionAmh.hasError('required')">
+                      {{'common.validation.Required' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="DescriptionAmh.hasError('pattern')">
+                      {{'common.validation.UseEthiopicOnly' | translate }}
+                    </mat-error>
+                </mat-form-field>
+              
+                <mat-form-field fxFlex>
+                  <mat-label>{{'general.DescriptionEng' | translate}}</mat-label>
+                  <input  matInput id="DescriptionEng" formControlName="DescriptionEng">
+                  <mat-error *ngIf="DescriptionEng.hasError('required')">
+                      {{'common.validation.Required' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="DescriptionEng.hasError('pattern')">
+                      {{'common.validation.UseLatinOnly' | translate }}
+                    </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="end end">
+                <mat-card-actions>
+                    <button  [disabled]="!canManageSetting" mat-raised-button color="warn" (click)="cancelEditOperation()" type="button">
+                        {{'common.commands.Cancel' | translate}}
+                      </button>
+                  <button  [disabled]="!formLookupType.valid" [disabled]="!canManageSetting"  mat-raised-button color="primary" type="submit">
+                    {{'mainMenu.Save' | translate}}
+                  </button>
+                </mat-card-actions>
+              </div>
+            </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+      <div  fxFlex="100%" class="search-box">
+        <mat-form-field fxFlex>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'general.searchlookuptype' | translate}}">
+        </mat-form-field>
+    </div>
+      <div class="example-container mat-elevation-z8">
+            <mat-table  [dataSource]="dataSource" class="mat-elevation-z2 mt-3"  matSort>
+              <ng-container matColumnDef="DescriptionAmh">
+                <mat-header-cell *matHeaderCellDef>{{'general.DescriptionAmh' | translate}}</mat-header-cell>
+                <mat-cell *matCellDef="let LookuptypeList">
+                  {{LookuptypeList.DescriptionAmh}}
+                </mat-cell>
+                
+              </ng-container>
+              <ng-container matColumnDef="DescriptionEng">
+                <mat-header-cell *matHeaderCellDef
+                                 mat-sort-header>{{'general.DescriptionEng' | translate}}</mat-header-cell>
+                <mat-cell *matCellDef="let LookuptypeList">
+                  {{LookuptypeList.DescriptionEng}}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Action" >
+                <mat-header-cell *matHeaderCellDef fxFlex="140px">{{'general.Action' | translate}}</mat-header-cell>
+                <mat-cell *matCellDef="let register" fxFlex="140px">
+                  <button [disabled]="!canManageSetting" mat-icon-button matTooltip="{{'common.commands.Edit' | translate}}" (click)="editLookupvalue(register)">
+                    <mat-icon >edit</mat-icon>
+                  </button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button [disabled]="!canManageSetting" mat-icon-button matTooltip="{{'common.commands.Delete' | translate}}" (click)="deleteLookupvalue(register)" color="warn">
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+      
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+            <mat-paginator [showFirstLastButtons]="true"
+            [length]="totalCount"
+            [pageSize]="paginationService.pageCount"
+            [pageSizeOptions]="paginationService.selectItemsPerPage"
+            (page)="switchPage($event)">
+       </mat-paginator>
+          </div>
+      
+        <div fxLayoutGap="3px" fxLayoutAlign="end" mat-dialog-actions class="p-2">
+            <button mat-stroked-button color="warn" (click)="dialogRef.close(true)" type="button"> {{'common.commands.Cancel' | translate}}
+            </button>
+          </div>
+        </div>

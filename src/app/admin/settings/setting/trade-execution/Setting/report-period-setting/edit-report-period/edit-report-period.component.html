@@ -1,0 +1,133 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span mat-dialog-title>
+                {{IsEdit ? ('pageHeader.AddRecord' | translate:IsEdit) : ('pageHeader.RecordEdit' | translate)}}
+              </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div style="padding-left: 5%; padding-right: 5%;">
+            <br/>
+            <div mat-dialog-content style="padding: 8%">
+   <form fxLayout="column" [formGroup]="formReportPeriod" autocomplete="off" (ngSubmit)="onSubmit()">
+          <div fxLayout="row wrap" fxLayoutGap="2em">
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.DescriptionAmh' | translate}}</mat-label>
+              <input matInput id="DescriptionAmh" formControlName="DescriptionAmh">
+              <mat-error *ngIf="DescriptionAmh.hasError('required')">
+                {{'common.validation.Required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="DescriptionAmh.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+              </mat-error>
+              <mat-error
+                *ngIf="!DescriptionAmh.hasError('required') && !DescriptionAmh.hasError('minlength') && DescriptionAmh.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnly' | translate }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.DescriptionEng' | translate}}</mat-label>
+              <input autocomplete="off" matInput type="text" formControlName="DescriptionEng">
+              <mat-error *ngIf="DescriptionEng.hasError('required')">
+                {{'common.validation.Required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="DescriptionEng.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+              </mat-error>
+              <mat-error
+                *ngIf="!DescriptionEng.hasError('required') && !DescriptionEng.hasError('minlength') && DescriptionEng.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row wrap" fxLayoutGap="2em">
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.StartMonthAmh' | translate}}</mat-label>
+              <mat-select formControlName="StartMonthAmh" required id="StartMonthAmh">
+                  <mat-option *ngFor="let units of monthList" [value]="units.Amh" >
+                    {{units.Amh}}
+                  </mat-option>
+              </mat-select>          
+                <mat-error *ngIf="StartMonthAmh.hasError('required')">
+                {{'common.validation.Required' | translate }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.StartMonthEng' | translate}}</mat-label>
+              <mat-select formControlName="StartMonthEng" required id="StartMonthEng" >
+                <mat-option *ngFor="let units of monthList" [value]="units.Eng" >
+                  {{units.Eng}}
+                </mat-option>
+            </mat-select> 
+            <mat-error *ngIf="StartMonthEng.hasError('required')">
+              {{'common.validation.Required' | translate }}
+            </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row wrap" fxLayoutGap="2em">
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.EndMonthAmh' | translate}}</mat-label>
+              <mat-select formControlName="EndMonthAmh" required id="EndMonthAmh">
+                <mat-option *ngFor="let units of monthList" [value]="units.Amh" >
+                  {{units.Amh}}
+                </mat-option>
+            </mat-select>          
+              <mat-error *ngIf="EndMonthAmh.hasError('required')">
+              {{'common.validation.Required' | translate }}
+            </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.EndMonthEng' | translate}}</mat-label>
+              <mat-select formControlName="EndMonthEng" required id="EndMonthEng" >
+                <mat-option *ngFor="let units of monthList" [value]="units.Eng" >
+                  {{units.Eng}}
+                </mat-option>
+            </mat-select> 
+            <mat-error *ngIf="EndMonthEng.hasError('required')">
+              {{'common.validation.Required' | translate }}
+            </mat-error>
+            </mat-form-field>
+  
+          </div>
+          <div fxLayout="row wrap" fxLayoutGap="2em">
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.StartDate' | translate}}</mat-label>
+              <input autocomplete="off" matInput type="text" [matDatepicker]="startDate"
+                     formControlName="StartDate" required (click)="startDate.open()" >
+              <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+              <mat-datepicker #startDate></mat-datepicker>
+              <mat-error *ngIf="StartDate.hasError('required')">
+                {{'common.validation.Required' | translate }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field fxFlex>
+              <mat-label>{{'registerTrade.editor.DeadLine' | translate}}</mat-label>
+              <input autocomplete="off" matInput type="text" [matDatepicker]="tradeDate"
+                     formControlName="DeadLine" required (click)="tradeDate.open()" >
+              <mat-datepicker-toggle matSuffix [for]="tradeDate"></mat-datepicker-toggle>
+              <mat-datepicker #tradeDate></mat-datepicker>
+              <mat-error *ngIf="DeadLine.hasError('required')">
+                {{'common.validation.Required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="mat-dialog-actions" fxLayoutAlign="end end">
+          
+                <button mat-raised-button  color="warn" type="button"
+                          (click)="dialogRef.close(null)">                 {{'registerTrade.editor.Cancel' | translate}}
+
+                </button>
+                <button mat-raised-button color="primary" [disabled]="!formReportPeriod.valid" mat-raised-button color="primary" type="submit">
+                {{'registerTrade.editor.Save' | translate}}
+                         
+                </button>
+      
+              </div>
+          
+        </form>
+    </div>
+    </div>

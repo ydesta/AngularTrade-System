@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "paths": {
+    "@custor": [
+      "src/@custor/"
+    ],
+    "@common/*": [
+      "src/app/common/*"
+    ],
+    "@main-lang/*": [
+      "src/app/main/lang/*"
+    ],
+    "@register-trade-lang/*": [
+      "src/app/main/components/register-trade/lang/*"
+    ],
+    
+  },
+}

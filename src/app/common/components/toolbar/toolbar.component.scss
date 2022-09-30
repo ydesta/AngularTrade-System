@@ -1,0 +1,54 @@
+mat-spinner {
+    display: inline-block;
+    margin-right: 16px;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .app-toolbar {
+      height: 80px !important;
+    }
+    .logo {
+      span {
+        h1, h3 {
+          font-size: 12px !important;
+        }
+      }
+  
+      margin-top: 20px;
+    }
+  }
+  
+  .landing-toolbar {
+    position: fixed;
+    top: 0;
+    height: 72px !important;
+    z-index: 5;
+  
+    button {
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+  
+    .logo {
+      min-width: 160px !important;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .landing-toolbar {
+      height: 80px !important;
+    }
+    .logo {
+      span {
+        h1, h3 {
+          font-size: 12px !important;
+        }
+      }
+  
+      margin-top: 20px;
+    }
+    .landing-container {
+      margin-top: 80px;
+    }
+  }
+  

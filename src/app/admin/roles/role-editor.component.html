@@ -1,0 +1,55 @@
+<div>
+
+  <form #form="ngForm" [formGroup]="roleForm" novalidate (ngSubmit)="save()" fxLayout="column" fxLayoutGap="1em"
+        autocomplete="off">
+
+      <div>
+        <br>
+        <div fxFlex="100%" fxLayout="row"  fxLayoutGap="2em"fxLayout.sm="column">
+          <mat-form-field fxFlex style="width: 100px">
+            <mat-label>{{'roles.editor.Name' | translate}}</mat-label>
+            <input matInput type="text" formControlName="Name" [readonly]="!canManageRoles"/>
+            <mat-error *ngIf="Name.hasError('required')">
+              {{'roles.editor.RoleNameRequired' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex style="width: 500px">
+            <mat-label>{{'roles.editor.Description' | translate}}</mat-label>
+            <input matInput type="text" formControlName="Description" [readonly]="!canManageRoles"/>
+          </mat-form-field>
+        </div>
+    </div>
+     <div *ngIf="!isNewRole" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+      <mat-form-field fxFlex>
+        <mat-label>{{'users.editor.Roles' | translate}}</mat-label>
+        <mat-select formControlName="PermissionN"  multiple  [compareWith]="compareIds"  >
+          <mat-option *ngFor="let permissionGroup of allPermissions" [value]="permissionGroup" >
+              <span >{{permissionGroup.Name}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> 
+    <div  *ngIf="isNewRole" class="mat-elevation-z8" style=" overflow:scroll; height: 300px">
+      <h4>Select Permissions</h4>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-expansion-panel *ngFor="let permissionGroup of allPermissions | groupBy: 'GroupName'"
+                           class="mat-elevation-z6">
+        <mat-expansion-panel-header style="background-color:whitesmoke">
+          <mat-panel-title>
+            {{permissionGroup.key}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <mat-slide-toggle formControlName="PermissionN" [disabled]="!canManageRoles" *ngFor="let permission of permissionGroup.value"
+                          matTooltip="{{permission.Description}}"
+                          (click)="$event.stopPropagation()"
+                          (change)="$event ? selectedPermissions.toggle(permission) : null"
+                         >
+          {{permission.Name}}
+        </mat-slide-toggle>
+      </mat-expansion-panel>
+    </div> 
+  </form>
+</div>

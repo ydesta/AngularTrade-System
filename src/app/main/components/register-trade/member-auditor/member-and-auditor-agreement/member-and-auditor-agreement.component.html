@@ -1,0 +1,75 @@
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{'registerTrade.editor.MemberAuditorList' | translate}}</mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <button style="color: red;" mat-button (click)="onClose()">X</button>
+      </div>
+    </mat-card-header>
+    <form [formGroup]="agreementForm" autocomplete="off" novalidate (ngSubmit)="onSubmit()" fxLayout="column wrap">
+      <mat-card-content>
+        <div class="row wrap" fxLayoutGap="2em" *ngIf="editMemberAuditor == false">
+          <mat-form-field fxFlex>
+            <input type="text" matInput aria-label="Number" formControlName="EcxCode" [matAutocomplete]="auto"
+              placeholder="{{'registerTrade.editor.OrganizationName' | translate}} " />
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayExchangeActor">
+              <mat-option *ngFor="let ty of exchangeActorListOptions | async" [value]="ty">
+                {{ ty.Description }}
+              </mat-option>
+            </mat-autocomplete>
+
+            <mat-error *ngIf="EcxCode.hasError('required')">
+              {{ "common.validation.Required" | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row wrap" fxLayoutGap="2em" *ngIf="editMemberAuditor == true">
+          <mat-form-field fxFlex>
+            <mat-label>
+              {{"registerTrade.editor.OrganizationName" | translate}}
+            </mat-label>
+            <mat-select matInput type="text" id="commudity" formControlName="EcxCode" required>
+              <mat-option *ngFor="let commidityType of listOfExchangeActor" [value]="commidityType.Id">
+                <span>{{ commidityType.Description }}</span>
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="EcxCode.hasError('required')">
+              {{ "common.validation.Required" | translate }}
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div class="row wrap" fxLayoutGap="2em">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerfrom" placeholder="{{'registerTrade.editor.FromDate' | translate}}"
+              formControlName="FromDate" id="fromDate" readonly (click)="pickerfrom.open()">
+            <mat-datepicker-toggle matSuffix [for]="pickerfrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerfrom></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="row wrap" fxLayoutGap="2em">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerto" placeholder="{{'registerTrade.editor.ToDate' | translate}} "
+              formControlName="ToDate" id="toDate" readonly (click)="pickerto.open()">
+            <mat-datepicker-toggle matSuffix [for]="pickerto"></mat-datepicker-toggle>
+            <mat-datepicker #pickerto></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="end end">
+          <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="clearForm()" type="button"
+              [disabled]="!agreementForm.valid">
+              {{'registerTrade.editor.Clear' | translate}}
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!agreementForm.valid">
+              {{'registerTrade.editor.Save' | translate}}
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

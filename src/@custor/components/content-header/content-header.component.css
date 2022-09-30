@@ -1,0 +1,47 @@
+.content-header {
+  color: #fff;
+  text-align: center;
+}
+
+.content-header img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.content-header h1 {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.content-header h4 {
+  font-size: 14px !important;
+  font-weight: 200;
+  max-width: 580px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.content-header.bg-image {
+  background-image: url("../../../assets/image/header-bg.png");
+  background-blend-mode: overlay;
+  background-size: 300px;
+}
+
+@media screen and (min-width: 960px) {
+  .content-header img {
+    width: 150px;
+    height: 150px;
+  }
+  .content-header h1 {
+    font-size: 48px;
+  }
+  .content-header h4 {
+    font-size: 18px;
+  }
+  .content-header.has-bg-image {
+    background-size: 480px;
+  }
+}
+/*# sourceMappingURL=content-header.component.css.map */

@@ -1,0 +1,20 @@
+
+
+<a *ngIf="subMenu.type==='link'" mat-list-item routerLinkActive="active"
+   [routerLinkActiveOptions]="{ exact: true }" [routerLink]="[subMenu.path]">
+  <mat-icon class="nested-menu-mat-icon">{{subMenu.iconType}}</mat-icon>
+  {{subMenu.title | translate}}</a>
+
+<mat-expansion-panel  #panel   *ngIf="subMenu.type==='dropDown'"  class="nav-expansion-panel">
+
+  <mat-expansion-panel-header style="font-size: 16px;">
+    <mat-panel-title>
+      <mat-icon class="nested-menu-mat-icon">{{subMenu.iconType}}</mat-icon>
+      {{ subMenu.title | translate }}
+    </mat-panel-title>
+
+  </mat-expansion-panel-header>
+
+  <app-menu-list-item *ngFor="let child of subMenu.children" [subMenu]="child"></app-menu-list-item>
+
+</mat-expansion-panel>

@@ -1,0 +1,452 @@
+<!--<app-breadcrumb-->
+<!--  [title]="'registerTrade.editor.BasicClientInformationForm' | translate">-->
+
+<!--</app-breadcrumb>-->
+
+
+<div fxLayout="row" class="p-5">
+    <mat-card fxFlex="100" class="">
+        
+           <mat-card-header fxLayout="row">
+             <div fxFlex="40">
+               <mat-card-title>{{'registerTrade.editor.ClientInformation' | translate}}</mat-card-title>
+             </div>
+             <div fxFlex fxLayoutAlign="end">
+                <button style="color: red;" mat-button (click)="onCLose()">X</button>
+             </div>
+           </mat-card-header>
+        <mat-tab-group>
+            <mat-tab label="{{'registerTrade.editor.Reminder' | translate}}">
+                <mat-nav-list>
+                    <mat-list-item *ngFor="let i=index;let shoe of dataSource;">
+                        <span matLine class="text-clolor"> {{shoe.DescriptionAmh}} </span>
+                        <mat-divider [inset]="true"></mat-divider>
+                    </mat-list-item>
+                </mat-nav-list>
+            </mat-tab>
+
+            <mat-tab label="{{'registerTrade.editor.BasicClientInformationForm' | translate}}">
+                <!--        <mat-card-title align="end">-->
+
+                <!--          <button mat-button color="primary" [routerLink]="['../member-client-trade']">-->
+                <!--            <i class="material-icons">-->
+                <!--              fast_rewind-->
+                <!--            </i>-->
+                <!--            {{'registerTrade.editor.Back' | translate}}-->
+                <!--          </button>-->
+                <!--        </mat-card-title>-->
+                <div class="responsive-table" style="margin: 5px">
+
+                    <!--            <mat-card-content style="margin-top: 10px">-->
+
+                    <form [formGroup]="formClient" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100" autocomplete="off">
+
+                        <!--                <div class="row wrap" fxLayoutGap="2em">-->
+
+                        <!--                  <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">-->
+                        <!--                    <mat-form-field style="width:95%">-->
+                        <!--                      <mat-label>{{'registerTrade.editor.CustomerFullName' | translate}}</mat-label>-->
+                        <!--                      <input matInput type="text" formControlName="CustomerFullName"-->
+                        <!--                             (click)="openSearchDialog()"/>-->
+                        <!--                    </mat-form-field>-->
+                        <!--                  </div>-->
+                        <!--                  <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">-->
+                        <!--                    <mat-form-field style="width:95%">-->
+                        <!--                      <mat-label>{{'registerTrade.editor.OrganizationName' | translate}}</mat-label>-->
+                        <!--                      <input matInput type="text" formControlName="OrganizationName"-->
+                        <!--                             readonly/>-->
+                        <!--                    </mat-form-field>-->
+                        <!--                  </div>-->
+
+                        <!--                  <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">-->
+                        <!--                    <mat-form-field style="width:95%">-->
+                        <!--                      <mat-label>{{'registerTrade.editor.CustomerType' | translate}}</mat-label>-->
+                        <!--                      <input matInput type="text" formControlName="CustomerType"-->
+                        <!--                             readonly/>-->
+                        <!--                    </mat-form-field>-->
+                        <!--                  </div>-->
+
+                        <!--                </div>-->
+                        <!--                </div>-->
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.ClientType' | translate}}</mat-label>
+                                    <mat-select matInput formControlName="ClientTypeId" required>
+                                        <mat-option *ngFor="let businessFieldType of clientTypeList" [value]="businessFieldType.Id">
+                                            {{ businessFieldType.Description }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ClientTypeId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.OrganizationNameAmh' | translate}}</mat-label>
+                                    <input matInput type="text" id="fatherNameAmh" formControlName="OrganizationNameAmh">
+
+                                    <!-- <mat-error *ngIf="OrganizationNameAmh.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="OrganizationNameAmh.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!OrganizationNameAmh.hasError('required') && !OrganizationNameAmh.hasError('minlength') && OrganizationNameAmh.hasError('pattern')">
+                                        {{'common.validation.UseEthiopicOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.OrganizationNameEng' | translate}}</mat-label>
+                                    <input matInput type="text" id="lastName" formControlName="OrganizationNameEng">
+                                    <!-- <mat-error *ngIf="OrganizationNameEng.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="OrganizationNameEng.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!OrganizationNameEng.hasError('required') && !OrganizationNameEng.hasError('minlength') && OrganizationNameEng.hasError('pattern')">
+                                        {{'common.validation.UseEthiopicOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.FirstNameAmh' | translate}}</mat-label>
+
+                                    <input matInput type="text" id="FirstNameAmh" formControlName="FirstNameAmh">
+                                    <!-- <mat-error *ngIf="FirstNameAmh.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="FirstNameAmh.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!FirstNameAmh.hasError('required') && !FirstNameAmh.hasError('minlength') && FirstNameAmh.hasError('pattern')">
+                                        {{'common.validation.UseEthiopicOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.FatherNameAmh' | translate}}</mat-label>
+                                    <input matInput type="text" id="fatherNameAmh" formControlName="FatherNameAmh">
+
+                                    <!-- <mat-error *ngIf="FatherNameAmh.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="FatherNameAmh.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!FatherNameAmh.hasError('required') && !FatherNameAmh.hasError('minlength') && FatherNameAmh.hasError('pattern')">
+                                        {{'common.validation.UseEthiopicOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.GrandFatherNameAmh' | translate}}</mat-label>
+                                    <input matInput type="text" id="lastName" formControlName="GrandFatherNameAmh">
+                                    <!-- <mat-error *ngIf="GrandFatherNameAmh.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="GrandFatherNameAmh.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!GrandFatherNameAmh.hasError('required') && !GrandFatherNameAmh.hasError('minlength') && GrandFatherNameAmh.hasError('pattern')">
+                                        {{'common.validation.UseEthiopicOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.FirstNameEng' | translate}}</mat-label>
+                                    <input matInput type="text" id="firstNameEng" formControlName="FirstNameEng">
+                                    <!-- <mat-error *ngIf="FirstNameEng.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="FirstNameEng.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!FirstNameEng.hasError('required') && !FirstNameEng.hasError('minlength') && FirstNameEng.hasError('pattern')">
+                                        {{ 'common.validation.UseLatinOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.FatherNameEng' | translate}}</mat-label>
+                                    <input matInput type="text" id="fatherNameEng" formControlName="FatherNameEng">
+                                    <!-- <mat-error *ngIf="FatherNameEng.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="FatherNameEng.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!FatherNameEng.hasError('required') && !FatherNameEng.hasError('minlength') && FatherNameEng.hasError('pattern')">
+                                        {{ 'common.validation.UseLatinOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.GrandFatherNameEng' | translate}}</mat-label>
+                                    <input matInput type="text" id="grandFatherNameEng" formControlName="GrandFatherNameEng">
+                                    <!-- <mat-error *ngIf="GrandFatherNameEng.hasError('required')">
+                                        {{'common.validation.Required' | translate }}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="GrandFatherNameEng.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!GrandFatherNameEng.hasError('required') && !GrandFatherNameEng.hasError('minlength') && GrandFatherNameEng.hasError('pattern')">
+                                        {{ 'common.validation.UseLatinOnly' | translate }}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.BusinessSector' | translate}}</mat-label>
+                                    <mat-select matInput type="text" id="age" formControlName="BusinessFiledId" required>
+                                        <mat-option *ngFor="let businessFieldType of businessTypes" [value]="businessFieldType.Id">
+                                            {{ businessFieldType.Description }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="BusinessFiledId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.AgreementDate' | translate}}</mat-label>
+                                    <input autocomplete="off" matInput type="text" [matDatepicker]="agreementDate" formControlName="AgreementDate" required (click)="agreementDate.open()" [max]="maxDate" readonly>
+                                    <mat-datepicker-toggle matSuffix [for]="agreementDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #agreementDate></mat-datepicker>
+                                    <mat-error *ngIf="AgreementDate.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.Gender' | translate}}</mat-label>
+                                    <mat-select matInput type="text" id="gender" formControlName="Gender">
+                                        <mat-option [value]="gender.Id" *ngFor="let gender of genders">
+                                            <span #genderName> {{gender.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <!-- <mat-error *ngIf="Gender.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error> -->
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.Region' | translate}}</mat-label>
+                                    <mat-select formControlName="RegionId" (selectionChange)="filterRegion($event.value)" required [compareWith]="compareIds">
+                                        <mat-option *ngFor="let reg of regions" [value]="reg.Id">
+                                            <span>{{reg.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="RegionId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.Zone' | translate}}</mat-label>
+                                    <mat-select formControlName="ZoneId" (selectionChange)="filterZone($event.value)" [compareWith]="compareIds">
+                                        <mat-option *ngFor="let zone of filteredZones" [value]="zone.Id">
+                                            <span>{{zone.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ZoneId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.Woreda' | translate}}</mat-label>
+                                    <mat-select formControlName="WoredaId" (selectionChange)="filterWoreda($event.value)" [compareWith]="compareIds">
+                                        <mat-option *ngFor="let w of filteredWoredas" [value]="w.Id">
+                                            <span>{{w.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="WoredaId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.Kebele' | translate}}</mat-label>
+                                    <mat-select formControlName="KebeleId" [compareWith]="compareIds">
+                                        <mat-option *ngFor="let keb of filteredKebeles" [value]="keb.Id">
+                                            <span>{{keb.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="KebeleId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="33" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.HouseNo' | translate}}</mat-label>
+                                    <input matInput type="text" id="houseNo" formControlName="HouseNo" >
+                                    <!-- <mat-error *ngIf="HouseNo.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error> -->
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="34" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.RegularPhone' | translate}}</mat-label>
+                                    <input matInput type="text" id="regularPhone" formControlName="RegularPhone">
+                                    <!-- <mat-error *ngIf="RegularPhone.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error> -->
+                                    <mat-error *ngIf="RegularPhone.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '9'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="RegularPhone.hasError('maxlength')">
+                                        {{'common.validation.MaxLengthChar' | translate: {'max': '13'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!RegularPhone.hasError('minlength') && !RegularPhone.hasError('maxlength') && RegularPhone.hasError('pattern')">
+                                        {{'common.validation.NumberOnly' | translate}}
+                                    </mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.MobilePhone' | translate}}</mat-label>
+                                    <input matInput type="text" id="mobilePhone" formControlName="MobilePhone" required>
+
+                                    <mat-error *ngIf="MobilePhone.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                    <mat-error *ngIf="MobilePhone.hasError('minlength')">
+                                        {{'common.validation.MinLengthChar' | translate : {'min': '9'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="MobilePhone.hasError('maxlength')">
+                                        {{'common.validation.MaxLengthChar' | translate: {'max': '13'} }}
+                                    </mat-error>
+                                    <mat-error *ngIf="!MobilePhone.hasError('required') && !MobilePhone.hasError('minlength') && !MobilePhone.hasError('maxlength') && MobilePhone.hasError('pattern')">
+                                        {{'common.validation.NumberOnly' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.TradeType' | translate}}</mat-label>
+                                    <mat-select matInput type="text" id="tradeService" formControlName="TradeTypeId" required>
+                                        <mat-option *ngFor="let tradeType of tradeTypeList" [value]="tradeType.Id">
+                                            <span>{{tradeType.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="TradeTypeId.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+
+                                    <mat-label>{{'registerTrade.editor.CommodityName' | translate}}</mat-label>
+                                    <mat-select multiple id="commudity" formControlName="ClientProduct" required>
+                                        <mat-option *ngFor="let commidityType of commudityList" [value]="commidityType.Id">
+                                            <span>{{commidityType.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="ClientProduct.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+                                <mat-form-field style="width:95%">
+                                    <mat-label>{{'registerTrade.editor.ClientStatus' | translate}}</mat-label>
+                                    <mat-select matInput type="text" id="Status" formControlName="Status" required>
+                                        <mat-option *ngFor="let commidityType of clientStatusList" [value]="commidityType.Id">
+                                            <span>{{commidityType.Description}}</span>
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="Status.hasError('required')">
+                                        {{'common.validation.Required' | translate}}
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <mat-card-actions align="end">
+                            <div fxLayout="row" layout-align="start center">
+                                <!-- <button mat-stroked-button (click)="dialogRef.close(true)" type="button">
+                      {{'common.commands.Cancel' | translate}}
+                    </button> -->
+                                <button mat-raised-button color="warn" (click)="clearForm()">
+                      &nbsp;{{'registerTrade.editor.Clear' | translate}}
+                    </button>
+                                <button mat-raised-button color="primary" (click)="saveOrUpdateMemberClientInformation()" [disabled]="!formClient.valid">
+                      &nbsp; &nbsp; &nbsp; &nbsp;{{'registerTrade.editor.Save' | translate}}&nbsp; &nbsp;
+                    </button>
+                            </div>
+                        </mat-card-actions>
+                    </form>
+
+                    <!--            </mat-card-content>-->
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

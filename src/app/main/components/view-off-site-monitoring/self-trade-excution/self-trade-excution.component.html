@@ -1,0 +1,287 @@
+<app-breadcrumb [title]="'registerTrade.editor.TradeExcutionAccomplished' |
+  translate"></app-breadcrumb>
+<div fxLayout="row" class="p-4 mt-3">
+  <mat-card fxFlex="100" class="">
+    <mat-card-content>
+      <mat-card-header fxLayout="row">
+        <div fxFlex="40">
+
+          <mat-card-title>{{'registerTrade.editor.TradeExcutionAccomplished'| translate}}
+          </mat-card-title>
+        </div>
+        <div fxFlex fxLayoutAlign="end">
+        </div>
+      </mat-card-header>
+      <div class="responsive-table" style="margin: 15px">
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="expandClose" class="green-top-border">
+            <mat-expansion-panel-header>{{'registerTrade.editor.TradeExcutionAccomplishedSearch'| translate}}
+            </mat-expansion-panel-header>
+            <form fxLayout="column" [formGroup]="searchForm" autocomplete="off" (ngSubmit)="onSubmit()">
+              <div class="row wrap" fxLayoutGap="2em">
+                <!-- <mat-form-field fxFlex>
+                                    <mat-label>{{'registerTrade.editor.ECXCode' | translate}}</mat-label>
+                                    <input matInput id="OrganizationName" formControlName="ECXCode" (click)="openSearchDialog()">
+                                </mat-form-field> -->
+                <!-- <mat-form-field fxFlex>
+                                    <mat-label>{{'registerTrade.editor.CustomerFullName' | translate}}
+                                    </mat-label>
+                                    <input matInput type="text" formControlName="CustomerFullName" readonly/>
+                                </mat-form-field> -->
+
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.OrganizationName' | translate}}
+                  </mat-label>
+                  <input matInput type="text" formControlName="OrganizationName" readonly />
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.Year' | translate}}</mat-label>
+                  <mat-select formControlName="Year">
+                    <mat-option *ngFor="let notAccomplish of yearList" [value]="notAccomplish">
+                      {{notAccomplish}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="Year.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.ReportPeriod' | translate}}</mat-label>
+                  <mat-select formControlName="ReportPeriodId">
+                    <mat-option *ngFor="let tradeAccomplish of reportPeriodList" [disabled]="tradeAccomplish.Id == 5"
+                      [value]="tradeAccomplish.Id">
+                      {{tradeAccomplish.Description}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="ReportPeriodId.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field fxFlex>
+                                    <mat-label>{{'registerTrade.editor.CustomerType' | translate}}</mat-label>
+                                    <input matInput type="text" formControlName="CustomerType" readonly/>
+                                </mat-form-field> -->
+              </div>
+              <div fxLayout="row wrap" fxLayoutGap="2em">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.TradeType' | translate}}</mat-label>
+                  <mat-select formControlName="TradeType">
+                    <mat-option *ngFor="let notAccomplish of tradeTypeList" [value]="notAccomplish.Id">
+                      {{notAccomplish.Description}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.TradeExcutionReport' | translate}}
+                  </mat-label>
+                  <mat-select id="ReportTypeId" formControlName="TradeExcutionReport">
+                    <mat-option *ngFor="let reportType of
+                      tradeExcutionReportList" [value]="reportType.Id">
+                      {{reportType.Description}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!--                <mat-form-field fxFlex>-->
+                <!--                  <mat-label>{{'registerTrade.editor.IsTradeExcutionAccomplished' | translate}}</mat-label>-->
+                <!--                  <mat-select formControlName="IsTradeExcutionAccomplished">-->
+                <!--                    <mat-option *ngFor="let tradeAccomplish of isTradeAccomplishedList" [value]="tradeAccomplish.Id">-->
+                <!--                      {{tradeAccomplish.Description}}-->
+                <!--                    </mat-option>-->
+                <!--                  </mat-select>-->
+                <!--                </mat-form-field>-->
+              </div>
+              <div fxLayout="row wrap" fxLayoutAlign="end end">
+                <mat-card-actions>
+                  <button mat-raised-button color="warn" (click)="clearForm()" type="button"
+                    [disabled]="!searchForm.valid">
+                    {{'registerTrade.editor.Clear' | translate}}
+                  </button>
+                  <button mat-raised-button color="primary" type="submit" [disabled]="!searchForm.valid">
+                    {{'registerTrade.editor.Search' | translate}}
+                  </button>
+                </mat-card-actions>
+              </div>
+            </form>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="responsive-table" *ngIf="memberViolationOnOff" style="margin-top: 20px">
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-table [dataSource]="bayerDataSource" matSort matSortStart="desc" class="mat-elevation-z8">
+              <ng-container matColumnDef="sn">
+                <mat-header-cell *matHeaderCellDef>{{'registerTrade.editor.Sno' | translate}}</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let element; let i= index;">
+                  {{i + 1}}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+              <!-- <ng-container matColumnDef="OrganizationName">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    {{'registerTrade.editor.OrganizationName' | translate}}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let complaint">
+                                    {{ complaint?.OrganizationName }}
+                                </mat-cell>
+                            </ng-container> -->
+              <ng-container matColumnDef="TradeDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.TradeDate' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let caseList">
+                  {{caseList.TradeDate}}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="ClientFullName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.ClientFullName' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint?.ClientFullName }}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="Reperesentative">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.FloorRepresentativeName' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let caseList">
+                  {{caseList.Reperesentative}}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="CommodityName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.CommodityName' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint?.CommodityName }}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+
+
+              <ng-container matColumnDef="BayerCommodityGrade">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.CommodityGradeName' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let caseList">
+                  {{caseList.BayerCommodityGrade}}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="UnitMeasurement">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.UnitMeasurement' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  <span>
+                    {{getDescriptionUnitMeasurement(complaint?.UnitMeasurementId)}}</span>
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{'registerTrade.editor.Total' | translate}}
+                </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{'registerTrade.editor.Total' | translate}}
+                </mat-footer-cell>
+
+              </ng-container>
+              <ng-container matColumnDef="Lot">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'">
+                  {{'registerTrade.editor.Lot' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint.Lot }}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{getLot() | number:'1.0-4'}}
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="KiloGram">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'">
+                  {{'registerTrade.editor.KiloGram' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint.KiloGram }}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{getKiloGram() | number:'1.0-4'}}
+                </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Quintal">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'">
+                  {{'registerTrade.editor.Quintal' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint.Quintal }}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{getQunital() | number:'1.0-4'}}
+                </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="BayerUnitPrice">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{'registerTrade.editor.UnitPrice' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let complaint">
+                  {{ complaint?.BayerUnitPrice}}
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  {{getBayerUnitPrice() | number :'1.0-4'}}
+                </mat-footer-cell>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let caseList">
+                  <button mat-icon-button matTooltip="View Detail" (click)="getEditTradeExcution(caseList)">
+                    <mat-icon color="primary">view_list</mat-icon>
+                  </button>
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                </mat-footer-cell>
+              </ng-container>
+              <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef colspan="10">
+                  {{'registerTrade.editor.LoadingData' | translate}}
+                </mat-footer-cell>
+              </ng-container>
+
+
+              <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef colspan="10">
+                  {{'registerTrade.editor.NoData' | translate}}
+                </mat-footer-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedBayerColumns" role="row" class="mat-header-row">
+              </mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedBayerColumns" matRipple class="element-row"></mat-row>
+              <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':
+                bayerDataSource !=null}"></mat-footer-row>
+              <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':
+                !(bayerDataSource != null && bayerDataSource.data.length==0)}"></mat-footer-row>
+              <mat-footer-row *matFooterRowDef="displayedBayerColumns" [ngClass]="{'hide': getQunital() == 0}">
+              </mat-footer-row>
+            </mat-table>
+            <mat-paginator [showFirstLastButtons]="true" [length]="totalCount" [pageSize]="paginationService.pageCount"
+              [pageSizeOptions]="paginationService.selectItemsPerPage" (page)="switchPage($event)">
+            </mat-paginator>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

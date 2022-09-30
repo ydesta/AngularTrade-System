@@ -1,0 +1,26 @@
+<div fxLayout="row wrap" class="white-smoke-bg p-3 h-100" fxLayoutAlign.gt-md="center center" fxLayout.lt-lg="column">
+  <div class="page-content" fxLayout="column" fxFlex="35">
+    <div>
+      <app-content-header [icon]="'exit_to_app'" [title]="translationService.instant('Header')" [hasBgImage]="true"
+        [class]="'py-4'"><br>
+      </app-content-header>
+      <mat-card class="mat-elevation-z6">
+        <!-- <mat-card-header> </mat-card-header> -->
+        <br>
+
+        <mat-card-content>
+          <app-login-control></app-login-control>
+        </mat-card-content>
+        <div>
+          <div style="text-align: center;">
+            <button mat-raised-button color="primary" [disabled]="loginControl.isLoading"
+              (click)="loginControl.login()">
+              <mat-spinner *ngIf="loginControl.isLoading" [diameter]="24"></mat-spinner>
+              {{ "Button.Login" | translate }}
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

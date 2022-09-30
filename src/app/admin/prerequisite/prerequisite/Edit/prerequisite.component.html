@@ -1,0 +1,68 @@
+<app-breadcrumb [title]="'mainMenu.Prerequisites' | translate"></app-breadcrumb>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loadingIndicator"></mat-progress-bar>
+<div style="padding: 30px; margin-top: 30px">
+    <mat-card>
+        <mat-card-header class="custom-mat-card-header" fxLayout="row">
+            <div fxFlex="100">
+                <mat-card-title>
+                    {{'prerequisite.title' | translate}}
+                </mat-card-title>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <form #form="ngForm" [formGroup]="preRequisiteForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column">
+                <div fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="2em" class="row">
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-label>{{'prerequisite.amharicDescription' | translate}}</mat-label>
+                        </mat-label>
+                      <textarea matInput formControlName="preRequisiteAmharic" required ></textarea>
+                        <mat-error *ngIf="preRequisiteAmharic.hasError('required')">
+                            {{'common.validation.Required' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="!preRequisiteAmharic.hasError('required')
+                                                && preRequisiteAmharic.hasError('pattern')">
+                            {{'common.validation.UseEthiopicOnly' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="preRequisiteAmharic.hasError('minlength')">
+                            {{'common.validation.MinLengthChar' | translate: {'min': 5} }}
+                        </mat-error>
+                        <mat-error *ngIf="!preRequisiteAmharic.hasError('required') && !preRequisiteAmharic.hasError('minlength')
+                                                              && !preRequisiteAmharic.hasError('pattern')&&
+                                                              preRequisiteAmharic.hasError('maxlength')">
+                            {{'common.validation.MaxLengthNum' | translate: {'max': '200'} }}
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>{{'prerequisite.englishDescription' | translate}}</mat-label>
+                        <textarea matInput formControlName="preRequisiteEnglish" required ></textarea>
+                        <mat-error *ngIf="preRequisiteEnglish.hasError('required')">
+                            {{'common.validation.Required' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="!preRequisiteEnglish.hasError('required')
+                                                && preRequisiteEnglish.hasError('pattern')">
+                            {{'common.validation.UseLatinOnly' | translate}}
+                        </mat-error>
+                        <mat-error *ngIf="preRequisiteEnglish.hasError('minlength')">
+                            {{'common.validation.MinLengthChar' | translate: {'min': 5} }}
+                        </mat-error>
+                        <mat-error *ngIf="!preRequisiteEnglish.hasError('required') && !preRequisiteEnglish.hasError('minlength')
+                                                              && !preRequisiteEnglish.hasError('pattern')&&
+                                                              preRequisiteEnglish.hasError('maxlength')">
+                            {{'common.validation.MaxLengthNum' | translate: {'max': '200'} }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions fxLayoutAlign="end end">
+                    <button [disabled]="!canManageSetting" [disabled]="form.invalid" mat-raised-button type="submit" color="primary">
+                        {{'prerequisite.save' | translate}}
+                    </button>
+                    <button [disabled]="!canManageSetting" mat-raised-button (click)="onBack()" type="button">
+                        {{'prerequisite.cancel' | translate}}
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

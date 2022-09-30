@@ -1,0 +1,147 @@
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.is-mobile .app-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+.app-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+h1.app-name {
+  margin-left: 8px;
+}
+
+h1.app-name > a {
+  color: inherit;
+  cursor: default;
+  text-decoration: inherit;
+}
+
+.app-sidenav-nav {
+  min-width: 200px;
+
+  .mat-nav-list {
+    padding-top: 0;
+  }
+
+  .mat-icon {
+    margin-left: 8px;
+    margin-right: 16px;
+  }
+
+  .mat-expansion-panel-header {
+    padding-left: 16px;
+  }
+
+  .mat-expansion-panel-header-title {
+    line-height: 24px;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0;
+
+    .mat-list-item .mat-list-item-content {
+      padding-left: 32px;
+    }
+  }
+}
+
+.app-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+   causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.is-mobile .app-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+   `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+.logo{
+  font-weight: 700;
+  text-decoration: none;
+  min-width: 160px;
+  color: #fff;
+  border: none;
+  img{
+    width: 160px;
+  }
+  &.mobile{
+    min-width: 160px;
+    span{
+      display: none;
+    }
+  }
+}
+.landing-toolbar{
+  position: fixed;
+  top: 0;
+  height: 56px !important;
+  z-index: 2;
+  button{
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+  .logo{
+    min-width: 160px !important;
+  }
+}
+#mainContent{
+  background-color: #e2e2e2;
+}
+
+
+// sidebar  navigation links  styles and transitions
+a {
+  -webkit-transition: background-color 200s ease-out;
+  -moz-transition: background-color 200s ease-out;
+  -o-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  color: #259184;
+  .mat-icon{
+    color: #259184;
+  }
+  &:hover,&:active,&.active{
+    color: #fff;
+    background-color: #259184 !important;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px #13786b;
+    .mat-icon{
+      color: #fff;
+    }
+
+  }
+}
+
+.nav-expansion-panel{
+
+  border-radius: 0;
+  box-shadow: 0 0 0 0;
+  .mat-icon{
+    color: #259184;
+  }
+  &:hover {
+    .mat-expansion-panel-header{
+      -webkit-transition: background-color 200s ease-out;
+      -moz-transition: background-color 200s ease-out;
+      -o-transition: background-color 200ms ease-out;
+      transition: background-color 200ms ease-out;
+      background-color:#259184 ;
+      .mat-icon,.mat-expansion-panel-header-title{
+        color: #fff;
+      }
+    }
+  }
+}
+
+

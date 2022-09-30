@@ -1,0 +1,21 @@
+<app-breadcrumb [title]="'general.Settings' | translate"></app-breadcrumb>
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{'mainMenu.General' | translate}}</mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+      </div>
+    </mat-card-header>
+
+  
+      <mat-tab-group>
+        <mat-tab label="{{'general.Lookup' | translate}}">
+          <app-lookup></app-lookup>
+        </mat-tab>
+        
+      </mat-tab-group>
+
+  </mat-card>
+</div>

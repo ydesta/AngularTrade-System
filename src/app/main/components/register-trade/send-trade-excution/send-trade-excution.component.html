@@ -1,0 +1,177 @@
+<app-breadcrumb
+  [title]="'registerTrade.editor.TradeExcutionAndFinanceReport' | translate"
+></app-breadcrumb>
+<div fxLayout="row" class="p-4 mt-4">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="60">
+        <mat-card-title
+          >{{
+            "registerTrade.editor.TradeExcutionAndFinanceReport" | translate
+          }}
+        </mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <button mat-button [routerLink]="['../register-trade-execution']">
+          <i class="material-icons"> fast_rewind </i>
+          {{ "registerTrade.editor.NewRegistration" | translate }}
+        </button>
+      </div>
+    </mat-card-header>
+    <!-- <mat-card-title align="end">
+      <button
+        mat-button
+        color="primary"
+        [routerLink]="['../register-trade-execution']"
+      >
+        <mat-icon style="margin-top: -5px" class="mat-8">add_box</mat-icon>
+        {{ "registerTrade.editor.AddNewReport" | translate }}
+      </button>
+    </mat-card-title> -->
+    <mat-table
+      class="mat-elevation-z8"
+      [dataSource]="dataSource"
+      matSort
+      matSortStart="desc"
+    >
+      <ng-container matColumnDef="no">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.Sno" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="OrganizationName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "registerTrade.editor.OrganizationName" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          {{ complaint?.OrganizationName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ReportType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.ReportType" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          {{ complaint?.ReportType }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="DateReport">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.ReportDate" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          {{ complaint?.DateReport }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ReportPeriod">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.ReportPeriod" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          {{ complaint?.ReportPeriod }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Year">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.Year" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          {{ complaint?.Year }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="TradeStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >{{ "registerTrade.editor.TradeStatus" | translate }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let complaint">
+          <span
+            [ngStyle]="{
+              color: setTradeStatusColor(complaint.TradeExcutionStatusTypeId),
+              'font-size': 50
+            }"
+            >{{ complaint?.TradeStatus }}</span
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let register">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              mat-menu-item
+              matTooltip="View"
+              (click)="editRegisterTrade(register)"
+              *ngIf="register.TradeExcutionStatusTypeId == 1"
+            >
+              <mat-icon color="primary">view_list</mat-icon>
+              <span>View Report</span>
+            </button>
+
+            <button
+              mat-menu-item
+              matTooltip="Send"
+              (click)="sendReportToECEA(register)"
+            >
+              <mat-icon color="primary">send</mat-icon>
+              <span>Send to ECEA</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="9">
+          {{ "registerTrade.editor.LoadingData" | translate }}
+        </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="9">
+          {{ "registerTrade.editor.NoData" | translate }}
+        </mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        role="row"
+        class="mat-header-row"
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="element-row"
+      ></mat-row>
+      <mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: dataSource != null }"
+      ></mat-footer-row>
+      <mat-footer-row
+        *matFooterRowDef="['noData']"
+        [ngClass]="{
+          hide: !(dataSource != null && dataSource.data.length == 0)
+        }"
+      ></mat-footer-row>
+    </mat-table>
+    <mat-paginator
+      [showFirstLastButtons]="true"
+      [length]="totalCount"
+      [pageSize]="paginationService.pageCount"
+      [pageSizeOptions]="paginationService.selectItemsPerPage"
+      (page)="switchPage($event)"
+    >
+    </mat-paginator>
+  </mat-card>
+</div>

@@ -1,0 +1,50 @@
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  
+  .is-mobile .app-toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+  
+  .app-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+  
+  h1.app-name {
+    margin-left: 8px;
+  }
+  
+  h1.app-name > a {
+    color: inherit;
+    cursor: default;
+    text-decoration: inherit;
+  }
+  
+  
+  .logo {
+    font-weight: 700;
+    text-decoration: none;
+    min-width: 160px;
+    color: #fff;
+  
+    img {
+      width: 160px;
+    }
+  
+    &.mobile {
+      min-width: 160px;
+  
+      span {
+        display: none;
+      }
+    }
+  }
+  

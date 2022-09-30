@@ -1,0 +1,20 @@
+[{
+    "state": "/program/program-list",
+    "name": "Program",
+    "type": "link",
+    "icon": "bubble_chart"
+  },
+  {
+    "state": "/default/invite-user-list",
+    "name": "Invite Members",
+    "type": "link",
+    "icon": "home"
+  },
+  {
+    "state": "/role-management/manage",
+    "name": "Roles",
+    "type": "link",
+    "icon": "home"
+  }
+
+]

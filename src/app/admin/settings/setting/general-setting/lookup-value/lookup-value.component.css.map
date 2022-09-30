@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,WAAW,CAAA;EACT,MAAM,EAAG,eAAe;CAEzB",
+    "sources": [
+        "lookup-value.component.scss"
+    ],
+    "names": [],
+    "file": "lookup-value.component.css"
+}

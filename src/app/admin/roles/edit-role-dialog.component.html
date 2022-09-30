@@ -1,0 +1,19 @@
+<div >
+  <mat-toolbar color="primary" mat-dialog-title>
+    <!-- Test -->
+    <h1 *ngIf="!canManageRoles">{{'roles.management.RoleDetails' | translate:roleName}}</h1>
+    <h1 *ngIf="canManageRoles">{{roleName ? ('roles.management.EditRole' | translate:roleName) :
+      ('roles.management.NewRole' | translate)}}</h1>
+  </mat-toolbar>
+  <br>
+  <div style="padding: 30px">
+    <div>
+      <role-editor #roleEditor [role]="data.role" [allPermissions]="data.allPermissions"></role-editor>
+      <div mat-dialog-actions fxLayoutAlign="end">
+        <button *ngIf="canManageRoles" mat-raised-button (click)="cancel()" color="warn">{{'common.commands.Cancel' | translate}}</button>
+        <button *ngIf="!canManageRoles" mat-raised-button (click)="cancel()">Close</button>
+        <button *ngIf="canManageRoles" mat-raised-button (click)="roleEditor.save();" color="primary">{{'common.commands.Save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

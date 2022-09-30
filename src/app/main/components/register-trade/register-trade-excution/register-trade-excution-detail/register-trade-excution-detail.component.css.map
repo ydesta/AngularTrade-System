@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,MAAM,EAAE,IAAI;CACb;;AACD,AAAA,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,MAAM;EACrB,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,IAAI;CACb;;AACD,AAAA,UAAU,CAAC;EACT,MAAM,EAAE,MAAM;CACf",
+    "sources": [
+        "register-trade-excution-detail.component.scss"
+    ],
+    "names": [],
+    "file": "register-trade-excution-detail.component.css"
+}

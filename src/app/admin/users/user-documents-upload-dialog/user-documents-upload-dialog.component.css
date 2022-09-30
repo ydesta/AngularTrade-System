@@ -1,0 +1,13 @@
+.mat-dialog-content {
+  margin: 0 !important;
+}
+
+.custom-label {
+  font-weight: bold;
+  color: #2b978a;
+}
+
+.mat-dialog-container {
+  width: 644px !important;
+}
+/*# sourceMappingURL=user-documents-upload-dialog.component.css.map */

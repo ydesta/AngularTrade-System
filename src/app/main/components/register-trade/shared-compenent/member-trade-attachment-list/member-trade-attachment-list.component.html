@@ -1,0 +1,58 @@
+<div class="responsive-table" style="margin: 5px">
+  <mat-card>
+    <mat-card-title>
+      <button mat-button color="primary" type="submit">
+        <i class="material-icons">add_box</i>{{'common.commands.Add' | translate}}
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table multitemplatedatarows role="grid" [dataSource]="dataSource" matSort matSortStart="desc">
+
+        <ng-container matColumnDef="AttachmentContent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.AttachmentContent' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let inv">
+            {{ inv?.AttachmentContent | slice:0:30}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="SelectedWord">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.SelectedWord' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let inv">
+            {{ inv?.SelectedWord | slice:0:30}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="AuditorId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.IndependentAuditor' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let inv">
+            {{ inv?.AuditorId | slice:0:30}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="CreatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CreatedDate' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let inv">
+            {{ inv?.CreatedDateTime | date:'shortDate' }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="UpdatedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.UpdatedDate' | translate}}</mat-header-cell>
+          <mat-cell *matCellDef="let inv">
+            {{ inv?.UpdatedDateTime | date:'shortDate' }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="previewButton">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell mat-dialog-actions *matCellDef="let inv">
+            <button mat-icon-button matTooltip="{{'common.commands.Show' | translate}}" >
+              <i class="material-icons">attach_file</i>{{'common.commands.Show' | translate}}
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns" role="row" class="mat-header-row">
+        </mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20, 25, 50]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACR,OAAO,EAAE,eAAe;CACzB",
+    "sources": [
+        "prerequisite-list.component.scss"
+    ],
+    "names": [],
+    "file": "prerequisite-list.component.css"
+}

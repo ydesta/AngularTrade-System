@@ -1,0 +1,187 @@
+<app-breadcrumb
+  [title]="'registerTrade.editor.AnnualAuditorReport' | translate"
+></app-breadcrumb>
+<div fxLayout="row" class="p-4 mt-4">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+      <div fxFlex="60">
+        <mat-card-title
+          >{{ "registerTrade.editor.SendAndSericeFollowUp" | translate }}
+        </mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <button mat-button [routerLink]="['../member-financial-auditor']">
+          <i class="material-icons"> fast_rewind </i>
+          {{ "registerTrade.editor.NewRegistration" | translate }}
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-table
+          [dataSource]="dataSource"
+          matSort
+          matSortStart="desc"
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="no">
+            <mat-header-cell *matHeaderCellDef [ngClass]="'customWidthClass'"
+              >{{ "registerTrade.editor.Sno" | translate }}
+            </mat-header-cell>
+            <mat-cell
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [ngClass]="'customWidthClass'"
+            >
+              {{ i + 1 }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="OrganizationName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >{{ "registerTrade.editor.OrganizationName" | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let caseList">
+              {{ caseList.OrganizationName }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="AnnualBudgetCloser">
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >{{ "registerTrade.editor.AnnualBudgetCloser" | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let caseList">
+              {{ caseList?.AnnualBudgetCloser }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="DateReport">
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >{{ "registerTrade.editor.ReportDate" | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let caseList">
+              {{ caseList?.DateReport }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="AuditorName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >{{ "registerTrade.editor.IndependentAuditor" | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let caseList">
+              {{ caseList?.AuditorName?.OrganizationName }}
+            </mat-cell>
+          </ng-container>
+          <!-- <ng-container matColumnDef="Remark">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.Comment' | translate}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let caseList">
+              {{(caseList?.Remark) }}
+            </mat-cell>
+          </ng-container> -->
+          <ng-container matColumnDef="AnnualAuditStatus">
+            <mat-header-cell *matHeaderCellDef mat-sort-header
+              >{{ "registerTrade.editor.AnnualAuditStatus" | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let complaint">
+              <span
+                [ngStyle]="{
+                  color: setTradeStatusColor(
+                    complaint.TradeExcutionStatusTypeId
+                  ),
+                  'font-size': 50
+                }"
+                >{{ complaint?.AnnualAuditStatus }}</span
+              >
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Action">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+
+            <mat-cell *matCellDef="let inv">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-menu-item
+                  matTooltip="View"
+                  (click)="editAnnualReportPeriod(inv)"
+                  *ngIf="inv.TradeExcutionStatusTypeId == 1"
+                >
+                  <mat-icon color="primary">view_list</mat-icon>
+                  <span>View Report</span>
+                </button>
+
+                <button
+                  mat-menu-item
+                  *ngIf="
+                    inv.TradeExcutionStatusTypeId == 1 &&
+                    netSalaryCount > 0 &&
+                    fileUploadCount > 0
+                  "
+                  matTooltip="Send"
+                  (click)="sendReportToECEA(inv)"
+                >
+                  <mat-icon color="primary">send</mat-icon>
+                  <span>Send to ECEA</span>
+                </button>
+              </mat-menu>
+
+              <!-- <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button
+                  mat-icon-button
+                  matTooltip="View"
+                  (click)="editAnnualReportPeriod(inv)"
+                  *ngIf="inv.TradeExcutionStatusTypeId == 1"
+                >
+                  <mat-icon color="primary">view_list</mat-icon>
+                  <span>View Report</span>
+                </button>
+
+                <button
+                  *ngIf="
+                    inv.TradeExcutionStatusTypeId == 1 &&
+                    netSalaryCount > 0 &&
+                    fileUploadCount > 0
+                  "
+                  mat-icon-button
+                  matTooltip="Send"
+                  (click)="sendAnnualAuditor(inv)"
+                >
+                  <mat-icon color="primary">send</mat-icon>
+                  <span>Send to ECEA</span>
+                </button>
+              </mat-menu> -->
+            </mat-cell>
+          </ng-container>
+          <mat-header-row
+            *matHeaderRowDef="displayedColumns"
+            role="row"
+            class="mat-header-row"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            class="element-row"
+          ></mat-row>
+        </mat-table>
+        <mat-paginator
+          [showFirstLastButtons]="true"
+          [length]="totalCount"
+          [pageSize]="paginationService.pageCount"
+          [pageSizeOptions]="paginationService.selectItemsPerPage"
+          (page)="switchPage($event)"
+        >
+        </mat-paginator>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card>
+</div>

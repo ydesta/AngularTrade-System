@@ -1,0 +1,71 @@
+[{
+    "name": "Purpose Statement",
+    "type": "sub",
+    "icon": "developer_board",
+    "children": [{
+        "state": "/dev-hub/layout/imagine/instructions",
+        "name": "Ideate"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/purpose-statement",
+        "name": "Build"
+      }
+    ]
+  },
+  {
+    "name": "Core Values",
+    "type": "sub",
+    "icon": "star_half",
+    "children": [{
+        "state": "/dev-hub/layout/imagine/core-value",
+        "name": "Ideate"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/core-value-summary",
+        "name": "Build"
+      }
+    ]
+  },
+  {
+    "name": "Program Canvas",
+    "type": "sub",
+    "icon": "table_chart",
+    "children": [{
+        "state": "/dev-hub/layout/imagine/build-program-canvas",
+        "name": "Ideate"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/program-canvas",
+        "name": "Build"
+      }
+    ]
+  },
+  {
+    "name": "Impact Model",
+    "type": "sub",
+    "icon": "highlight",
+    "children": [{
+        "state": "/dev-hub/layout/imagine/inputs",
+        "name": "Inputs"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/output",
+        "name": "Outputs"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/impact",
+        "name": "Impact"
+      },
+      {
+        "state": "/dev-hub/layout/imagine/impact-model",
+        "name": "View"
+      }
+    ]
+  },
+  {
+    "state": "/dev-hub/layout/imagine/aboutImagine",
+    "name": "About Imagine",
+    "type": "link",
+    "icon": "announcement"
+  }
+]

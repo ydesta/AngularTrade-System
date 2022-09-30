@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACE,AAAA,eAAe;AACf,eAAe;AACf,QAAQ,CAAC;EACP,OAAO,EAAE,WAAW;EACpB,SAAS,EAAE,IAAI;CAChB;;AACD,AAAA,wBAAwB,CAAC;EACvB,IAAI,EAAE,kBAAkB;CACzB;;AACD,AAAA,0BAA0B,EAAE,0BAA0B,CAAC;EACrD,IAAI,EAAE,kBAAkB;CACzB;;AAED,AAAA,IAAI,CAAC;EACD,KAAK,EAAE,IACX;CAAC",
+    "sources": [
+        "list-region.component.scss"
+    ],
+    "names": [],
+    "file": "list-region.component.css"
+}

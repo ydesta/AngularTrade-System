@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,AAAA,SAAS,CAAC;EACZ,YAAY,EAAE,gBAAgB;CAC/B;;AAED,AAAA,GAAG,CAAC;EACF,MAAM,EAAE,MAAM;CACf;;AAED,AAAA,qBAAqB,CAAC;EAEpB,MAAM,EAAE,gBAAgB;CAEzB",
+    "sources": [
+        "role-editor.component.scss"
+    ],
+    "names": [],
+    "file": "role-editor.component.css"
+}

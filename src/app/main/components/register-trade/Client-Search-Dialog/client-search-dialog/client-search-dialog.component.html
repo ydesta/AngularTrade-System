@@ -1,0 +1,54 @@
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <mat-card-header fxLayout="row">
+    <div fxFlex="40">
+      <mat-card-title>{{'registerTrade.editor.FullNameCLientInformation' | translate}}</mat-card-title>
+    </div>
+    <div fxFlex fxLayoutAlign="end">
+      <button style="color: red;" mat-button (click)="onClose()">X</button>
+    </div>
+  </mat-card-header>
+
+
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="sno">
+        <mat-header-cell *matHeaderCellDef> {{'registerTrade.editor.Sno' | translate}}</mat-header-cell>
+        <mat-cell *matCellDef="let element;let i=index;">
+          {{i + 1}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef
+                         class="mat-table-column-title">  {{'registerTrade.editor.ClientFullName' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+      </ng-container>
+
+      <!--      <ng-container matColumnDef="BusinessFiledId">-->
+      <!--        <mat-header-cell *matHeaderCellDef-->
+      <!--                         class="mat-table-column-title"> {{ 'registerTrade.editor.BusinessSector' | translate}} </mat-header-cell>-->
+      <!--        <mat-cell *matCellDef="let element">-->
+      <!--          {{getDescriptionBusinessSector(element?.BusinessFiledId) }}-->
+      <!--        </mat-cell>-->
+
+      <!--      </ng-container>-->
+
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef class="mat-table-column-title"></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="onSelect(element)"
+                  [matTooltip]="translate.instant('common.commands.Select')">
+            <mat-icon class="mat-18">launch</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="mat-header-row">
+
+      </mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row"></mat-row>
+
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[3,5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

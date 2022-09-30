@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACT,MAAM,EAAE,CAAC;EACT,aAAa,EAAE,CAAC;EAChB,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,EAAE;CAChB;;AAED,AAAA,gBAAgB,EAAE,uBAAuB,CAAC;EACxC,MAAM,EAAE,eAAe;CACxB",
+    "sources": [
+        "edit-kebele.component.scss"
+    ],
+    "names": [],
+    "file": "edit-kebele.component.css"
+}

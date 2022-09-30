@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span> {{'header' |translate}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+    <div fxFlex="100" fxLayout="column" fxLayoutGap="1em" class="mt-5">
+
+        <div *ngIf="isRegistration">
+            <h4><span class="custom-label">{{'labels.Tin'|translate}}: </span>{{data.data.Tin}}</h4>
+            <h4><span class="custom-label">{{'labels.RegNumber'|translate}}: </span> {{data.data.RegNo}}</h4>
+            <!--        <h4><span class="custom-label">{{'labels.RegDate'|translate}}: </span> {{data.RegDate}}</h4>-->
+            <h4><span class="custom-label">{{'labels.BusinessNameEng'|translate}}: </span> {{data.data.BusinessName}}</h4>
+            <h4><span class="custom-label">{{'labels.BusinessName'|translate}}: </span> {{data.data.BusinessNameAmh}}</h4>
+            <!--        <h4><span class="custom-label">{{'labels.BusinessNameRegional'|translate}}: </span> {{data.BusinessNameRegional}}</h4>-->
+
+        </div>
+        <div *ngIf="!isRegistration">
+            <h4><span class="custom-label">{{'labels.Tin'|translate}}: </span>{{data.data.cmpTin}}</h4>
+            <h4><span class="custom-label">{{'labels.LegalStatus'|translate}}: </span>{{data.data.entTypeDesc}}</h4>
+            <h4><span class="custom-label">{{'labels.TaxContactName'|translate}}: </span>{{data.data.taxContactName}}</h4>
+            <h4><span class="custom-label">{{'labels.TaxPayerName'|translate}}: </span>{{data.data.tpName}}</h4>
+            <h4><span class="custom-label">{{'labels.TaxPayerNameF'|translate}}: </span>{{data.data.tpNameF}}</h4>
+            <h4><span class="custom-label">{{'labels.PhoneNo'|translate}}: </span>{{data.data.phoneNo}}</h4>
+            <h4><span class="custom-label">{{'labels.MobilePhone'|translate}}: </span>{{data.data.mobilePhone}}</h4>
+            <h4><span class="custom-label">{{'labels.Email'|translate}}: </span> {{data.data.addressEMail}}</h4>
+            <h4><span class="custom-label">{{'labels.EntryDate'|translate}}: </span> {{data.data.entryDate | date}}</h4>
+            <h4><span class="custom-label">{{'labels.TaxCentreDesc'|translate}}: </span> {{data.data.taxCentreDesc}}</h4>
+
+        </div>
+  </div>
+</div>
+<mat-divider class="mt-5"></mat-divider>
+<div mat-dialog-actions fxLayoutAlign="end" class="p-3">
+    <button mat-raised-button (click)="dialogRef.close(false)"> {{'common.commands.Cancel'|translate}}</button>
+    <button mat-raised-button class="mat-primary mr-16" (click)="dialogRef.close(true)">{{'common.commands.Continue'|translate}}</button>
+</div>
+

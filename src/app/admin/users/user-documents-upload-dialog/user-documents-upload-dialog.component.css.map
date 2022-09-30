@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,mBAAmB,CAAA;EACjB,MAAM,EAAE,YAAY;CAErB;;AAED,AAAA,aAAa,CAAA;EACX,WAAW,EAAE,IAAI;EACjB,KAAK,EAAE,OAAO;CACf;;AACD,AAAA,qBAAqB,CAAA;EACnB,KAAK,EAAC,KAAK,CAAA,UAAU;CACtB",
+    "sources": [
+        "user-documents-upload-dialog.component.scss"
+    ],
+    "names": [],
+    "file": "user-documents-upload-dialog.component.css"
+}

@@ -1,0 +1,32 @@
+<div fxLayout="row" class="p-5 mt-5">
+    <mat-card fxFlex="100" fxLayout="column" class="mt-5 mat-card-custom">
+        <mat-card-header class="custom-mat-card-header" fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'Sites.header'|translate }}</mat-card-title>
+            </div>
+        </mat-card-header>
+        <mat-card-content fxFlex="100">
+            <div fxLayout="column"  >
+                <div fxFlex fxLayoutAlign="end" >
+                    <button fxFlexAlign="end" mat-button color="primary" (click)="openEditSiteDialog(0)"><mat-icon>add</mat-icon></button>
+                </div>
+                <mat-list  fxLayout="column" fxFlex.lt-md="100"
+                          fxFlex.gt-sm="80"
+                          fxLayoutGap="10px" class="custom-mat-list">
+                    <mat-list-item fxLayout="column" *ngFor="let site of listOfSites"
+
+                                   class="mat-elevation-z2">
+                        <div fxFlex>{{site.Description}}</div>
+                        <button fxFlexAlign="end" mat-button color="primary"
+                                (click)="openEditSiteDialog(site.SiteId)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button fxFlexAlign="end" mat-button color="warn" (click)="delete(site.SiteId)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

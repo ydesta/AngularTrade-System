@@ -1,0 +1,85 @@
+.hide {
+  display: none;
+}
+
+table {
+  width: 100%;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  font-style: italic;
+}
+
+.tp-h2 {
+  margin: 10px;
+}
+
+.tp-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: left;
+      align-content: left;
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+  height: 60px;
+}
+
+.tp-margin {
+  margin: 0 10px;
+}
+
+.customWidthClass {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 40px;
+          flex: 0 0 40px;
+}
+
+.totalPriceClass {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+mat-cell {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: left !important;
+      -ms-flex-pack: left !important;
+          justify-content: left !important;
+}
+
+mat-header-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  background-color: #00796b;
+  color: white;
+  height: 50px;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}
+/*# sourceMappingURL=send-trade-excution.component.css.map */

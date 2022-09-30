@@ -1,0 +1,94 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <!--    <span>{{notificationDetail.Subject}}</span>-->
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+    <form [formGroup]="editInstructionForm" fxLayout="column" class="mt-3">
+        <mat-form-field >
+            <mat-label>{{'Label.Title'|translate}}</mat-label>
+            <input matInput type="text" formControlName="Title">
+            <mat-error *ngIf="Title.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Title.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!Title.hasError('required') && !Title.hasError('minlength')
+                                                        && !Title.hasError('pattern')&&
+                                                        Title.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!Title.hasError('required') && !Title.hasError('minlength')
+                && Title.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.TitleAmh'|translate}}</mat-label>
+            <input matInput type="text" formControlName="TitleAmh">
+            <mat-error *ngIf="TitleAmh.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="TitleAmh.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+            </mat-error>
+            <mat-error *ngIf="!TitleAmh.hasError('required') && !TitleAmh.hasError('minlength')
+                                                        && !TitleAmh.hasError('pattern')&&
+                                                        TitleAmh.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'50'} }}
+            </mat-error>
+            <mat-error *ngIf="!TitleAmh.hasError('required') && !TitleAmh.hasError('minlength')
+                && TitleAmh.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnly' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.Instruction'|translate}}</mat-label>
+            <textarea matInput type="text" formControlName="Instruction"></textarea>
+            <mat-error *ngIf="Instruction.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="Instruction.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'20'}  }}
+            </mat-error>
+            <mat-error *ngIf="!Instruction.hasError('required') && !Instruction.hasError('minlength')
+                                                        && !Instruction.hasError('pattern')&&
+                                                        Instruction.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'255'} }}
+            </mat-error>
+            <mat-error *ngIf="!Instruction.hasError('required') && !Instruction.hasError('minlength')
+                && Instruction.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Label.InstructionAmh'|translate}}</mat-label>
+            <textarea matInput type="text" formControlName="InstructionAmh"></textarea>
+            <mat-error *ngIf="InstructionAmh.hasError('required')">
+                {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="InstructionAmh.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate : {'min':'20'}  }}
+            </mat-error>
+            <mat-error *ngIf="!InstructionAmh.hasError('required') && !InstructionAmh.hasError('minlength')
+                                                        && !InstructionAmh.hasError('pattern')&&
+                                                        InstructionAmh.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'255'} }}
+            </mat-error>
+            <mat-error *ngIf="!InstructionAmh.hasError('required') && !InstructionAmh.hasError('minlength')
+                && InstructionAmh.hasError('pattern')">
+                {{'common.validation.UseEthiopicOnly' | translate}}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div fxLayoutAlign="end" fxLayoutGap="3px" class="p-3" mat-dialog-actions style="margin-left: 70px">
+    <button mat-stroked-button class="mat-primary mr-16"
+            (click)="dialogRef.close(true)">  {{'common.commands.Close' |translate}}</button>
+ <button mat-raised-button class="mat-primary mr-16" [disabled]="editInstructionForm.invalid"
+            (click)="saveInstruction()">  {{'common.commands.Save' |translate}}</button>
+</div>
+

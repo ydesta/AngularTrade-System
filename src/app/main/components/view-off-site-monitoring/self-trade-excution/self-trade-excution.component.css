@@ -1,0 +1,58 @@
+mat-footer-row {
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  width: 100%;
+  max-height: 100%;
+}
+
+.element-row {
+  position: relative;
+}
+
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+
+.element-row:not(.expanded):hover {
+  background: #d2ebff;
+}
+
+mat-cell {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: left !important;
+      -ms-flex-pack: left !important;
+          justify-content: left !important;
+}
+
+mat-header-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  background-color: #00796b;
+  color: white;
+  height: 80px;
+}
+/*# sourceMappingURL=self-trade-excution.component.css.map */

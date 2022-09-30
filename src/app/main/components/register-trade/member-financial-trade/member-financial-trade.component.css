@@ -1,0 +1,36 @@
+.mat-footer-row, .mat-row {
+  min-height: 10px;
+  height: 35px;
+}
+
+mat-card-header {
+  border-radius: 3px;
+  top: -42px;
+  padding: 8px;
+  background: linear-gradient(60deg, #657882, #607d8b);
+  margin: 0 15px;
+  position: relative;
+  z-index: 3 !important;
+  -webkit-box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #607d8b;
+          box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #607d8b;
+}
+
+mat-card-header, mat-card-title .white {
+  color: #fff !important;
+}
+
+mat-card-subtitle, .white {
+  color: #607D8B !important;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-style: italic;
+}
+/*# sourceMappingURL=member-financial-trade.component.css.map */

@@ -1,0 +1,45 @@
+<div fxLayout="row" class="p-5 mt-5">
+    <mat-card fxFlex="100" fxLayout="column" class="mt-5 mat-card-custom">
+        <mat-card-header class="custom-mat-card-header" fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'UserInstructions.header'|translate }}</mat-card-title>
+            </div>
+
+        </mat-card-header>
+        <mat-card-content fxFlex="100">
+            <div fxLayout="column">
+                <div fxFlex="80">
+                    <mat-form-field>
+                        <mat-label>{{'Label.Services' | translate}}</mat-label>
+                        <mat-select (selectionChange)="serviceChanged($event)">
+                            <mat-option *ngFor="let serviceType of serviceTypes" [value]=serviceType.Id>
+                                {{serviceType.Name|translate}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxFlex fxLayoutAlign="end" *ngIf="showInstructionAddButton">
+                    <button fxFlexAlign="end" mat-button color="primary" (click)="openEditUserInstructionDialog(0)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+                <mat-list cdkDropList fxLayout="column" (cdkDropListDropped)="drop($event)" fxFlex.lt-md="100"
+                          fxFlex.gt-sm="80"
+                          fxLayoutGap="10px" class="custom-mat-list">
+                    <mat-list-item fxLayout="column" *ngFor="let instruction of listOfInstructions" cdkDrag
+                                   [cdkDragData]="instruction"
+                                   class="mat-elevation-z2">
+                        <div fxFlex>{{instruction.Title}}</div>
+                        <button fxFlexAlign="end" mat-button color="primary"
+                                (click)="openEditUserInstructionDialog(instruction.Id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button fxFlexAlign="end" mat-button color="warn" (click)="delete(instruction.Id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

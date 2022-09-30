@@ -1,0 +1,57 @@
+<div fxLayout="row" class="p-5">
+    <mat-card fxFlex="100" class="">
+        <mat-card-header fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'registerTrade.editor.DocumentFileUpload' | translate}}</mat-card-title>
+            </div>
+            <div fxFlex fxLayoutAlign="end">
+                <button style="color: red;" mat-button (click)="onClose()">X</button>
+            </div>
+        </mat-card-header>
+        <mat-card-content style="margin-top: 10px">
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <form [formGroup]="form" role="form" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100"
+                        fxFlex="100">
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="80" fxFlex.gt-xs="100" fxFlex="100">
+                                <small>
+                                    {{'registerTrade.editor.FileName' | translate}}:
+                                    <em>
+                                        <div *ngFor="let file of allFiles">
+                                            {{file.name}}
+                                        </div>
+                                    </em>
+                                </small>
+                            </div>
+                            <div fxLayout="row wrap" fxLayoutAlign="end end">
+                                <mat-card-actions>
+                                    <button mat-raised-button color="primary" (click)="fileInput.click()">
+                                        {{'registerTrade.editor.BrowseFile' | translate}}
+                                    </button>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                        <div fxLayout="row wrap">
+                            <img *ngFor='let url of urls' [src]="url" height="50"> <br />
+                            <input style="display: none" type="file" #fileInput (change)="onSelectFile($event)" multiple
+                                required />
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="end end">
+                            <mat-card-actions>
+                                <button mat-raised-button color="warn" (click)="onClose()">
+                                    &nbsp; {{'common.commands.Cancel' | translate}} &nbsp;
+                                </button>
+                                <button mat-raised-button color="primary" [disabled]="!form.valid"
+                                    (click)="saveAttachment()">
+                                    {{'common.commands.Save' | translate}}
+                                </button>
+                            </mat-card-actions>
+                        </div>
+
+                    </form>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+</div>

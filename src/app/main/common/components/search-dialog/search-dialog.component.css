@@ -1,0 +1,8 @@
+mat-table {
+  overflow-y: scroll;
+}
+
+.mat-row:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=search-dialog.component.css.map */

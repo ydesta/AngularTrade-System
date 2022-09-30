@@ -1,0 +1,137 @@
+<div class="page-content">
+  <form #form="ngForm" [formGroup]="userProfileForm" novalidate (ngSubmit)="save()" fxLayout="column"
+    [fxLayoutGap]="isEditMode ? '1em' : '0'" autocomplete="off">
+    <div class="message-box error" style="width:100%; " *ngIf="errors.length > 0">
+      <ul *ngFor="let error of errors">
+        <li>
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="isStaff ||user.ExchangeActorId!=null||user.ExchangeActorId==isempty" fxLayout="row"
+      fxLayout.lt-md="column" fxLayoutGap="1em">
+      <mat-form-field fxFlex fxLayoutGap="1em">
+        <label for="ExchangeActorId"> {{'users.management.ExchangeActorName'| translate}}</label>
+        <input required matInput formControlName="ExchangeActorId" id="ExchangeActorId" (click)="searchCustomer()"
+          readonly>
+        <mat-error *ngIf="ExchangeActorId.hasError('required')">
+          {{'common.validation.Required' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+
+      <mat-form-field fxFlex>
+        <mat-label>{{'users.editor.FullName' | translate}}</mat-label>
+        <input matInput formControlName="fullName" [readonly]="!isEditMode" />
+        <mat-error *ngIf="fullName.hasError('minlength')">
+          {{'common.validation.MinLengthChar' | translate : {'min':'2'}  }}
+        </mat-error>
+        <mat-error *ngIf="!fullName.hasError('minlength')
+                            && fullName.hasError('pattern')">
+          {{'common.validation.UseLatinOnly' | translate}}
+        </mat-error>
+        <mat-error
+          *ngIf="!fullName.hasError('minlength') && !fullName.hasError('pattern') && fullName.hasError('maxlength')">
+          {{'common.validation.MaxLengthNum' | translate: {'max':'140'} }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex.gt-sm="0 1 calc(50% - 0.5em)">
+        <mat-label>{{'users.editor.UserName' | translate}}</mat-label>
+        <input matInput formControlName="userName" [readonly]="!isEditMode" autocomplete="off" required />
+        <mat-error *ngIf="userName.hasError('required')">
+          {{'users.editor.UserNameRequired' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+      <mat-form-field fxFlex>
+        <mat-label>{{'users.editor.Email' | translate}}</mat-label>
+        <input matInput formControlName="email" [readonly]="!isEditMode" type="email" required />
+        <mat-error *ngIf="email.hasError('required')">
+          {{'users.editor.EmailRequired' | translate}}
+        </mat-error>
+        <mat-error *ngIf="!email.hasError('required') && (email.hasError('pattern')) ">
+          {{'users.editor.InvalidEmail' | translate}}
+        </mat-error>
+
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>{{'users.editor.PhoneNumber' | translate}}</mat-label>
+        <input matInput formControlName="phoneNumber" [readonly]="!isEditMode" required NaturalNumberOnlyDir />
+        <mat-error *ngIf="phoneNo.hasError('required')">
+          {{'common.validation.Required' | translate}}
+        </mat-error>
+        <mat-error *ngIf="!phoneNo.hasError('required') && phoneNo.hasError('pattern')">
+          {{'common.validation.EnterValidPhoneNumberOnly' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+
+      <mat-form-field formGroupName="password"
+        *ngIf="(isEditMode && !isNewUser && userName.value != user.UserName) || (isChangePassword && isEditingSelf)"
+        fxFlex>
+        <mat-label>{{'users.editor.CurrentPassword' | translate}}</mat-label>
+        <input matInput type="password" formControlName="currentPassword" required />
+        <mat-error *ngIf="currentPassword.hasError('required')">
+          {{'users.editor.CurrentPasswordRequired' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="isEditMode">
+      <!-- <button mat-raised-button (click)="changePassword()" *ngIf="!(isChangePassword || isNewUser)" color="primary">{{'users.editor.ChangePassword' | translate}}</button> -->
+      <div *ngIf="isChangePassword || isNewUser" formGroupName="password" fxLayout="row" fxLayout.lt-md="column"
+        fxLayoutGap="1em">
+        <mat-form-field fxFlex>
+          <mat-label>{{'users.editor.NewPassword' | translate}}</mat-label>
+          <input matInput type="password" formControlName="newPassword" autocomplete="off" required />
+          <mat-error *ngIf="newPassword.hasError('required')">
+            {{'users.editor.NewPasswordRequired' | translate}}
+          </mat-error>
+          <mat-error *ngIf="!newPassword.hasError('required') && newPassword.hasError('pattern')">
+            {{'users.editor.NewPasswordRules' | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>{{'users.editor.ConfirmPassword' | translate}}</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" />
+          <mat-error *ngIf="confirmPassword.hasError('required')">
+            {{'users.editor.ConfirmationPasswordRequired' | translate}}
+          </mat-error>
+          <mat-error *ngIf="!confirmPassword.hasError('required') && confirmPassword.hasError('notEqual')">
+            {{'users.editor.PasswordMismatch' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+      <mat-form-field fxFlex>
+        <mat-label>{{'users.editor.Roles' | translate}}</mat-label>
+        <mat-select formControlName="roles" multiple [disabled]="!isEditMode || !canAssignRoles"
+          [compareWith]="compareIds">
+          <mat-option *ngFor="let role of assignableRoles" [value]="role.Name">
+            {{role.Name}}
+          </mat-option>
+
+        </mat-select>
+        <mat-error *ngIf="assignedRoles.hasError('required')">
+          {{'users.editor.RoleRequired' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+      <div fxFlex.gt-sm="0 1 calc(50% - 0.5em)">
+        <mat-checkbox *ngIf="isEditMode" formControlName="isEnabled">{{'users.editor.Enabled' | translate}}
+        </mat-checkbox>
+      </div>
+      <div>
+        <button mat-button *ngIf="user.IsLockedOut" (click)="unlockUser()" [disabled]="isSaving" color="accent">
+          <mat-icon class="mat-button-icon">lock_open</mat-icon>{{'users.editor.Unblock' | translate}}
+        </button>
+      </div>
+    </div>
+    <div>&nbsp;</div>
+  </form>
+</div>

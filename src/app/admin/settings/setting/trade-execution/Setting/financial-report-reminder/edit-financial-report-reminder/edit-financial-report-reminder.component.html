@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span mat-dialog-title>
+                {{IsEdit ? ('pageHeader.AddRecord' | translate:IsEdit) : ('pageHeader.RecordEdit' | translate)}}
+              </span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div style="padding-left: 5%; padding-right: 5%;">
+            <br/>
+            <div mat-dialog-content style="padding: 8%">
+            <form fxLayout="column" [formGroup]="financialReportReminderForm" autocomplete="off" (ngSubmit)="onSubmit()">
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.ReminderAmh' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="text" formControlName="DescriptionAmh">
+                  <mat-error *ngIf="DescriptionAmh.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionAmh.hasError('minlength')">
+                    {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionAmh.hasError('pattern')">
+                    {{'common.validation.UseEthiopicOnly' | translate }}
+                  </mat-error>
+                </mat-form-field>
+      
+                <mat-form-field fxFlex>
+                  <mat-label>{{'registerTrade.editor.ReminderEng' | translate}}</mat-label>
+                  <input autocomplete="off" matInput type="text" formControlName="DescriptionEng">
+                  <mat-error *ngIf="DescriptionEng.hasError('required')">
+                    {{'common.validation.Required' | translate }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionEng.hasError('minlength')">
+                    {{'common.validation.MinLengthChar' | translate : {'min': '2'} }}
+                  </mat-error>
+                  <mat-error *ngIf="DescriptionEng.hasError('pattern')">
+                    {{'common.validation.UseLatinOnly' | translate }}
+                  </mat-error>
+                </mat-form-field>
+                <div class="mat-dialog-actions" fxLayoutAlign="end end">
+          
+                        <button mat-raised-button  color="warn" type="button"
+                                  (click)="dialogRef.close(null)">{{'registerTrade.editor.Cancel' | translate}}
+                        </button>
+                        <button mat-raised-button color="primary" [disabled]="!financialReportReminderForm.valid" mat-raised-button color="primary" type="submit">
+                        {{'registerTrade.editor.Save' | translate}}
+                        </button>
+                      </div>
+            </form>
+      </div>
+      </div>

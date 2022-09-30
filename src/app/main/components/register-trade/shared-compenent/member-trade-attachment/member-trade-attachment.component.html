@@ -1,0 +1,79 @@
+<div class="responsive-table" style="margin: 5px">
+
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            {{'registerTrade.editor.DocumentAttachment' | translate}}
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card>
+        <mat-card-content fxLayout="row wrap">
+            <img *ngFor='let url of urls' [src]="url" height="50"> <br/>
+            <input style="display: none" type="file" #fileInput (change)="onSelectFile($event)" multiple />
+            <form [formGroup]="form" role="form" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="80" fxFlex.gt-xs="100" fxFlex="100">
+                        <small>
+                {{'registerTrade.editor.FileName' | translate}}:
+                <em style="padding-left: 10px">
+                  <div *ngFor="let file of allFiles">
+                    {{file.name}}
+                  </div>
+                </em>
+              </small>
+
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="end end">
+                        <mat-card-actions>
+                            <button mat-raised-button color="primary" (click)="fileInput.click()">
+                  {{'registerTrade.editor.BrowseFile' | translate}}
+                </button>
+                        </mat-card-actions>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <textarea rows="6" matInput mdInput placeholder="{{'registerTrade.editor.AttachmentContent' |
+                  translate}}" formControlName="AttachmentContent" required>
+                </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <textarea rows="4" matInput mdInput placeholder="{{'registerTrade.editor.SelectedWord' |
+                  translate}}" formControlName="SelectedWord"> </textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-form-field style="width:95%">
+                            <mat-select rows="4" matInput mdInput placeholder="{{'registerTrade.editor.IndependentAuditor' |
+                  translate}}" formControlName="AuditorId">
+                                <mat-option *ngFor="let commidityType of auditorList" [value]="commidityType.Id">
+                                    <span>{{commidityType.Description}}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap" fxLayoutAlign="end end">
+                    <mat-card-actions>
+                        <button mat-raised-button color="warn" (click)="closeDialog()">
+                &nbsp; {{'common.commands.Cancel' | translate}} &nbsp;
+              </button>
+                        <button mat-raised-button color="primary" (click)="saveAttachment()" [disabled]="!form.valid">
+                {{'common.commands.Save' | translate}}
+              </button>
+
+                    </mat-card-actions>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

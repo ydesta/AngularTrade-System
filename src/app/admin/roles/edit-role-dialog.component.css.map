@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,MAAM,EAAE,CAAC;EACT,aAAa,EAAE,CAAC;EAChB,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,mBAAmB,CAAC;EAClB,MAAM,EAAE,GAAG;EACX,OAAO,EAAE,YAAY;EACrB,MAAM,EAAE,GAAG;CACZ;;AAED,AAAA,gBAAgB,EAAE,uBAAuB,CAAC;EACxC,MAAM,EAAE,eAAe;CACxB;;AAED,AAAA,qBAAqB,CAAC;EACpB,OAAO,EAAE,cAAc;CACxB",
+    "sources": [
+        "edit-role-dialog.component.scss"
+    ],
+    "names": [],
+    "file": "edit-role-dialog.component.css"
+}

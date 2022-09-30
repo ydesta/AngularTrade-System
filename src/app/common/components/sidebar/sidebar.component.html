@@ -1,0 +1,55 @@
+<div id="app_container" [class.is-mobile]="mobileQuery.matches" class="nav-container">
+
+ <app-toolbar-dashboard [fullNameInLang]="fullNameInLang"  [mainNav]="mainNav"
+                        [accountMenuItems]="accountMenuItems" [isUserLoggedIn]="isUserLoggedIn"></app-toolbar-dashboard>
+  <mat-sidenav-container class="app-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
+    <mat-sidenav #mainNav class="app-sidenav-nav mat-elevation-z6" [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="!mobileQuery.matches">
+
+      <mat-nav-list *ngFor="let menuItem of menuItems " >
+        <a *ngIf="menuItem.type==='link'" mat-list-item routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }" [routerLink]="[menuItem.path]">
+          <mat-icon>{{menuItem.iconType}}</mat-icon>
+          {{menuItem.title | translate}}
+        </a>
+
+
+
+
+        <mat-expansion-panel #panel [expanded]="canOpenExpansionPanel(panel,menuItem.path)"
+          *ngIf="menuItem.type==='dropDown'" class="nav-expansion-panel">
+          <mat-expansion-panel-header style="font-size: 16px;">
+            <mat-panel-title>
+              <mat-icon>{{menuItem.iconType}}</mat-icon>
+              {{ menuItem.title | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list dense class="mat-expansion-panel-body">
+
+            <mat-nav-list *ngFor="let subMenu of menuItem.children">
+
+              <app-menu-list-item [subMenu]="subMenu"></app-menu-list-item>
+
+            </mat-nav-list>
+
+          </mat-list>
+        
+        </mat-expansion-panel>
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div fxLayout="column" fxFill>
+        <div id="mainContent" fxFlex>
+          <app-progress-bar></app-progress-bar>
+          <router-outlet></router-outlet>
+        </div>
+        <!-- <app-footer></app-footer> -->
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>

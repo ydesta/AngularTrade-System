@@ -1,0 +1,92 @@
+<div>
+  <mat-toolbar class="landing-toolbar mat-elevation-z8" fxLayoutAlign="center center" fxLayout.lt-lg="column"
+               fxLayout.lg="row" fxLayout.gt-lg="row" color="primary" style="background-image: url('/assets/image/header-bg.png')">
+
+    <div fxLayout="row" fxFlex.gt-md="80" fxLayoutAlign="center center">
+      <div fxLayout="row" fxFlexOffset.gt-md="10">
+        <a routerLink="/" fxLayout="row" fxLayoutAlign="center center" class="logo">
+          <span class="mx-2"><h1 style="font-weight:bolder">የኢትዮጵያ ምርት ገበያ ባለስልጣን</h1></span>
+          <img [src]="configService.assetsUrl+'/image/CommLogo.png'" alt="logo">
+          <span class="mx-2"><h3 style="font-size:16px">Ethiopian Commodity Exchange Authority</h3></span>
+        </a>
+      </div>
+    </div>
+    <div fxFlex.lt-md="100" fxFlex.gt-md="20" fxLayoutAlign="end end">
+      <div fxLayout="row" fxFlexAlign="end end">
+        <app-lang-switcher fxFlexAlign="end end"></app-lang-switcher>
+      </div>
+    </div>
+  </mat-toolbar>
+
+</div>
+<div fxLayout="row wrap" fxLayoutAlign.gt-md="center center" fxLayout.lt-lg="column">
+  <div class="page-content mt-6" fxLayout="column" fxFlex="40">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span style="margin-top:9px; margin-right: 5px"><mat-icon>lock</mat-icon></span>
+        <span>{{dialogTitle}}</span>
+        <span class="toolbar-spacer"></span>
+        <div class="header-actions">
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <form #form="ngForm" [formGroup]="userProfileForm" novalidate  fxLayout="column"
+              fxLayoutGap="1em" autocomplete="off">
+        
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field fxFlex>
+              <mat-label>{{'Labels.Username' | translate}}</mat-label>
+              <input matInput formControlName="userName" autocomplete="off" required/>
+              <mat-error *ngIf="userName.hasError('required')">
+                {{'ValidationError.Required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field fxFlex *ngIf="showOldPassword">
+              <mat-label>{{oldPasswordCaption}}</mat-label>
+              <input matInput type="password" formControlName="oldPassword" autocomplete="off" />
+              <mat-error *ngIf="oldPassword.hasError('required')">
+                {{'ValidationError.OldPasswordRequired'|translate}}
+              </mat-error>    
+
+            </mat-form-field>
+          </div>
+          <div formGroupName="password" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <div fxLayout="row" fxFlex="50" fxLayout.lt-md="column" fxLayoutGap="1em">
+              <mat-form-field>
+                <mat-label>{{'Labels.NewPassword' | translate}}</mat-label>
+                <input matInput type="password" formControlName="newPassword" autocomplete="off" required/>
+                <mat-error *ngIf="newPassword.hasError('required')">
+                  {{'ValidationError.NewPasswordRequired' | translate}}
+                </mat-error>
+                <mat-error *ngIf="!newPassword.hasError('required') && newPassword.hasError('pattern')">
+                  {{'ValidationError.NewPasswordRules' | translate}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxFlex="50" fxLayout.lt-md="column" fxLayoutGap="1em">
+              <mat-form-field fxFlex>
+                <mat-label>{{'Labels.ConfirmPassword' | translate}}</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" required/>
+                <mat-error *ngIf="confirmPassword.hasError('required')">
+                  {{'ValidationError.ConfirmationPasswordRequired' | translate}}
+                </mat-error>
+                <mat-error *ngIf="!confirmPassword.hasError('required') && confirmPassword.hasError('notEqual')">
+                  {{'ValidationError.PasswordMismatch' | translate}}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <div  style="text-align: center"  mat-dialog-actions class="p-2">
+        <button [disabled]="!userProfileForm.valid" mat-raised-button color="primary" type="button" (click)="save()">{{actionCaption}}
+        </button>
+      
+      </div>
+    </mat-card>
+  </div>
+</div>

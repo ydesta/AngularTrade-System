@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACV,cAAc,EAAE,MAAM;EACtB,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAE,OAAO;CAE1B;;AAED,AAAA,WAAW,CAAC,eAAe,CAAC;EAC1B,OAAO,EAAE,KAAK;CACf",
+    "sources": [
+        "role-list.component.scss"
+    ],
+    "names": [],
+    "file": "role-list.component.css"
+}

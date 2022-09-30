@@ -1,0 +1,445 @@
+<div fxLayout="row" class="p-5">
+  <mat-card fxFlex="100" class="">
+    <!-- <mat-toolbar class="bg-primary">
+
+            <span>{{'registerTrade.editor.FinancialReport' | translate}}
+      </span>
+            <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1" style="margin-left: 300px;color: #ae0013">
+        <mat-icon>clear</mat-icon>
+      </button>
+        </mat-toolbar> -->
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{'registerTrade.editor.FinancialPerformanceHeader' | translate}}</mat-card-title>
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <button style="color: red;" mat-button (click)="onClose()">X</button>
+      </div>
+    </mat-card-header>
+    <div style="margin-top: 10px">
+      <div fxFlex="100" class="">
+
+        <form [formGroup]="formFinancial" fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100"
+          autocomplete="off">
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.TemporaryWealth' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.DepositsMoney' | translate}}
+                    </mat-label>
+                    <input #dm matInput id="depositsMoney" formControlName="DepositsMoney" type="number" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.CollectedPayment' | translate}}
+                    </mat-label>
+                    <input #cm matInput type="number" id="collectedPayment" formControlName="CollectedPayment" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.Stock' | translate}}</mat-label>
+                    <input #stock matInput type="number" id="stock" formControlName="Stock" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.AdvancePayment' | translate}}
+                    </mat-label>
+                    <input #ap matInput type="number" id="advancePayment" formControlName="AdvancePayment" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.InvestOthers' | translate}}</mat-label>
+                    <input matInput type="number" id="currentAssetsOthers" formControlName="CurrentAssetsOthers"
+                      readonly #cao>
+
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalIncome' | translate}}
+                    </mat-label>
+                    <input #totalIncome matInput value="{{(dm.value*1+stock.value*1+ap.value*1+cm.value*1 + cao.value*1)
+                      | number:'1.0':'en-US'}}" id="totalIncome" formControlName="TotalIncome" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.Investment' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.Investment' | translate}}</mat-label>
+                    <input matInput type="number" id="perShare" formControlName="PerShare" readonly #share>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.InvestOthers' | translate}}</mat-label>
+                    <input matInput type="number" id="others" formControlName="InvestOthers" readonly #others>
+
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalPerShare' | translate}}
+                    </mat-label>
+                    <input #perShare matInput type="text" value="{{(share.value*1 + others.value*1)
+                      | number:'1.0':'en-US'}}" id="totalPerShare" formControlName="TotalPerShare" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.FixedAsset' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.Building' | translate}}</mat-label>
+                    <input #build matInput type="number" id="building" formControlName="Building" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.Vehicle' | translate}}</mat-label>
+                    <input #vechile matInput type="number" id="vehicle" formControlName="Vehicle" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.Tools' | translate}}</mat-label>
+                    <input #tools matInput type="number" id="tools" formControlName="Tools" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.OfficeFurniture' | translate}}
+                    </mat-label>
+                    <input #officeFur matInput type="number" id="officeFurniture" formControlName="OfficeFurniture"
+                      readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.ComputerandAccessories' | translate}}
+                    </mat-label>
+                    <input #computer matInput type="number" id="Computerandaccessories"
+                      formControlName="Computerandaccessories" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.InvestOthers' | translate}}</mat-label>
+                    <input matInput type="number" id="tangibaleAssetsOthers" formControlName="TangibaleAssetsOthers"
+                      readonly #tao>
+
+
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalFixedAsset' | translate}}
+                    </mat-label>
+                    <input #fixedAsset matInput type="text" value="{{(officeFur.value*1 + tools.value*1 +
+                      vechile.value*1 + build.value*1 + computer.value*1 + tao.value*1 + others.value*1 + cao.value*1) |
+                      number:'1.0':'en-US'}}" id="totalFixedAsset" formControlName="TotalFixedAsset" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.TotalTemporaryWealth' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label> {{'registerTrade.editor.TotalWealth' | translate}}
+                    </mat-label>
+                    <input #totalwealth matInput type="text" value="{{(dm.value*1+stock.value*1+ap.value*1+cm.value*1+officeFur.value*1
+                      + tools.value*1 + vechile.value*1 + build.value*1
+                      +share.value*1 + computer.value*1 + tao.value*1) |
+                      number:'1.0':'en-US'}}" id="totalWealth" formControlName="TotalWealth" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.TemporaryDebts' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.PayableDebts' | translate}}
+                    </mat-label>
+                    <input #payableDebts matInput ttype="number" id="payableDebts" formControlName="PayableDebts"
+                      readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.OverDraft' | translate}}</mat-label>
+                    <input #overDraft matInput type="number" id="overDraft" formControlName="OverDraft" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.AccountsPriority' | translate}}
+                    </mat-label>
+                    <input #accountsPriority matInput type="number" id="accountsPriority"
+                      formControlName="AccountsPriority" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.LongTermLoanPayable' | translate}}
+                    </mat-label>
+                    <input #longTerm matInput type="number" id="longTermLoanPayable"
+                      formControlName="LongTermLoanPayable" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.ShortTermLoan' | translate}}
+                    </mat-label>
+                    <input #shortTerm matInput type="number" id="shortTermLoan" formControlName="ShortTermLoan"
+                      readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.InvestOthers' | translate}}</mat-label>
+                    <input #clo matInput type="number" id="currentLiabilityOthers"
+                      formControlName="CurrentLiabilityOthers" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalTemporaryDebts' | translate}}
+                    </mat-label>
+                    <input #temporaryDebts matInput type="text" value="{{(shortTerm.value*1 + longTerm.value*1 +
+                      accountsPriority.value*1 + payableDebts.value*1 + clo.value*1 +
+                      overDraft.value*1) | number:'1.0':'en-US'}}" id="totalTemporaryDebts"
+                      formControlName="TotalTemporaryDebts" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.LongtermDebts' | translate}}
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.MortgageLoan' | translate}}
+                    </mat-label>
+                    <input #mortgage matInput type="number" id="mortgageLoan" formControlName="MortgageLoan" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.LongTermloanFromfinancial' | translate}}</mat-label>
+                    <input #loanFinancial matInput type="number" id="longTermloanFromfinancial"
+                      formControlName="LongTermloanFromfinancial" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.InvestOthers' | translate}}</mat-label>
+                    <input #ltlo matInput type="number" id="longTermLiabilityOthers"
+                      formControlName="LongTermLiabilityOthers" readonly>
+
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalLongTermDebts' | translate}}
+                    </mat-label>
+                    <input #totalLongTerm matInput type="text" value="{{(mortgage.value*1 + loanFinancial.value*1 + ltlo.value*1) |
+                      number:'1.0':'en-US'}}" id="totalLongTermDebts" formControlName="TotalLongTermDebts" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.TotalCustomerDebts' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.TotalDebts' | translate}}</mat-label>
+                    <input #totalDebts matInput type="text" value="{{(shortTerm.value*1 + longTerm.value*1 +
+                      accountsPriority.value*1 + payableDebts.value*1 +
+                      overDraft.value*1 + mortgage.value*1 + ltlo.value*1 + clo.value*1 +
+                      loanFinancial.value*1)| number:'1.0':'en-US'}}" id="totalDebts" formControlName="TotalDebts"
+                      readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.Next'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{'registerTrade.editor.NetWealth' | translate}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                  <mat-form-field style="width:95%">
+                    <mat-label>{{'registerTrade.editor.NetAssets' | translate}}</mat-label>
+                    <input #netAssets matInput type="text" value="{{(dm.value*1+stock.value*1+ap.value*1+cm.value*1+officeFur.value*1
+                      + tools.value*1 + vechile.value*1 + build.value*1
+                      +share.value*1 + computer.value*1 + tao.value*1 + others.value*1 + cao.value*1) -
+                      (shortTerm.value*1 + longTerm.value*1 +
+                      accountsPriority.value*1 + payableDebts.value*1 +
+                      overDraft.value*1 + mortgage.value*1 +
+                      loanFinancial.value*1 + ltlo.value*1 + clo.value*1)
+                      | number:'1.0':'en-US'}}" id="netAssets" formControlName="NetAssets" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">{{'registerTrade.editor.Back'
+                  | translate}}</button>
+                <button mat-button color="primary" (click)="nextStep()">{{'registerTrade.editor.End'
+                  | translate}}</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </form>
+
+      </div>
+    </div>
+  </mat-card>
+</div>

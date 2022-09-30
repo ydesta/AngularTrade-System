@@ -1,0 +1,125 @@
+<app-breadcrumb [title]="'registerTrade.editor.ClientInformation' | translate"></app-breadcrumb>
+<div fxLayout="row" class="p-5">
+    <mat-card fxFlex="100" class="">
+        <mat-card-header fxLayout="row">
+            <div fxFlex="40">
+                <mat-card-title>{{'registerTrade.editor.BasicClientInformation' | translate}}</mat-card-title>
+            </div>
+            <div fxFlex fxLayoutAlign="end">
+            </div>
+        </mat-card-header>
+        <mat-card-title>
+            <button mat-button color="primary" type="button" [routerLink]="['../member-client-detail']">
+        <mat-icon style="margin-top: -5px" class="mat-8">add</mat-icon>
+        <mat-label> {{'registerTrade.editor.Add' | translate}}</mat-label>
+      </button>
+        </mat-card-title>
+
+        <mat-card-content style="margin-top: 25px;border: black">
+
+            <mat-table multitemplatedatarows role="grid" [dataSource]="dataSource" matSort matSortStart="desc" let i=index;>
+                <ng-container matColumnDef="no">
+                    <mat-header-cell *matHeaderCellDef [ngClass]="'customWidthClass'">{{'registerTrade.editor.Sno' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let element;let i=index;" [ngClass]="'customWidthClass'">
+                        {{i + 1}}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CustomerFullName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CustomerFullName' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.CustomerFullName }}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="FullName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.FullNameCLientInformation' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        <span>  {{ complaint?.FullName}}</span>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="BusinessFiledId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.BusinessSector' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{getDescriptionBusinessSector(complaint?.BusinessFiledId) }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="DateAgreement">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.AgreementDate' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.DateAgreement}}
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="RegularPhone">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.RegularPhone' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.RegularPhone }}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="MobilePhone">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.MobilePhone' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{ complaint?.MobilePhone}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="TradeTypeId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.TradeType' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        {{getDescriptionTradeType(complaint?.TradeTypeId)}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="CommodityName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.CommodityName' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        <span>{{ complaint?.CommodityName }}</span>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Status">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{'registerTrade.editor.ClientStatus' | translate}}</mat-header-cell>
+                    <mat-cell *matCellDef="let complaint">
+                        <span [ngStyle]="{'color': setClientStatusColor(complaint.Status),'font-size': 50}">{{getDescriptionClientStatus(complaint?.Status)}}</span>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Actions">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let clientList">
+                        <button mat-icon-button matTooltip="Edit" (click)="getEditClientInformation(clientList)">
+              <mat-icon color="primary">edit</mat-icon>
+            </button>
+                        <button mat-icon-button matTooltip="Delete" (click)="deleteMemberClientInformation(clientList)">
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="loading">
+                    <mat-footer-cell *matFooterCellDef colspan="9">
+                        {{'registerTrade.editor.LoadingData' | translate}}
+                    </mat-footer-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef colspan="9">
+                        {{'registerTrade.editor.NoData' | translate}}
+                    </mat-footer-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedClientInformation" role="row" class="mat-header-row">
+                </mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedClientInformation"></mat-row>
+                <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource !=null}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(dataSource != null && dataSource.data.length==0)}"></mat-footer-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+
+
+        </mat-card-content>
+
+    </mat-card>
+</div>

@@ -1,0 +1,133 @@
+<div class="page-content" fxFlexOffset.gt-md="25" fxFlex.gt-md="50">
+  <div class="mat-elevation-z8" style="margin: 30px;">
+    <mat-progress-bar *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span style="margin-top:9px; margin-right: 5px">
+          <mat-icon>person</mat-icon>
+        </span>
+        <span>Register</span>
+        <span class="toolbar-spacer"></span>
+        <div class="header-actions">
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card>
+      <div class="error-bar" style="width:100%; " *ngIf="errors.length > 0">
+        <ul>
+          <li *ngFor="let error of errors">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+      <mat-card-content>
+        <form #form="ngForm" [formGroup]="userProfileForm" novalidate (ngSubmit)="save()" fxLayout="column"
+          fxLayoutGap="1em" autocomplete="off">
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field appearance="outline">
+              <mat-label>{{'users.editor.UserName' | translate}}</mat-label>
+              <input matInput formControlName="userName" autocomplete="off" required />
+              <mat-error *ngIf="userName.hasError('required')">
+                {{'users.editor.UserNameRequired' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!userName.hasError('required') && userName.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate: {'min':'2'} }}
+              </mat-error>
+              <mat-error *ngIf="!userName.hasError('required') && !userName.hasError('minlength')
+              &&
+              userName.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'100'} }}
+              </mat-error>
+              <mat-error
+                *ngIf="!userName.hasError('required') && !userName.hasError('minlength') && userName.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate}}
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-24">person_add</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field fxFlex="50" appearance="outline">
+              <mat-label>{{'users.editor.FullName' | translate}}</mat-label>
+              <input matInput formControlName="fullName" required />
+              <mat-error *ngIf="fullName.hasError('required')">
+                {{'common.validation.Required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!fullName.hasError('required') && fullName.hasError('minlength')">
+                {{'common.validation.MinLengthChar' | translate: {'min':'2'} }}
+              </mat-error>
+              <mat-error *ngIf="!fullName.hasError('required') && !fullName.hasError('minlength')
+              && !fullName.hasError('pattern')&&
+              fullName.hasError('maxlength')">
+                {{'common.validation.MaxLengthNum' | translate: {'max':'100'} }}
+              </mat-error>
+              <mat-error
+                *ngIf="!fullName.hasError('required') && !fullName.hasError('minlength') && fullName.hasError('pattern')">
+                {{'common.validation.UseLatinOnly' | translate}}
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-24">person</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field fxFlex.gt-md="50" fxFlex appearance="outline">
+              <mat-label>{{'users.editor.Email' | translate}}</mat-label>
+              <input matInput type="email" formControlName="email" [email]="true" required />
+              <mat-error *ngIf="email.hasError('required')">
+                {{'users.editor.EmailRequired' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!email.hasError('required') && email.hasError('pattern')">
+                {{'users.editor.InvalidEmail' | translate}}
+              </mat-error>
+              <mat-error class="error" *ngIf="!email.hasError('required') && email.hasError('isEmailUnique')">
+                This email has been registered already
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-24">email</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>{{'users.editor.PhoneNumber' | translate}}</mat-label>
+              <input matInput NaturalNumberOnlyDir formControlName="phoneNumber" required autocomplete="off" />
+              <mat-error *ngIf="phoneNumber.hasError('required')">
+                {{'common.validation.Required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!phoneNumber.hasError('required') && phoneNumber.hasError('pattern')">
+                {{'common.validation.EnterValidPhoneNumberOnly' | translate}}
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-48">phone</mat-icon>
+            </mat-form-field>
+          </div>
+          <div formGroupName="password" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+            <mat-form-field fxFlex="50" appearance="outline">
+              <mat-label>{{'users.editor.NewPassword' | translate}}</mat-label>
+              <input matInput type="password" formControlName="newPassword" autocomplete="off" required />
+              <mat-error *ngIf="newPassword.hasError('required')">
+                {{'users.editor.NewPasswordRequired' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!newPassword.hasError('required') && newPassword.hasError('pattern')">
+                {{'users.editor.NewPasswordRules' | translate}}
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-24">lock_open</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+              <mat-label>{{'users.editor.ConfirmPassword' | translate}}</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" required />
+              <mat-error *ngIf="confirmPassword.hasError('required')">
+                {{'users.editor.ConfirmationPasswordRequired' | translate}}
+              </mat-error>
+              <mat-error *ngIf="!confirmPassword.hasError('required') && confirmPassword.hasError('notEqual')">
+                {{'users.editor.PasswordMismatch' | translate}}
+              </mat-error>
+              <mat-icon matSuffix="" color="primary" class="mat-24">lock_open</mat-icon>
+            </mat-form-field>
+
+          </div>
+        </form>
+      </mat-card-content>
+      <div fxLayout="column" fxLayoutGap="5px" class="mt-3" style="text-align: center">
+        <button fxFlex="100" mat-raised-button color="primary" (click)="save()"
+          [disabled]="userProfileForm.invalid">Register
+        </button>
+        <a fxFlex="100" mat-stroked-button color="primary" routerLink="/auth/login">Sign In
+        </a>
+      </div>
+    </mat-card>
+  </div>
+</div>

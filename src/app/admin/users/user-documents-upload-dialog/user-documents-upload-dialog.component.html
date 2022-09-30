@@ -1,0 +1,72 @@
+<div style="width:700px;min-height: 500px">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span> {{'header' |translate}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <div fxFlex="100" fxLayout="column" fxLayoutGap="1em" class="mt-5">
+      <div fxFlex="100">
+        <h4 class="light">  <span
+          class="green-font ">{{'investors.editor.WarningMessage'| translate }}</span>
+        </h4>
+        <h5 class="green-font light">{{'common.validation.UploadPdfFileMessage' | translate}}</h5>
+      </div>
+      <div fxLayout="column" fxFlex="100" >
+        <mat-card fxLayoutGap="5px" class="mt-4 ">
+          <mat-progress-bar
+            *ngIf="progress>0"
+            mode="determinate"
+            [value]="progress">
+          </mat-progress-bar>
+          <mat-table [dataSource]="uploadedDocumentsDetail" fxFlexAlign="center">
+            <ng-container matColumnDef="Description">
+              <mat-cell *matCellDef="let element">
+                {{element.Description}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Uploaded">
+              <mat-cell  *matCellDef="let row">
+                <p class="green-font" *ngIf="row.Uploaded">{{'common.messages.Uploaded' |translate}}</p>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Actions">
+              <mat-cell *matCellDef="let element; let i = index;">
+                <input
+                  type="file"
+                  #file
+                  style="display: none"
+                  accept="application/pdf,image/jpeg,image/jpg,image/png"
+                  (change)="onFilesAdded(file.files)"
+                />
+                <button
+
+                  mat-icon-button
+                  color="primary"
+                  class="add-files-btn"
+                  (click)="addFiles(i,element.DocumentCode)">
+                  <mat-icon>cloud_upload {{element.DocumentCode}}</mat-icon>
+                </button>
+
+                <a target="_blank" href="{{baseDocumentUrl+element.Link}}"
+                   [disabled]="!element.Uploaded" mat-icon-button fxFlexAlign="end" type="button">
+                  <mat-icon>remove_red_eye</mat-icon>
+                </a>
+
+                <button [disabled]="!element.Uploaded" type="button" mat-icon-button
+                        (click)="delete(element.DocumentId,element.Link,i)">
+                  <mat-icon color="warn">delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+          </mat-table>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+  <div fxLayoutGap="3px" fxLayoutAlign="end" mat-dialog-actions class="p-2 mt-3">
+    <button mat-raised-button (click)="dialog.closeAll()"  color="primary">{{'commands.Cancel'|translate}}</button>
+  </div>
+</div>
+
